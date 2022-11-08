@@ -5,17 +5,7 @@
       <n-button @click="theme = null">Light</n-button>
     </n-space>
     <n-config-provider :theme="theme">
-      <n-card>
-        <n-el
-          tag="span"
-          style="
-            color: var(--primary-color);
-            transition: 0.3s var(--cubic-bezier-ease-in-out);
-          "
-        >
-          I am a Span.
-        </n-el>
-      </n-card>
+      <RouterView />
     </n-config-provider>
   </n-space>
 </template>
@@ -35,8 +25,6 @@ export default defineComponent({
   components: {
     NButton,
     NConfigProvider,
-    NCard,
-    NEl,
     NSpace
   },
   setup() {
