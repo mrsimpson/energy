@@ -3,11 +3,10 @@
 exports[`TheGasCalculator > renders properly 1`] = `
 <n-space-stub
   data-v-5987c6d7=""
-  horizontal=""
   inline="false"
   justify="start"
-  size="medium"
-  vertical="false"
+  size="large"
+  vertical="true"
   wrap="true"
   wrapitem="true"
 />
