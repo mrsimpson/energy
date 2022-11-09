@@ -45,6 +45,6 @@ const price2021 = ref(0.1)
 const price2022 = ref(0.4)
 
 const validatePositive = (x: number) => x > 0
-const euroToCent = (x: number | null): string => `${(x || 0) * 100}`
+const euroToCent = (x: number | null): string => `${((x || 0) * 100).toFixed(0)}`
 const centToEuro = (x: string): number => Number(x) / 100
 </script>
