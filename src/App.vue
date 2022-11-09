@@ -10,28 +10,9 @@
   </n-space>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
-import { darkTheme, NButton, NConfigProvider, NCard, NEl, NSpace } from "naive-ui";
-import type { GlobalTheme } from "naive-ui";
-import type { Ref } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
+import { NButton, NConfigProvider, NSpace, darkTheme, type GlobalTheme } from 'naive-ui';
 
-type SetupReturn = {
-  darkTheme: GlobalTheme;
-  theme: Ref<GlobalTheme | null>;
-};
-
-export default defineComponent({
-  components: {
-    NButton,
-    NConfigProvider,
-    NSpace
-  },
-  setup() {
-    return {
-      darkTheme,
-      theme: ref(null),
-    } as SetupReturn;
-  },
-});
+const theme = ref(null as GlobalTheme | null);
 </script>
