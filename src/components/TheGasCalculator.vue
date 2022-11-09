@@ -153,6 +153,7 @@ import {
 import { computed, ref } from "vue";
 import ResultCharts from "./ResultCharts.vue";
 
+// Parameters
 const consumption = ref(15000);
 const price2021 = ref(0.1);
 const price2022 = ref(0.18);
@@ -161,6 +162,15 @@ const reduction2023 = ref(consumption.value * 0.1);
 const paymentSeptember2022 = ref((consumption.value * price2021.value) / 12);
 const subsidizedQuota = 0.8;
 const gasPriceBreak = 0.12;
+
+// Business Logic
+const savings2023 = computed(
+  () =>
+    Math.min((1 - subsidizedQuota) * consumption.value, reduction2023.value) * price2023.value 
+    +
+    Math.max(reduction2023.value - (1 - subsidizedQuota) * consumption.value, 0) * gasPriceBreak
+);
+
 const bill2021 = computed(() => consumption.value * price2021.value);
 const bill2022 = computed(
   () => consumption.value * price2022.value - paymentSeptember2022.value
@@ -175,27 +185,11 @@ const reductions = computed(() => [
 ]);
 const savings = computed(() => [0, 0, savings2023.value]);
 
+// ui-helper functions
 const validatePositive = (x: number) => x > 0;
 const euroToCent = (x: number | null): string =>
   `${((x || 0) * 100).toFixed(0)}`;
 const centToEuro = (x: string): number => Number(x) / 100;
-
-const reducedConsumption2023 = computed(
-  () => consumption.value - reduction2023.value
-);
-
-const savings2023 = computed(
-  () =>
-    Math.min((1 - subsidizedQuota) * consumption.value, reduction2023.value) *
-      price2023.value +
-    Math.max(
-      reduction2023.value - (1 - subsidizedQuota) * consumption.value,
-      0
-    ) *
-      gasPriceBreak
-);
-
-// const savings2023 = computed( () => )
 </script>
 
 <style scoped>
