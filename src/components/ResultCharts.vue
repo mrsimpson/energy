@@ -17,7 +17,7 @@ const chartOptions = {
 }
 
 const series = [
-  { name: "Rechnungsbetrag", data: props.bills },
+  { name: "Eigenanteil", data: props.bills },
   { name: "Staatliche Unterstützung", data: props.reductions },
   { name: "Eigene Einsparung", data: props.savings },
 ]

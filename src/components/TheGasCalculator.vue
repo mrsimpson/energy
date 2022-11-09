@@ -119,18 +119,20 @@
             Durch Deine Einsparung von {{ reduction2023 }}kWh reduzierst Du
             nicht nur Emissionen, ,sondern sparst auch richtig Geld!
           </p>
+        </n-card>
+        <n-card>
           <p>
             Wie sich Deine Kosten entwickelt haben bzw. entwickeln können,
             siehst Du im folgenden Diagramm.
           </p>
-        </n-card>
-        <n-card title="Deine Kosten">
+          <p>Wir zeigen Dir hier an, in welchem Jahr Dein Verbrauch welche Kosten verursachen würde. Keine Sorge: Zahlen musst Du nur den Eigenanteil.</p>
           <ResultCharts
             :years="[2021, 2022, 2023]"
             :bills="[bill2021, bill2022, bill2023]"
             :reductions="reductions"
             :savings="savings"
           />
+          <p>Beachte dennoch: Die staatlichen Förderungen sind nur für 2023 garantiert. Was 2024 kommt, weiß noch niemand – nur dass das, was Du nicht verbrauchst ganz sicher Deine Kosten senkt!</p>
         </n-card>
       </n-layout-content>
     </n-layout>
