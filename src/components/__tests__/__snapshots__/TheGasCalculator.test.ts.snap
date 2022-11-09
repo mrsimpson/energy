@@ -1,0 +1,28 @@
+// Vitest Snapshot v1
+
+exports[`TheGasCalculator > renders properly 1`] = `
+<div
+  data-v-app=""
+>
+  
+  <n-card-stub
+    bordered="true"
+    class="input-params"
+    closable="false"
+    embedded="false"
+    hoverable="false"
+    segmented="false"
+    size="medium"
+    title="Meine Verbrauchsdaten"
+  />
+  <n-card-stub
+    bordered="true"
+    closable="false"
+    embedded="false"
+    hoverable="false"
+    segmented="false"
+    size="medium"
+  />
+  
+</div>
+`;
