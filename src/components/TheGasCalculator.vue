@@ -112,9 +112,25 @@
       <n-layout-content>
         <n-card class="savings" style="min-width: 40rem">
           <p>Du sparst</p>
-          <p style="font-size: 3rem">{{`${calculation2023.savings.value.toFixed(2)}€`}}</p>
-          <p>Durch Deine Einsparung von {{reduction2023}}kWh reduzierst Du nicht nur Emissionen, ,sondern sparst auch richtig Geld!</p>
-          <p>Wie sich Deine Kosten entwickelt haben bzw. entwickeln können, siehst Du im folgenden Diagramm.</p>
+          <p style="font-size: 3rem">
+            {{ `${savings2023.toFixed(2)}€` }}
+          </p>
+          <p>
+            Durch Deine Einsparung von {{ reduction2023 }}kWh reduzierst Du
+            nicht nur Emissionen, ,sondern sparst auch richtig Geld!
+          </p>
+          <p>
+            Wie sich Deine Kosten entwickelt haben bzw. entwickeln können,
+            siehst Du im folgenden Diagramm.
+          </p>
+        </n-card>
+        <n-card title="Deine Kosten">
+          <ResultCharts
+            :years="[2021, 2022, 2023]"
+            :bills="[bill2021, bill2022, bill2023]"
+            :reductions="reductions"
+            :savings="savings"
+          />
         </n-card>
       </n-layout-content>
     </n-layout>
@@ -135,6 +151,7 @@ import {
   NLayoutSider,
 } from "naive-ui";
 import { computed, ref } from "vue";
+import ResultCharts from "./ResultCharts.vue";
 
 const consumption = ref(15000);
 const price2021 = ref(0.1);
@@ -143,7 +160,20 @@ const price2023 = ref(0.3);
 const reduction2023 = ref(consumption.value * 0.1);
 const paymentSeptember2022 = ref((consumption.value * price2021.value) / 12);
 const subsidizedQuota = 0.8;
-const priceSubsidized2023 = 0.12;
+const gasPriceBreak = 0.12;
+const bill2021 = computed(() => consumption.value * price2021.value);
+const bill2022 = computed(
+  () => consumption.value * price2022.value - paymentSeptember2022.value
+);
+const bill2023 = computed(
+  () => consumption.value * Math.min(price2023.value, gasPriceBreak)
+);
+const reductions = computed(() => [
+  0,
+  paymentSeptember2022.value,
+  consumption.value * (price2023.value - gasPriceBreak),
+]);
+const savings = computed(() => [0, 0, savings2023.value]);
 
 const validatePositive = (x: number) => x > 0;
 const euroToCent = (x: number | null): string =>
@@ -154,32 +184,16 @@ const reducedConsumption2023 = computed(
   () => consumption.value - reduction2023.value
 );
 
-const calculation2023 = {
-  subsidized: computed(
-    (): number =>
-      Math.min(
-        subsidizedQuota * consumption.value,
-        reducedConsumption2023.value
-      ) * priceSubsidized2023
-  ),
-  market: computed(
-    (): number =>
-      Math.max(
-        reducedConsumption2023.value - calculation2023.subsidized.value,
-        0
-      ) * price2023.value
-  ),
-  savings: computed(
-    (): number =>
-      Math.min((1 - subsidizedQuota) * consumption.value, reduction2023.value) *
-        price2023.value +
-      Math.max(
-        reduction2023.value - (1 - subsidizedQuota) * consumption.value,
-        0
-      ) *
-        priceSubsidized2023
-  ),
-};
+const savings2023 = computed(
+  () =>
+    Math.min((1 - subsidizedQuota) * consumption.value, reduction2023.value) *
+      price2023.value +
+    Math.max(
+      reduction2023.value - (1 - subsidizedQuota) * consumption.value,
+      0
+    ) *
+      gasPriceBreak
+);
 
 // const savings2023 = computed( () => )
 </script>
