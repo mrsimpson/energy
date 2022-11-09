@@ -5,7 +5,7 @@
     <n-input-group>
       <n-input-group-label>Energieverbrauch 2021</n-input-group-label>
     <n-input-number
-      v-model:value="params.consumption2021"
+      v-model:value="consumption2021"
       :validator="validatePositive"
       :min="1"
       placeholder="Energieverbrauch 2021"
@@ -18,7 +18,7 @@
       <n-input-group-label>Gaspreis 2021</n-input-group-label>
 
     <n-input-number
-      v-model:value="params.price2021"
+      v-model:value="price2021"
       :validator="validatePositive"
       :min="0"
       placeholder="Gaspreis 2021"
@@ -36,30 +36,15 @@
   </n-card>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
 import { NInputNumber, NCard, NInputGroup, NInputGroupLabel, NSpace } from "naive-ui";
-import { toNumber } from "@vue/shared";
+import { ref } from "vue";
 
-export default defineComponent({
-  setup: () => ({
-    validatePositive: (x: number) => x > 0,
-    euroToCent: (x: number | null): string => `${(x || 0) * 100}`,
-    centToEuro: (x: string): number => toNumber(x) / 100,
-  }),
-  components: {
-    NInputNumber,
-    NInputGroup,
-    NInputGroupLabel,
-    NCard,
-    NSpace
-  },
-  data: () => ({
-    params: {
-      consumption2021: 15000,
-      price2021: 0.1,
-      price2022: 0.4,
-    },
-  }),
-});
+const consumption2021 = ref(15000)
+const price2021 = ref(0.1)
+const price2022 = ref(0.4)
+
+const validatePositive = (x: number) => x > 0
+const euroToCent = (x: number | null): string => `${(x || 0) * 100}`
+const centToEuro = (x: string): number => Number(x) / 100
 </script>
