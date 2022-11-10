@@ -2,7 +2,6 @@
   <n-space vertical size="large">
     <n-layout has-sider>
       <n-layout-sider
-        collapse-mode="none"
         :show-collapsed-content="false"
         :collapsed-width="0"
         width="30rem"
@@ -125,14 +124,21 @@
             Wie sich Deine Kosten entwickelt haben bzw. entwickeln können,
             siehst Du im folgenden Diagramm.
           </p>
-          <p>Wir zeigen Dir hier an, in welchem Jahr Dein Verbrauch welche Kosten verursachen würde. Keine Sorge: Zahlen musst Du nur den Eigenanteil.</p>
+          <p>
+            Wir zeigen Dir hier an, in welchem Jahr Dein Verbrauch welche Kosten verursachen würde.
+            Keine Sorge: Zahlen musst Du nur den Eigenanteil.
+          </p>
           <ResultCharts
             :years="[2021, 2022, 2023]"
             :bills="[bill2021, bill2022, bill2023]"
             :reductions="reductions"
             :savings="savings"
           />
-          <p>Beachte dennoch: Die staatlichen Förderungen sind nur für 2023 garantiert. Was 2024 kommt, weiß noch niemand – nur dass das, was Du nicht verbrauchst ganz sicher Deine Kosten senkt!</p>
+          <p>
+            Beachte dennoch: Die staatlichen Förderungen sind nur für 2023 garantiert.
+            Was 2024 kommt, weiß noch niemand – nur dass das, was Du nicht verbrauchst
+            ganz sicher Deine Kosten senkt!
+          </p>
         </n-card>
       </n-layout-content>
     </n-layout>
