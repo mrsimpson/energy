@@ -8,7 +8,7 @@ describe("ResultCharts", () => {
       propsData: {
         years: [2021, 2022, 2023],
         bills: [1000, 2000, 3000],
-        reductions: [0, 200, 500],
+        subsidization: [0, 200, 500],
         savings: [0, 0, 0.1]
       }
     })

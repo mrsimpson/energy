@@ -112,8 +112,9 @@
         <TheResult
           :years="[2021, 2022, 2023]"
           :bills="[calculation2021.billed, calculation2022.billed, calculation2023.billed]"
-          :reductions="reductions"
+          :subsidization="subsidization"
           :savings="savings"
+          :reduction2023="reduction2023"
         />
       </n-layout-content>
     </n-layout>
@@ -180,7 +181,7 @@ const calculation2023 = computed(() => {
   };
 });
 
-const reductions = computed(() => [
+const subsidization = computed(() => [
   0,
   calculation2022.value.subsidized,
   calculation2023.value.subsidized,

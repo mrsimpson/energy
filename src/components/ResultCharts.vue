@@ -9,7 +9,7 @@ type Amount = number;
 const props = defineProps<{
   years: Year[];
   bills: Amount[];
-  reductions: Amount[];
+  subsidization: Amount[];
   savings: Amount[];
 }>();
 
@@ -24,7 +24,7 @@ const chartOptions = {
     formatter: (val: number) => euros(val, 0),
   },
 };
-const { bills, reductions, savings } = toRefs(props);
+const { bills, subsidization: reductions, savings } = toRefs(props);
 const series = [
   { name: "Eigenanteil", data: bills },
   { name: "Staatliche Unterstützung", data: reductions },

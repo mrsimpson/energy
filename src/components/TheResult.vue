@@ -2,13 +2,18 @@
 import ResultCharts from "./ResultCharts.vue";
 import { NCard } from "naive-ui";
 import { euros } from "@/lib/Numbers";
+import { toRefs } from "vue";
+import { computed } from "@vue/reactivity";
 
-defineProps<{
+const props = defineProps<{
   years: number[];
   bills: number[];
   savings: number[];
-  reductions: number[];
+  subsidization: number[];
+  reduction2023: number;
 }>();
+
+
 </script>
 
 <template>
@@ -18,7 +23,7 @@ defineProps<{
       {{ euros(savings[savings.length - 1]) }}
     </p>
     <p>
-      Durch Deine Einsparung von {{ reductions[reductions.length - 1] }}kWh reduzierst Du
+      Durch Deine Einsparung von {{ reduction2023 }}kWh reduzierst Du
       nicht nur Emissionen, ,sondern sparst auch richtig Geld!
     </p>
   </n-card>
@@ -35,7 +40,7 @@ defineProps<{
     <ResultCharts
       :years="years"
       :bills="bills"
-      :reductions="reductions"
+      :subsidization="subsidization"
       :savings="savings"
     />
     <p>
