@@ -1,8 +1,7 @@
 export function euros(amount: number, fractionDigits = 2) {
-  return (amount || 0).toLocaleString(undefined, {
-    minimumFractionDigits: fractionDigits,
-    maximumFractionDigits: fractionDigits,
-    style: "currency",
-    currency: "EUR",
-  });
+  const n = amount.toFixed(fractionDigits).replace(".", ",");
+  const p = n.indexOf(",");
+  return n.replace(/\d(?=(?:\d{3})+(?:,|$))/g, (m, i) =>
+    p < 0 || i < p ? `${m}.` : m
+  ) + " €";
 }
