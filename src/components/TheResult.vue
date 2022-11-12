@@ -24,7 +24,7 @@ const props = defineProps<{
     </p>
     <p>
       Durch Deine Einsparung von {{ reduction2023 }}kWh reduzierst Du
-      nicht nur Emissionen, ,sondern sparst auch richtig Geld!
+      nicht nur Emissionen, sondern sparst auch richtig Geld!
     </p>
   </n-card>
 

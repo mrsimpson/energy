@@ -3,11 +3,13 @@
     <n-layout has-sider>
       <n-layout-sider
         :show-collapsed-content="false"
-        :collapsed-width="0"
+        collapse-mode="transform"
+        :collapsed-width="20"
         width="30rem"
-        :show-trigger="false"
+        :show-trigger="true"
         content-style="padding: 24px;"
-        bordered
+        :default-collapsed="true"
+        :inverted="true"
       >
         <n-space>
           <n-card
