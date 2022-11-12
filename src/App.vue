@@ -8,10 +8,13 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { NButton, NConfigProvider, NSpace, darkTheme, type GlobalTheme, useOsTheme, } from 'naive-ui';
+import {
+  NConfigProvider,
+  NSpace,
+  type GlobalTheme,
+} from "naive-ui";
 
 // const osThemeRef = useOsTheme()
 //const theme = ref((osThemeRef.value === 'dark' ? darkTheme : null) as GlobalTheme | null)
-const theme = ref(null as GlobalTheme | null)
-
+const theme = ref(null as GlobalTheme | null);
 </script>

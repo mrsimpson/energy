@@ -2,18 +2,14 @@
 import ResultCharts from "./ResultCharts.vue";
 import { NCard } from "naive-ui";
 import { euros } from "@/lib/Numbers";
-import { toRefs } from "vue";
-import { computed } from "@vue/reactivity";
 
-const props = defineProps<{
+defineProps<{
   years: number[];
   bills: number[];
   savings: number[];
   subsidization: number[];
   reduction2023: number;
 }>();
-
-
 </script>
 
 <template>
@@ -23,19 +19,19 @@ const props = defineProps<{
       {{ euros(savings[savings.length - 1]) }}
     </p>
     <p>
-      Durch Deine Einsparung von {{ reduction2023 }}kWh reduzierst Du
-      nicht nur Emissionen, sondern sparst auch richtig Geld!
+      Durch Deine Einsparung von {{ reduction2023 }}kWh reduzierst Du nicht nur
+      Emissionen, sondern sparst auch richtig Geld!
     </p>
   </n-card>
 
   <n-card>
     <p>
-      Wie sich Deine Kosten entwickelt haben bzw. entwickeln können, siehst Du im
-      folgenden Diagramm.
+      Wie sich Deine Kosten entwickelt haben bzw. entwickeln können, siehst Du
+      im folgenden Diagramm.
     </p>
     <p>
-      Wir zeigen Dir hier an, in welchem Jahr Dein Verbrauch welche Kosten verursachen
-      würde. Keine Sorge: Zahlen musst Du nur den Eigenanteil.
+      Wir zeigen Dir hier an, in welchem Jahr Dein Verbrauch welche Kosten
+      verursachen würde. Keine Sorge: Zahlen musst Du nur den Eigenanteil.
     </p>
     <ResultCharts
       :years="years"
@@ -44,9 +40,9 @@ const props = defineProps<{
       :savings="savings"
     />
     <p>
-      Beachte dennoch: Die staatlichen Förderungen sind nur für 2023 garantiert. Was 2024
-      kommt, weiß noch niemand – nur dass das, was Du nicht verbrauchst ganz sicher Deine
-      Kosten senkt!
+      Beachte dennoch: Die staatlichen Förderungen sind nur für 2023 garantiert.
+      Was 2024 kommt, weiß noch niemand – nur dass das, was Du nicht verbrauchst
+      ganz sicher Deine Kosten senkt!
     </p>
   </n-card>
 </template>
