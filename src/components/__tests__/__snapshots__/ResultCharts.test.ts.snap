@@ -6,6 +6,6 @@ exports[`ResultCharts > should render as expected 1`] = `
   options="[object Object]"
   series="[object Object],[object Object],[object Object]"
   type="bar"
-  width="500"
+  width="100%"
 />
 `;

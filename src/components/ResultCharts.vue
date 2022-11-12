@@ -16,13 +16,19 @@ const props = defineProps<{
 const chartOptions = {
   chart: { id: "gas-costs", stacked: true },
   xaxis: { categories: props.years },
-  fill: {
-    colors: ["#ff0000", "#888888", "#00ff00"],
-  },
+  yaxis: {labels: {formatter: (val: number)=> euros(val, 0)}},
+  colors: ["#faa", "#ddd", "#dfd"],
   dataLabels: {
     enabled: true,
+    style: {
+      colors: ["black"],
+      fontWeight: 800,
+    },
     formatter: (val: number) => euros(val, 0),
   },
+  grid: {
+    show: false
+  }
 };
 const { bills, subsidization: reductions, savings } = toRefs(props);
 const series = [
@@ -34,7 +40,6 @@ const series = [
 
 <template>
   <VueApexChart
-    width="500"
     type="bar"
     :options="chartOptions"
     :series="series"
