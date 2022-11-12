@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { toRef, toRefs } from "@vue/reactivity";
+import { euros } from "@/lib/Numbers";
+import { toRefs } from "vue";
 import VueApexChart from "vue3-apexcharts";
 
 type Year = number;
@@ -15,6 +16,13 @@ const props = defineProps<{
 const chartOptions = {
   chart: { id: "gas-costs", stacked: true },
   xaxis: { categories: props.years },
+  fill: {
+    colors: ["#ff0000", "#888888", "#00ff00"],
+  },
+  dataLabels: {
+    enabled: true,
+    formatter: (val: number) => euros(val, 0),
+  },
 };
 const { bills, reductions, savings } = toRefs(props);
 const series = [
