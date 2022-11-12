@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { euros } from "@/lib/Numbers";
 import { toRefs } from "vue";
 import VueApexChart from "vue3-apexcharts";
 
@@ -15,10 +16,13 @@ const props = defineProps<{
 const chartOptions = {
   chart: { id: "gas-costs", stacked: true },
   xaxis: { categories: props.years },
-  colors: ["#ff0000", "#888888", "#00ff00"],
   fill: {
     colors: ["#ff0000", "#888888", "#00ff00"],
-  }
+  },
+  dataLabels: {
+    enabled: true,
+    formatter: (val: number) => euros(val, 0),
+  },
 };
 const { bills, reductions, savings } = toRefs(props);
 const series = [
