@@ -109,11 +109,12 @@
         </n-space>
       </n-layout-sider>
       <n-layout-content>
-        <TheResult :years="[2021, 2022, 2023]"
-          :bills="[bill2021, bill2022, bill2023]"
+        <TheResult
+          :years="[2021, 2022, 2023]"
+          :bills="[calculation2021.billed, calculation2022.billed, calculation2023.billed]"
           :reductions="reductions"
           :savings="savings"
-         />
+        />
       </n-layout-content>
     </n-layout>
   </n-space>
@@ -146,26 +147,45 @@ const subsidizedQuota = 0.8;
 const gasPriceBreak = 0.12;
 
 // Business Logic
-const savings2023 = computed(
-  () =>
-    Math.min((1 - subsidizedQuota) * consumption.value, reduction2023.value) * price2023.value 
-    +
-    Math.max(reduction2023.value - (1 - subsidizedQuota) * consumption.value, 0) * gasPriceBreak
-);
 
-const bill2021 = computed(() => consumption.value * price2021.value);
-const bill2022 = computed(
-  () => consumption.value * price2022.value - paymentSeptember2022.value
-);
-const bill2023 = computed(
-  () => consumption.value * Math.min(price2023.value, gasPriceBreak)
-);
+const calculation2021 = computed(() => ({
+  billed: consumption.value * price2021.value,
+}));
+
+const calculation2022 = computed(() => ({
+  subsidized: paymentSeptember2022.value,
+  billed: consumption.value * price2022.value - paymentSeptember2022.value,
+}));
+
+const calculation2023 = computed(() => {
+  const actualConsumption = consumption.value - reduction2023.value;
+  const consumptionSubsidized = Math.min(
+    subsidizedQuota * consumption.value,
+    actualConsumption
+  );
+  const consumptionAtMarketprice = actualConsumption - consumptionSubsidized;
+  return {
+    billed:
+      consumptionAtMarketprice * price2023.value +
+      consumptionSubsidized * gasPriceBreak,
+    subsidized: consumptionSubsidized * (price2023.value - gasPriceBreak),
+    saved:
+      Math.min((1 - subsidizedQuota) * consumption.value, reduction2023.value) *
+        price2023.value +
+      Math.max(
+        reduction2023.value - (1 - subsidizedQuota) * consumption.value,
+        0
+      ) *
+        gasPriceBreak,
+  };
+});
+
 const reductions = computed(() => [
   0,
-  paymentSeptember2022.value,
-  consumption.value * (price2023.value - gasPriceBreak),
+  calculation2022.value.subsidized,
+  calculation2023.value.subsidized,
 ]);
-const savings = computed(() => [0, 0, savings2023.value]);
+const savings = computed(() => [0, 0, calculation2023.value.saved]);
 
 // ui-helper functions
 const validatePositive = (x: number) => x > 0;
