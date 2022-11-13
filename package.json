@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vicons/ionicons5": "^0.12.0",
     "vue": "^3.2.41",
     "vue-router": "^4.1.5"
   },

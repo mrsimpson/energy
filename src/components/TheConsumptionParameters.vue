@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import {
+  NButton,
+  NIcon,
   NInputNumber,
   NCard,
   NInputGroup,
@@ -8,6 +10,7 @@ import {
 } from "naive-ui";
 import { ref } from "vue";
 import { validatePositive } from "../lib/Numbers";
+import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
 
 const props = defineProps<{
   consumption: number;
@@ -38,16 +41,27 @@ const iReduction = ref(props.reduction2023);
       </n-input-group>
       <n-input-group>
         <n-input-group-label>Davon spare ich 2023</n-input-group-label>
-        <n-input-number
-          v-model:value="iReduction"
-          :validator="validatePositive"
-          :min="0"
-          placeholder="Dein Sparziel für 2023"
-          :step="100"
-          :on-input="emit('reduction2023Changed', iReduction)"
-        >
-          <template #suffix>kWh</template></n-input-number
-        >
+        <n-space>
+          <n-input-number
+            v-model:value="iReduction"
+            :validator="validatePositive"
+            :min="0"
+            placeholder="Dein Sparziel für 2023"
+            :step="100"
+            :on-input="emit('reduction2023Changed', iReduction)"
+          >
+            <template #suffix>kWh</template></n-input-number
+          >
+          <n-space horizontal />
+          <n-button>
+            Potentiale
+            <template #icon>
+              <n-icon>
+                <calculator-icon />
+              </n-icon>
+            </template>
+          </n-button>
+        </n-space>
       </n-input-group>
     </n-space>
   </n-card>
