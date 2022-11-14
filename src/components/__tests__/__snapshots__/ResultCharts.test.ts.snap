@@ -1,11 +1,14 @@
 // Vitest Snapshot v1
 
 exports[`ResultCharts > should render as expected 1`] = `
-<vue-apex-chart-stub
-  height="auto"
-  options="[object Object]"
-  series="[object Object],[object Object],[object Object]"
-  type="bar"
-  width="100%"
+<bar-stub
+  chartdata="[object Object]"
+  chartid="bar-chart"
+  chartoptions="[object Object]"
+  cssclasses=""
+  datasetidkey="label"
+  height="400"
+  plugins=""
+  width="400"
 />
 `;
