@@ -67,12 +67,6 @@ const scales = {
 const options = {
   scales,
   borderSkipped: "middle",
-  tooltips: {
-    enabled: true,
-    callbacks: {
-      label: (tooltipItems, data) => euros(data),
-    },
-  },
 };
 
 const chartData = computed(() => ({
