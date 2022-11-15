@@ -6,7 +6,7 @@ import {
   NInputGroupLabel,
   NSpace,
 } from "naive-ui";
-import { ref } from "vue";
+import { ref, toRefs } from "vue";
 import { centToEuro, euroToCent, validatePositive } from "../lib/Numbers";
 
 const props = defineProps<{
@@ -28,15 +28,10 @@ const iPrice2021 = ref(props.price2021);
 const iPrice2022 = ref(props.price2022);
 const iPrice2023 = ref(props.price2023);
 
+const { paymentSeptember2022, price2021, price2022, price2023 } = toRefs(props);
 </script>
 <template>
-  <n-card
-    class="comparison"
-    title="Preise und Abschläge"
-    :bordered="false"
-    :content-style="{ padding: 0 }"
-    :header-style="{ padding: 0 }"
-  >
+  <n-card class="comparison" title="Preise und Abschläge">
     <n-space vertical>
       <n-input-group>
         <n-input-group-label>Abschlag 09/2022</n-input-group-label>
@@ -52,8 +47,9 @@ const iPrice2023 = ref(props.price2023);
         >
       </n-input-group>
 
+      <h2>Preisentwicklung</h2>
       <p>
-        Gib den Arbeitspreis Deines Vertrags an. Monatliche Grundgebühren
+        Gib hier den Arbeitspreis Deines Vertrags an. Monatliche Grundgebühren
         sind von der Förderung ausgenommen und werden in diesem Rechner nicht
         berücksichtigt.
       </p>
