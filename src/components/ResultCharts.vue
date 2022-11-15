@@ -9,16 +9,11 @@ import {
   BarElement,
   CategoryScale,
   LinearScale,
+type TooltipItem,
 } from "chart.js";
+import { euros } from "@/lib/Numbers";
 
-ChartJS.register(
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-);
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 type Year = number;
 type Amount = number;
@@ -60,12 +55,26 @@ const scales = {
   },
   y: {
     stacked: true,
+    ticks: {
+      callback(value: string | number) {
+        return euros(value as number, 0)
+      }
+    }
   },
 };
 
 const options = {
   scales,
   borderSkipped: "middle",
+  plugins: {
+    tooltip: {
+      callbacks: {
+        label(context: TooltipItem<"bar">) {
+          return context.dataset.label + ": " + euros(context.parsed.y);
+        },
+      },
+    },
+  }
 };
 
 const chartData = computed(() => ({
