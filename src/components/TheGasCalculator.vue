@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import {
-  NSpace,
-} from "naive-ui";
+import { NSpace, NCard } from "naive-ui";
 import { computed, ref } from "vue";
 import TheConsumptionParameters from "./TheConsumptionParameters.vue";
-import ThePriceParameters from "./ThePriceParameters.vue"
+import ThePriceParameters from "./ThePriceParameters.vue";
 
 import TheResult from "./TheResult.vue";
 
