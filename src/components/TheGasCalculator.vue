@@ -1,126 +1,10 @@
-<template>
-  <n-space vertical size="large">
-    <n-layout has-sider>
-      <n-layout-sider
-        :show-collapsed-content="false"
-        collapse-mode="transform"
-        :collapsed-width="20"
-        width="30rem"
-        :show-trigger="true"
-        content-style="padding: 24px;"
-        :default-collapsed="true"
-        :inverted="true"
-      >
-        <n-space>
-          <n-card
-            class="comparison"
-            title="Preise und Abschläge"
-            style="max-width: 24rem"
-          >
-            <n-space vertical>
-              <n-input-group>
-                <n-input-group-label>Abschlag 09/2022</n-input-group-label>
-                <n-input-number
-                  v-model:value="paymentSeptember2022"
-                  :validator="validatePositive"
-                  :min="0"
-                  placeholder="Abschlagszahlung September"
-                  :step="1"
-                >
-                  <template #suffix>€</template></n-input-number
-                >
-              </n-input-group>
-
-              <h2>Preisentwicklung</h2>
-              <p>
-                Gib hier den Arbeitspreis Deines Vertrags an. Monatliche
-                Grundgebühren sind von der Förderung ausgenommen und werden in
-                diesem Rechner nicht berücksichtigt.
-              </p>
-              <n-input-group>
-                <n-input-group-label>Gaspreis 2021</n-input-group-label>
-                <n-input-number
-                  v-model:value="price2021"
-                  :validator="validatePositive"
-                  :min="0"
-                  placeholder="Gaspreis 2021"
-                  :step="0.01"
-                  :format="euroToCent"
-                  :parse="centToEuro"
-                >
-                  <template #suffix>Cent / kWh</template></n-input-number
-                >
-              </n-input-group>
-              <n-input-group>
-                <n-input-group-label>Gaspreis 2022</n-input-group-label>
-                <n-input-number
-                  v-model:value="price2022"
-                  :validator="validatePositive"
-                  :min="0"
-                  placeholder="Gaspreis 2022"
-                  :step="0.01"
-                  :format="euroToCent"
-                  :parse="centToEuro"
-                >
-                  <template #suffix>Cent / kWh</template></n-input-number
-                >
-              </n-input-group>
-              <n-input-group>
-                <n-input-group-label>Gaspreis 2023</n-input-group-label>
-                <n-input-number
-                  v-model:value="price2023"
-                  :validator="validatePositive"
-                  :min="0"
-                  placeholder="Gaspreis 2023"
-                  :step="0.01"
-                  :format="euroToCent"
-                  :parse="centToEuro"
-                >
-                  <template #suffix>Cent / kWh</template></n-input-number
-                >
-              </n-input-group>
-            </n-space>
-          </n-card>
-        </n-space>
-      </n-layout-sider>
-      <n-layout-content>
-        <TheConsumptionParameters
-          :consumption="consumption"
-          :reduction2023="reduction2023"
-          @consumption-changed="consumption = $event"
-          @reduction2023-changed="reduction2023 = $event"
-        />
-        <TheResult
-          :years="[2021, 2022, 2023]"
-          :bills="[
-            calculation2021.billed,
-            calculation2022.billed,
-            calculation2023.billed,
-          ]"
-          :subsidization="subsidization"
-          :savings="savings"
-          :reduction2023="reduction2023"
-        />
-      </n-layout-content>
-    </n-layout>
-  </n-space>
-</template>
-
 <script setup lang="ts">
-import {
-  NInputNumber,
-  NCard,
-  NInputGroup,
-  NInputGroupLabel,
-  NSpace,
-  NLayout,
-  NLayoutContent,
-  NLayoutSider,
-} from "naive-ui";
+import { NSpace, NCard } from "naive-ui";
 import { computed, ref } from "vue";
 import TheConsumptionParameters from "./TheConsumptionParameters.vue";
+import ThePriceParameters from "./ThePriceParameters.vue";
+
 import TheResult from "./TheResult.vue";
-import { centToEuro, euroToCent, validatePositive } from "../lib/Numbers";
 
 // Parameters
 const consumption = ref(15000);
@@ -132,8 +16,13 @@ const paymentSeptember2022 = ref((consumption.value * price2022.value) / 12);
 const subsidizedQuota = 0.8;
 const gasPriceBreak = 0.12;
 
-// Business Logic
+// UI logic
+const showPriceParameter = ref(false);
+const togglePriceParameters = () => {
+  showPriceParameter.value = !showPriceParameter.value;
+};
 
+// Business Logic
 const calculation2021 = computed(() => ({
   billed: consumption.value * price2021.value,
 }));
@@ -174,8 +63,55 @@ const subsidization = computed(() => [
 const savings = computed(() => [0, 0, calculation2023.value.saved]);
 </script>
 
+<template>
+  <n-space>
+    <n-card>
+      <TheConsumptionParameters
+        :consumption="consumption"
+        :reduction2023="reduction2023"
+        @consumption-changed="consumption = $event"
+        @reduction2023-changed="reduction2023 = $event"
+      />
+      <p style="padding-top: 1rem">
+        Basierend auf Deinem Verbrauch, der Einsparung und
+        <a class="show-price" @click="togglePriceParameters"
+          >einiger Annahmen zur Preisen und Preisentwicklung</a
+        >
+        schätzen wir ab, wie sich Deine Ausgaben in 2023 entwickeln
+      </p>
+      <ThePriceParameters
+        v-if="showPriceParameter"
+        :payment-september2022="paymentSeptember2022"
+        :price2021="price2021"
+        :price2022="price2022"
+        :price2023="price2023"
+        @payment-september2022-changed="paymentSeptember2022 = $event"
+        @price2021-changed="price2021 = $event"
+        @price2022-changed="price2022 = $event"
+        @price2023-changed="price2023 = $event"
+        style="padding-top: 1rem"
+      />
+    </n-card>
+    <TheResult
+      :years="[2021, 2022, 2023]"
+      :bills="[
+        calculation2021.billed,
+        calculation2022.billed,
+        calculation2023.billed,
+      ]"
+      :subsidization="subsidization"
+      :savings="savings"
+      :reduction2023="reduction2023"
+    />
+  </n-space>
+</template>
+
 <style scoped>
 .n-input-group-label {
   min-width: 9rem;
+}
+
+a.show-price {
+  cursor: pointer;
 }
 </style>

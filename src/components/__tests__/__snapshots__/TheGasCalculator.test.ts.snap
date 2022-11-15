@@ -5,8 +5,8 @@ exports[`TheGasCalculator > renders properly 1`] = `
   data-v-5987c6d7=""
   inline="false"
   justify="start"
-  size="large"
-  vertical="true"
+  size="medium"
+  vertical="false"
   wrap="true"
   wrapitem="true"
 />

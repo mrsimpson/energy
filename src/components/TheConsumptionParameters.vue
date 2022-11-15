@@ -24,7 +24,13 @@ const iReduction = ref(props.reduction2023);
 </script>
 
 <template>
-  <n-card class="calc-basis" title="Mein Energiebedarf">
+  <n-card
+    class="calc-basis"
+    title="Mein Energiebedarf"
+    :bordered="false"
+    :content-style="{ padding: 0 }"
+    :header-style="{ padding: 0 }"
+  >
     <n-space>
       <n-input-group>
         <n-input-group-label>Energiebedarf</n-input-group-label>
@@ -67,7 +73,7 @@ const iReduction = ref(props.reduction2023);
   </n-card>
 </template>
 
-<style>
+<style scoped>
 .n-input-group-label {
   min-width: 12rem;
 }

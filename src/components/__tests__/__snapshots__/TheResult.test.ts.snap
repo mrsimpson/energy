@@ -1,28 +1,12 @@
 // Vitest Snapshot v1
 
 exports[`TheResult > should render as expected 1`] = `
-<div
-  data-v-app=""
->
-  
-  <n-card-stub
-    bordered="true"
-    class="savings"
-    closable="false"
-    embedded="false"
-    hoverable="false"
-    segmented="false"
-    size="medium"
-    style="min-width: 40rem;"
-  />
-  <n-card-stub
-    bordered="true"
-    closable="false"
-    embedded="false"
-    hoverable="false"
-    segmented="false"
-    size="medium"
-  />
-  
-</div>
+<n-space-stub
+  inline="false"
+  justify="start"
+  size="medium"
+  vertical="false"
+  wrap="true"
+  wrapitem="true"
+/>
 `;
