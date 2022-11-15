@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { euros } from "@/lib/Numbers";
 import { computed, toRefs } from "vue";
 import { Bar } from "vue-chartjs";
 import {
