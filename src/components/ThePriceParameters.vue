@@ -6,7 +6,7 @@ import {
   NInputGroupLabel,
   NSpace,
 } from "naive-ui";
-import { ref, toRefs } from "vue";
+import { ref } from "vue";
 import { centToEuro, euroToCent, validatePositive } from "../lib/Numbers";
 
 const props = defineProps<{
@@ -28,7 +28,6 @@ const iPrice2021 = ref(props.price2021);
 const iPrice2022 = ref(props.price2022);
 const iPrice2023 = ref(props.price2023);
 
-const { paymentSeptember2022, price2021, price2022, price2023 } = toRefs(props);
 </script>
 <template>
   <n-card

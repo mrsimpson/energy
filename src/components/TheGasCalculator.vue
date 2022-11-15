@@ -5,7 +5,6 @@ import TheConsumptionParameters from "./TheConsumptionParameters.vue";
 import ThePriceParameters from "./ThePriceParameters.vue";
 
 import TheResult from "./TheResult.vue";
-import { centToEuro, euroToCent, validatePositive } from "../lib/Numbers";
 
 // Parameters
 const consumption = ref(15000);
