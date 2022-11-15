@@ -34,7 +34,7 @@
               <h2>Preisentwicklung</h2>
               <p>
                 Gib hier den Arbeitspreis Deines Vertrags an. Monatliche
-                Grundgebühre sind von der Förderung ausgenommen und werden in
+                Grundgebühren sind von der Förderung ausgenommen und werden in
                 diesem Rechner nicht berücksichtigt.
               </p>
               <n-input-group>

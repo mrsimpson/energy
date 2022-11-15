@@ -54,7 +54,7 @@ const iReduction = ref(props.reduction2023);
           >
           <n-space horizontal />
           <n-button>
-            Potentiale
+            Wie kann ich sparen?
             <template #icon>
               <n-icon>
                 <calculator-icon />
