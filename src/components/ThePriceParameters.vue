@@ -31,7 +31,13 @@ const iPrice2023 = ref(props.price2023);
 const { paymentSeptember2022, price2021, price2022, price2023 } = toRefs(props);
 </script>
 <template>
-  <n-card class="comparison" title="Preise und Abschläge">
+  <n-card
+    class="comparison"
+    title="Preise und Abschläge"
+    :bordered="false"
+    :content-style="{ padding: 0 }"
+    :header-style="{ padding: 0 }"
+  >
     <n-space vertical>
       <n-input-group>
         <n-input-group-label>Abschlag 09/2022</n-input-group-label>
@@ -47,9 +53,8 @@ const { paymentSeptember2022, price2021, price2022, price2023 } = toRefs(props);
         >
       </n-input-group>
 
-      <h2>Preisentwicklung</h2>
       <p>
-        Gib hier den Arbeitspreis Deines Vertrags an. Monatliche Grundgebühren
+        Gib den Arbeitspreis Deines Vertrags an. Monatliche Grundgebühren
         sind von der Förderung ausgenommen und werden in diesem Rechner nicht
         berücksichtigt.
       </p>
