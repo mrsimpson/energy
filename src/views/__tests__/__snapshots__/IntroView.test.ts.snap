@@ -1,0 +1,14 @@
+// Vitest Snapshot v1
+
+exports[`IntroView > renders as expected 1`] = `
+<n-card-stub
+  bordered="false"
+  class="intro"
+  closable="false"
+  embedded="false"
+  hoverable="false"
+  segmented="false"
+  size="medium"
+  title="Was kostet mich Gas jetzt und im nächsten Jahr?"
+/>
+`;
