@@ -31,60 +31,59 @@ const iReduction = ref(props.reduction2023);
     :content-style="{ padding: '1rem 0 0 0' }"
     :header-style="{ padding: 0 }"
   >
-    <n-space>
-      <n-input-group>
-        <n-form-item label="Bisheriger Verbrauch">
-          <n-input-number
-            v-model:value="iConsumption"
-            :validator="validatePositive"
-            :min="1"
-            placeholder="Energiebedarf"
-            :step="1000"
-            :on-input="emit('consumptionChanged', iConsumption)"
-          >
-            <template #suffix>kWh</template>
-          </n-input-number>
-        </n-form-item>
-      </n-input-group>
-
-      <n-space vertical>
-        <small
-          >Die Zahl kannst du in der letzten Abrechnung von deinem Gasversorger
-          ablesen</small
+    <n-input-group>
+      <n-form-item label="Bisheriger Verbrauch">
+        <n-input-number
+          v-model:value="iConsumption"
+          :validator="validatePositive"
+          :min="1"
+          placeholder="Energiebedarf"
+          :step="1000"
+          :on-input="emit('consumptionChanged', iConsumption)"
         >
-      </n-space>
+          <template #suffix>kWh</template>
+        </n-input-number>
+      </n-form-item>
+    </n-input-group>
 
-      <n-input-group>
-        <n-form-item label="Einsparziel">
-          <n-input-number
-            v-model:value="iReduction"
-            :validator="validatePositive"
-            :min="0"
-            placeholder="Dein Sparziel für 2023"
-            :step="100"
-            :on-input="emit('reduction2023Changed', iReduction)"
-          >
-            <template #suffix>kWh</template>
-          </n-input-number>
-        </n-form-item>
-      </n-input-group>
+    <n-space :vertical="true" />
 
-      <n-space vertical>
-        <small
-          >Das ist dein persönliches Einsparziel. Ideen dazu findest du unter "Wie kann
-          ich sparen?"
-        </small>
-      </n-space>
+    <small>
+      Die Zahl kannst du in der letzten Abrechnung von deinem Gasversorger ablesen
+    </small>
 
-      <n-button>
-        Wie kann ich sparen?
-        <template #icon>
-          <n-icon>
-            <calculator-icon />
-          </n-icon>
-        </template>
-      </n-button>
-    </n-space>
+    <n-input-group>
+      <n-form-item label="Einsparziel">
+        <n-input-number
+          v-model:value="iReduction"
+          :validator="validatePositive"
+          :min="0"
+          placeholder="Dein Sparziel für 2023"
+          :step="100"
+          :on-input="emit('reduction2023Changed', iReduction)"
+        >
+          <template #suffix>kWh</template>
+        </n-input-number>
+      </n-form-item>
+    </n-input-group>
+
+    <n-space :vertical="true" />
+
+    <small
+      >Das ist dein persönliches Einsparziel. Ideen dazu findest du unter "Wie kann ich
+      sparen?"
+    </small>
+
+    <n-space :vertical="true" />
+
+    <n-button>
+      Wie kann ich sparen?
+      <template #icon>
+        <n-icon>
+          <calculator-icon />
+        </n-icon>
+      </template>
+    </n-button>
   </n-card>
 </template>
 
