@@ -90,5 +90,15 @@ const chartData = computed(() => ({
 </script>
 
 <template>
-  <Bar :chart-data="chartData" :chart-options="options" />
+  <Bar
+    :chart-data="chartData"
+    :chart-options="options"
+    :height="200"
+  />
 </template>
+
+<style scoped>
+.result-chart canvas {
+  height: 400px
+}
+</style>

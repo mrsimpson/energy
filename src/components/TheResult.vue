@@ -13,8 +13,8 @@ defineProps<{
 </script>
 
 <template>
-  <n-space>
-    <n-card class="savings" style="min-width: 40rem">
+  <n-space vertical>
+    <n-card class="savings" :bordered="false">
       <p>Du sparst</p>
       <p style="font-size: 3rem">
         {{ euros(savings[savings.length - 1]) }}
@@ -25,7 +25,7 @@ defineProps<{
       </p>
     </n-card>
 
-    <n-card>
+    <n-card :bordered="false">
       <p>
         Wie sich Deine Kosten entwickelt haben bzw. entwickeln können, siehst Du
         im folgenden Diagramm.
@@ -48,3 +48,9 @@ defineProps<{
     </n-card>
   </n-space>
 </template>
+
+<style scoped>
+.result-charts {
+  max-height: 100px;
+}
+</style>

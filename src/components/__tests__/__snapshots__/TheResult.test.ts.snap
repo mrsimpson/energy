@@ -2,10 +2,11 @@
 
 exports[`TheResult > should render as expected 1`] = `
 <n-space-stub
+  data-v-b08c5da8=""
   inline="false"
   justify="start"
   size="medium"
-  vertical="false"
+  vertical="true"
   wrap="true"
   wrapitem="true"
 />

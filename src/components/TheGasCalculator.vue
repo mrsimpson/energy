@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NSpace, NCard } from "naive-ui";
+import { NSpace, NCard, NEl } from "naive-ui";
 import { computed, ref, watch } from "vue";
 import calculateMonthlyRate from "../lib/calculateMonthlyRate";
 import TheConsumptionParameters from "./TheConsumptionParameters.vue";
@@ -13,7 +13,9 @@ const price2021 = ref(0.1);
 const price2022 = ref(0.18);
 const price2023 = ref(0.3);
 const reduction2023 = ref(consumption.value * 0.1);
-const paymentSeptember2022 = ref(calculateMonthlyRate(consumption.value, price2022.value));
+const paymentSeptember2022 = ref(
+  calculateMonthlyRate(consumption.value, price2022.value)
+);
 const subsidizedQuota = 0.8;
 const gasPriceBreak = 0.12;
 
@@ -23,11 +25,17 @@ const togglePriceParameters = () => {
   showPriceParameter.value = !showPriceParameter.value;
 };
 
-watch(() => consumption.value, (current) => {
-  if(!showPriceParameter.value){
-    paymentSeptember2022.value = calculateMonthlyRate(current, price2022.value)
+watch(
+  () => consumption.value,
+  (current) => {
+    if (!showPriceParameter.value) {
+      paymentSeptember2022.value = calculateMonthlyRate(
+        current,
+        price2022.value
+      );
+    }
   }
-})
+);
 
 // Business Logic
 const calculation2021 = computed(() => ({
@@ -71,7 +79,7 @@ const savings = computed(() => [0, 0, calculation2023.value.saved]);
 </script>
 
 <template>
-  <n-space>
+  <n-space vertical>
     <n-card>
       <TheConsumptionParameters
         :consumption="consumption"
@@ -81,9 +89,9 @@ const savings = computed(() => [0, 0, calculation2023.value.saved]);
       />
       <p style="padding-top: 1rem">
         Basierend auf Deinem Verbrauch, der Einsparung und
-        <a class="show-price" @click="togglePriceParameters"
-          >einiger Annahmen zur Preisen und Preisentwicklung</a
-        >
+        <n-el class="show-price" @click="togglePriceParameters" tag="a"
+          >einiger Annahmen zur Preisen und Preisentwicklung
+        </n-el>
         schätzen wir ab, wie sich Deine Ausgaben in 2023 entwickeln
       </p>
       <ThePriceParameters
@@ -116,9 +124,5 @@ const savings = computed(() => [0, 0, calculation2023.value.saved]);
 <style scoped>
 .n-input-group-label {
   min-width: 9rem;
-}
-
-a.show-price {
-  cursor: pointer;
 }
 </style>
