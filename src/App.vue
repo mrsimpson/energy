@@ -6,7 +6,7 @@ import {
   NThemeEditor,
   NLayout,
   NLayoutContent,
-  type GlobalTheme, GlobalThemeOverrides,
+  type GlobalTheme, type GlobalThemeOverrides,
 } from "naive-ui";
 
 // const osThemeRef = useOsTheme()
