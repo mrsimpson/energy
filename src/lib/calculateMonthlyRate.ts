@@ -1,0 +1,1 @@
+export default (yearlyConsumption: number, price: number): number => yearlyConsumption * price / 12

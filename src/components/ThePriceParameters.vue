@@ -6,11 +6,12 @@ import {
   NInputGroupLabel,
   NSpace,
 } from "naive-ui";
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import calculateMonthlyRate from "../lib/calculateMonthlyRate";
 import { centToEuro, euroToCent, validatePositive } from "../lib/Numbers";
 
 const props = defineProps<{
-  paymentSeptember2022: number;
+  consumption: number;
   price2021: number;
   price2022: number;
   price2023: number;
@@ -23,10 +24,22 @@ const emit = defineEmits([
   "price2023Changed",
 ]);
 
-const iPaymentSeptember2022 = ref(props.paymentSeptember2022);
 const iPrice2021 = ref(props.price2021);
 const iPrice2022 = ref(props.price2022);
 const iPrice2023 = ref(props.price2023);
+
+const calculateRate2022 = (total: number) => (total * iPrice2022.value) / 12;
+const iPaymentSeptember2022 = ref(calculateRate2022(props.consumption));
+
+let rateManuallyAdapted = ref(false);
+watch(
+  () => props.consumption,
+  (current) => {
+    if (!rateManuallyAdapted.value) {
+      iPaymentSeptember2022.value = calculateMonthlyRate(current, iPrice2022.value);
+    }
+  }
+);
 
 </script>
 <template>
@@ -46,15 +59,18 @@ const iPrice2023 = ref(props.price2023);
           :min="0"
           placeholder="Abschlagszahlung September"
           :step="1"
-          :on-input="emit('paymentSeptember2022Changed', iPaymentSeptember2022)"
+          @update:value="() => {
+            rateManuallyAdapted = true
+            emit('paymentSeptember2022Changed', iPaymentSeptember2022)
+          }"
         >
           <template #suffix>€</template></n-input-number
         >
       </n-input-group>
 
       <p>
-        Gib den Arbeitspreis Deines Vertrags an. Monatliche Grundgebühren
-        sind von der Förderung ausgenommen und werden in diesem Rechner nicht
+        Gib den Arbeitspreis Deines Vertrags an. Monatliche Grundgebühren sind
+        von der Förderung ausgenommen und werden in diesem Rechner nicht
         berücksichtigt.
       </p>
       <n-input-group>
