@@ -11,6 +11,7 @@ import {
 import { ref } from "vue";
 import { validatePositive } from "../lib/Numbers";
 import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
+import Explanation from './Explanation.vue'
 
 const props = defineProps<{
   consumption: number;
@@ -44,7 +45,7 @@ const iReduction = ref(props.reduction2023);
         >
           <template #suffix>kWh</template></n-input-number
         >
-        <n-space>siehe letzte Gasrechnung</n-space>
+        <Explanation text="siehe letzte Gasrechnung"></Explanation>
       </n-input-group>
       <n-input-group>
         <n-input-group-label>Das will ich einsparen</n-input-group-label>
