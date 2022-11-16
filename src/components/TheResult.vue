@@ -27,13 +27,15 @@ watch(
 );
 
 onMounted(animateResult);
+
+const compressedPadding = {paddingTop: '0px', paddingBottom: '0px'}
 </script>
 
 <template>
   <n-space vertical>
-    <n-card class="savings" :bordered="false">
+    <n-card class="savings" :bordered="false"  :content-style="compressedPadding">
       <p>Du sparst</p>
-      <p style="font-size: 3rem">
+      <p style="font-size: 3rem; margin-block-start: 0.5rem; margin-block-end: 0.5rem">
         <n-number-animation
           :from="resultFrom"
           :to="resultTo"
@@ -50,7 +52,7 @@ onMounted(animateResult);
       </p>
     </n-card>
 
-    <n-card :bordered="false">
+    <n-card :bordered="false" :content-style="compressedPadding">
       <p>
         Wie sich deine Kosten entwickelt haben bzw. entwickeln können, siehst du
         im folgenden Diagramm.
@@ -66,8 +68,8 @@ onMounted(animateResult);
         :savings="savings"
       />
       <p>
-        Wie es ab 2024 aussieht, weiß jetzt noch niemand.
-        Klar ist aber: was du einsparst, senkt deine Kosten immer.
+        Wie es ab 2024 aussieht, weiß jetzt noch niemand. Klar ist aber: was du
+        einsparst, senkt deine Kosten immer.
       </p>
     </n-card>
   </n-space>
