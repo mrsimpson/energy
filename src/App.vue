@@ -6,8 +6,10 @@ import {
   NThemeEditor,
   NLayout,
   NLayoutContent,
+  NLayoutHeader,
   type GlobalTheme, type GlobalThemeOverrides,
 } from "naive-ui";
+import TheNavigation from "./components/TheNavigation.vue";
 
 // const osThemeRef = useOsTheme()
 //const theme = ref((osThemeRef.value === 'dark' ? darkTheme : null) as GlobalTheme | null)
@@ -28,6 +30,7 @@ const themeOverrides: GlobalThemeOverrides = {
   <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
     <n-theme-editor>
       <n-layout>
+        <n-layout-header><TheNavigation /></n-layout-header>
         <n-layout-content>
           <n-card centered>
             <RouterView />
