@@ -1,31 +1,57 @@
 <script setup lang="ts">
 import ResultCharts from "./ResultCharts.vue";
-import { NCard, NSpace } from "naive-ui";
-import { euros } from "@/lib/Numbers";
+import { NCard, NSpace, NNumberAnimation, type NumberAnimationInst } from "naive-ui";
+import { onMounted, ref, watch } from "vue";
 
-defineProps<{
+const props = defineProps<{
   years: number[];
   bills: number[];
   savings: number[];
   subsidization: number[];
   reduction2023: number;
 }>();
+
+const resultAnimationInstRef = ref<NumberAnimationInst | null>(null);
+
+const resultFrom = ref(0);
+const resultTo = ref(props.savings[props.savings.length - 1]);
+
+const animateResult = () => resultAnimationInstRef.value?.play();
+
+watch(
+  () => props.savings,
+  (current: number[], previous: number[]) => {
+    resultFrom.value = previous[previous.length -1];
+    resultTo.value = current[previous.length -1];
+  }
+);
+
+onMounted(animateResult);
 </script>
 
 <template>
-  <n-space>
-    <n-card class="savings" style="min-width: 40rem">
+  <n-space vertical>
+    <n-card class="savings" :bordered="false">
       <p>Du sparst</p>
       <p style="font-size: 3rem">
-        {{ euros(savings[savings.length - 1]) }}
+        <n-number-animation
+          :from="resultFrom"
+          :to="resultTo"
+          :precision="2"
+          locale="de"
+        >
+          reduction2023
+        </n-number-animation>
+        €
       </p>
       <p>
-        Durch Deine Einsparung von {{ reduction2023 }}kWh reduzierst Du nicht
-        nur Emissionen, sondern sparst auch richtig Geld!
+        Durch Deine Einsparung von
+        {{ reduction2023 }}kWh reduzierst Du nicht nur Emissionen, sondern
+        sparst auch richtig Geld!
       </p>
     </n-card>
 
-    <n-card>
+    <n-card :bordered="false">
       <p>
         Wie sich Deine Kosten entwickelt haben bzw. entwickeln können, siehst Du
         im folgenden Diagramm.
@@ -48,3 +74,9 @@ defineProps<{
     </n-card>
   </n-space>
 </template>
+
+<style scoped>
+.result-charts {
+  max-height: 100px;
+}
+</style>

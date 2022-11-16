@@ -6,7 +6,7 @@ exports[`TheGasCalculator > renders properly 1`] = `
   inline="false"
   justify="start"
   size="medium"
-  vertical="false"
+  vertical="true"
   wrap="true"
   wrapitem="true"
 />

@@ -6,8 +6,9 @@ exports[`ResultCharts > should render as expected 1`] = `
   chartid="bar-chart"
   chartoptions="[object Object]"
   cssclasses=""
+  data-v-1cd30cb5=""
   datasetidkey="label"
-  height="400"
+  height="200"
   plugins=""
   width="400"
 />

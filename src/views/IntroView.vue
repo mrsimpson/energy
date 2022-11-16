@@ -30,8 +30,8 @@ import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
         duschen, effizienter zu kochen oder die Heizung ein Grad runter zu drehen.
       </p>
 
-      <RouterLink to="calculator">
-        <n-button>
+      <RouterLink to="calculator" :custom="true" v-slot="{ navigate }">
+        <n-button @click="navigate">
           Hier geht's zum Gas-Rechner
           <template #icon>
             <n-icon>
@@ -43,6 +43,3 @@ import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
     </n-space>
   </n-card>
 </template>
-
-<style scoped lang="scss">
-</style>
