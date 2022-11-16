@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NSpace, NCard } from "naive-ui";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
+import calculateMonthlyRate from "../lib/calculateMonthlyRate";
 import TheConsumptionParameters from "./TheConsumptionParameters.vue";
 import ThePriceParameters from "./ThePriceParameters.vue";
 
@@ -12,7 +13,7 @@ const price2021 = ref(0.1);
 const price2022 = ref(0.18);
 const price2023 = ref(0.3);
 const reduction2023 = ref(consumption.value * 0.1);
-const paymentSeptember2022 = ref((consumption.value * price2022.value) / 12);
+const paymentSeptember2022 = ref(calculateMonthlyRate(consumption.value, price2022.value));
 const subsidizedQuota = 0.8;
 const gasPriceBreak = 0.12;
 
@@ -21,6 +22,12 @@ const showPriceParameter = ref(false);
 const togglePriceParameters = () => {
   showPriceParameter.value = !showPriceParameter.value;
 };
+
+watch(() => consumption.value, (current) => {
+  if(!showPriceParameter.value){
+    paymentSeptember2022.value = calculateMonthlyRate(current, price2022.value)
+  }
+})
 
 // Business Logic
 const calculation2021 = computed(() => ({
@@ -81,7 +88,7 @@ const savings = computed(() => [0, 0, calculation2023.value.saved]);
       </p>
       <ThePriceParameters
         v-if="showPriceParameter"
-        :payment-september2022="paymentSeptember2022"
+        :consumption="consumption"
         :price2021="price2021"
         :price2022="price2022"
         :price2023="price2023"
