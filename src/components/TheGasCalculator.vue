@@ -88,11 +88,11 @@ const savings = computed(() => [0, 0, calculation2023.value.saved]);
         @reduction2023-changed="reduction2023 = $event"
       />
       <p style="padding-top: 1rem">
-        Basierend auf Deinem Verbrauch, der Einsparung und
+        Basierend auf deinem Verbrauch, der Einsparung und
         <n-el class="show-price" @click="togglePriceParameters" tag="a"
-          >einiger Annahmen zur Preisen und Preisentwicklung
+          >einigen Annahmen zu Preisen und Preisentwicklung
         </n-el>
-        schätzen wir ab, wie sich Deine Ausgaben in 2023 entwickeln
+        schätzen wir ab, wie sich Deine Ausgaben in 2023 entwickeln.
       </p>
       <ThePriceParameters
         v-if="showPriceParameter"

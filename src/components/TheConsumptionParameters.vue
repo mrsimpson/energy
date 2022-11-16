@@ -33,7 +33,7 @@ const iReduction = ref(props.reduction2023);
   >
     <n-space>
       <n-input-group>
-        <n-input-group-label>Energiebedarf</n-input-group-label>
+        <n-input-group-label>Verbrauch im letzten Jahr</n-input-group-label>
         <n-input-number
           v-model:value="iConsumption"
           :validator="validatePositive"
@@ -44,9 +44,10 @@ const iReduction = ref(props.reduction2023);
         >
           <template #suffix>kWh</template></n-input-number
         >
+        <n-space>siehe letzte Gasrechnung</n-space>
       </n-input-group>
       <n-input-group>
-        <n-input-group-label>Davon spare ich 2023</n-input-group-label>
+        <n-input-group-label>Das will ich einsparen</n-input-group-label>
         <n-space>
           <n-input-number
             v-model:value="iReduction"

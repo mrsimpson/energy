@@ -45,20 +45,19 @@ onMounted(animateResult);
         €
       </p>
       <p>
-        Durch Deine Einsparung von
-        {{ reduction2023 }}kWh reduzierst Du nicht nur Emissionen, sondern
-        sparst auch richtig Geld!
+        Durch deine Einsparung von {{ reduction2023 }}kWh reduzierst du nicht
+        nur CO<sub>2</sub>, sondern sparst auch richtig Geld!
       </p>
     </n-card>
 
     <n-card :bordered="false">
       <p>
-        Wie sich Deine Kosten entwickelt haben bzw. entwickeln können, siehst Du
+        Wie sich deine Kosten entwickelt haben bzw. entwickeln können, siehst du
         im folgenden Diagramm.
       </p>
       <p>
-        Wir zeigen Dir hier an, in welchem Jahr Dein Verbrauch welche Kosten
-        verursachen würde. Keine Sorge: Zahlen musst Du nur den Eigenanteil.
+        Wir zeigen dir hier an, in welchem Jahr dein Verbrauch welche Kosten
+        verursachen würde. Keine Sorge: Zahlen musst du nur den Eigenanteil.
       </p>
       <ResultCharts
         :years="years"
@@ -67,9 +66,8 @@ onMounted(animateResult);
         :savings="savings"
       />
       <p>
-        Beachte dennoch: Die staatlichen Förderungen sind nur für 2023
-        garantiert. Was 2024 kommt, weiß noch niemand – nur dass das, was Du
-        nicht verbrauchst ganz sicher Deine Kosten senkt!
+        Wie es ab 2024 aussieht, weiß jetzt noch niemand.
+        Klar ist aber: was du einsparst, senkt deine Kosten immer.
       </p>
     </n-card>
   </n-space>
