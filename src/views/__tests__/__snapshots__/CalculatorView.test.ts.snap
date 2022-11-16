@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`CalculatorView > renders as expected 1`] = `
+<main>
+  <the-gas-calculator-stub />
+</main>
+`;
