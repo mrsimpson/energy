@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { NMenu, type MenuOption } from "naive-ui";
 import { h, ref, watch } from "vue";
-import { type RouteRecordName, RouterLink, useRoute } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 import renderIcon from '@/lib/renderIcon'
 import Flame from '@/assets/FlameIcon.vue'
 
