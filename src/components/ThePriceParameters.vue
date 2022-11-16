@@ -69,9 +69,8 @@ watch(
       </n-input-group>
 
       <p>
-        Gib den Arbeitspreis Deines Vertrags an. Monatliche Grundgebühren sind
-        von der Förderung ausgenommen und werden in diesem Rechner nicht
-        berücksichtigt.
+        Gib den Arbeitspreis deines Vertrags an. Monatliche Grundgebühren sind
+        von der Förderung ausgenommen und werden hier nicht berücksichtigt.
       </p>
       <n-input-group>
         <n-input-group-label>Gaspreis 2021</n-input-group-label>

@@ -11,7 +11,7 @@ import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
   >
     <n-space>
       <p>
-        Gas wird teurer oder ist es schon. Mit der nur jährlichen Abrechnung kommt die
+        Gas wird teurer oder ist es schon. Mit der jährlichen Abrechnung kommt die
         böse Überraschung oft erst spät. Höhere Beiträge, aber auch Nachzahlungen schmerzen.
       </p>
 
@@ -26,7 +26,7 @@ import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
       </p>
 
       <p>
-        Unser Gas-Rechner beantwortet deine Fragen und erklärt dir was es bringt, weniger zu
+        Unser Gas-Rechner beantwortet deine Fragen und erklärt dir, was es bringt, weniger zu
         duschen, effizienter zu kochen oder die Heizung ein Grad runter zu drehen.
       </p>
 
