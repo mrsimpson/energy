@@ -5,13 +5,12 @@ import {
   NInputNumber,
   NCard,
   NInputGroup,
-  NInputGroupLabel,
   NSpace,
+  NFormItem,
 } from "naive-ui";
 import { ref } from "vue";
 import { validatePositive } from "../lib/Numbers";
 import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
-import Explanation from './Explanation.vue'
 
 const props = defineProps<{
   consumption: number;
@@ -29,12 +28,11 @@ const iReduction = ref(props.reduction2023);
     class="calc-basis"
     title="Mein Energiebedarf"
     :bordered="false"
-    :content-style="{ padding: 0 }"
+    :content-style="{ padding: '1rem 0 0 0' }"
     :header-style="{ padding: 0 }"
   >
-    <n-space>
-      <n-input-group>
-        <n-input-group-label>Verbrauch im letzten Jahr</n-input-group-label>
+    <n-input-group>
+      <n-form-item label="Bisheriger Verbrauch">
         <n-input-number
           v-model:value="iConsumption"
           :validator="validatePositive"
@@ -43,40 +41,60 @@ const iReduction = ref(props.reduction2023);
           :step="1000"
           :on-input="emit('consumptionChanged', iConsumption)"
         >
-          <template #suffix>kWh</template></n-input-number
+          <template #suffix>kWh</template>
+        </n-input-number>
+      </n-form-item>
+    </n-input-group>
+
+    <n-space :vertical="true" />
+
+    <small>
+      Die Zahl kannst du in der letzten Abrechnung von deinem Gasversorger ablesen
+    </small>
+
+    <n-input-group>
+      <n-form-item label="Einsparziel">
+        <n-input-number
+          v-model:value="iReduction"
+          :validator="validatePositive"
+          :min="0"
+          placeholder="Dein Sparziel für 2023"
+          :step="100"
+          :on-input="emit('reduction2023Changed', iReduction)"
         >
-        <Explanation text="siehe letzte Gasrechnung"></Explanation>
-      </n-input-group>
-      <n-input-group>
-        <n-input-group-label>Das will ich einsparen</n-input-group-label>
-        <n-space>
-          <n-input-number
-            v-model:value="iReduction"
-            :validator="validatePositive"
-            :min="0"
-            placeholder="Dein Sparziel für 2023"
-            :step="100"
-            :on-input="emit('reduction2023Changed', iReduction)"
-          >
-            <template #suffix>kWh</template></n-input-number
-          >
-          <n-space horizontal />
-          <n-button>
-            Wie kann ich sparen?
-            <template #icon>
-              <n-icon>
-                <calculator-icon />
-              </n-icon>
-            </template>
-          </n-button>
-        </n-space>
-      </n-input-group>
-    </n-space>
+          <template #suffix>kWh</template>
+        </n-input-number>
+      </n-form-item>
+    </n-input-group>
+
+    <n-space :vertical="true" />
+
+    <small
+      >Das ist dein persönliches Einsparziel. Ideen dazu findest du unter "Wie kann ich
+      sparen?"
+    </small>
+
+    <n-space :vertical="true" />
+
+    <n-button>
+      Wie kann ich sparen?
+      <template #icon>
+        <n-icon>
+          <calculator-icon />
+        </n-icon>
+      </template>
+    </n-button>
   </n-card>
 </template>
 
 <style scoped>
-.n-input-group-label {
-  min-width: 12rem;
+:v-deep(.n-card > .n-card__content) {
+  margin-top: 1rem;
+}
+
+small {
+  font-size: 11px;
+  margin: -1.6rem 0 0.5rem;
+  display: block;
 }
 </style>
