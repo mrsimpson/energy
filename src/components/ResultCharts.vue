@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, toRefs } from "vue";
+import { computed, ref, toRefs } from "vue";
 import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -10,6 +10,7 @@ import {
   CategoryScale,
   LinearScale,
 type TooltipItem,
+
 } from "chart.js";
 import { euros } from "@/lib/Numbers";
 
@@ -48,6 +49,17 @@ const series = [
   //   borderColor: "rgb(201, 203, 207)",
   // },
 ];
+
+// determine the height based on the screen size. Fixed 200 is too small on mobile, 300 is too big on desktop
+const smallScreenHeight = 500
+const bigScreenHeight = 200
+const mql = matchMedia('(max-width: 500px)')
+const getHeight = () => mql.matches ? smallScreenHeight : bigScreenHeight
+const chartHeight = ref(getHeight())
+mql.addEventListener('change', 
+() => {
+  chartHeight.value = getHeight()
+})
 
 const scales = {
   x: {
@@ -91,11 +103,7 @@ const chartData = computed(() => ({
 </script>
 
 <template>
-  <Bar
-    :chart-data="chartData"
-    :chart-options="options"
-    :height="200"
-  />
+  <Bar :chart-data="chartData" :chart-options="options" :height="chartHeight" />
 </template>
 
 <style scoped>
