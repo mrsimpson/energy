@@ -8,7 +8,7 @@ exports[`ResultCharts > should render as expected 1`] = `
   cssclasses=""
   data-v-1cd30cb5=""
   datasetidkey="label"
-  height="300"
+  height="200"
   plugins=""
   width="400"
 />

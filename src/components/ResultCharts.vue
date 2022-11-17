@@ -66,6 +66,7 @@ const scales = {
 const options = {
   scales,
   borderSkipped: "bottom",
+  maintainAspectRation: false,
   plugins: {
     tooltip: {
       callbacks: {
@@ -93,7 +94,7 @@ const chartData = computed(() => ({
   <Bar
     :chart-data="chartData"
     :chart-options="options"
-    :height="300"
+    :height="200"
   />
 </template>
 
