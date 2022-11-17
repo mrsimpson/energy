@@ -4,7 +4,7 @@ import { h, ref, watch } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import renderIcon from '@/lib/renderIcon'
 
-import { RibbonOutline as ImprintIcon } from "@vicons/ionicons5";
+import ParagraphIcon from '@/components/icons/ParagraphIcon.vue'
 
 const route = useRoute()
 const activeKey = ref<string | undefined>("")
@@ -23,7 +23,7 @@ const menuOptions: MenuOption[] = [
         { default: () => 'Impressum' }
       ),
     key: 'imprint',
-    icon: renderIcon(ImprintIcon)
+    icon: renderIcon(ParagraphIcon)
   },
 ]
 </script>

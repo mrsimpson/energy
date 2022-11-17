@@ -12,7 +12,7 @@ const consumption = ref(15000);
 const price2021 = ref(0.1);
 const price2022 = ref(0.18);
 const price2023 = ref(0.3);
-const reduction2023 = ref(consumption.value * 0.1);
+const reduction2023 = ref<string | null>(null);
 const paymentSeptember2022 = ref(
   calculateMonthlyRate(consumption.value, price2022.value)
 );
