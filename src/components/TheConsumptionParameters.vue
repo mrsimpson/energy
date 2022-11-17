@@ -21,7 +21,8 @@ const props = defineProps<{
 const emit = defineEmits(["consumptionChanged", "reduction2023Changed"]);
 
 const iConsumption = ref(props.consumption);
-const iReduction = ref(props.reduction2023);
+const iReduction = ref(props.reduction2023 > 0 ? props.reduction2023 : undefined );
+
 </script>
 
 <template>
