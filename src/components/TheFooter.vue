@@ -5,6 +5,7 @@ import { RouterLink, useRoute } from "vue-router";
 import renderIcon from '@/lib/renderIcon'
 
 import ParagraphIcon from '@/components/icons/ParagraphIcon.vue'
+import GithubIcon from '@/components/icons/GithubIcon.vue'
 
 const route = useRoute()
 const activeKey = ref<string | undefined>("")
@@ -24,6 +25,19 @@ const menuOptions: MenuOption[] = [
       ),
     key: 'imprint',
     icon: renderIcon(ParagraphIcon)
+  },
+  {
+    label: () =>
+      h(
+        'a',
+        {
+          href: "https://github.com/mrsimpson/energy/",
+          target: "_blank"
+        },
+        { default: () => 'Github' }
+      ),
+    key: 'imprint',
+    icon: renderIcon(GithubIcon)
   },
 ]
 </script>
