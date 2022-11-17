@@ -84,6 +84,9 @@ const iReduction = ref(props.reduction2023);
 </template>
 
 <style scoped>
+.n-input-group {
+  flex-wrap:wrap;
+}
 .n-input-group-label {
   min-width: 12rem;
 }
