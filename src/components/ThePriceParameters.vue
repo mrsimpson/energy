@@ -36,11 +36,13 @@ watch(
   () => props.consumption,
   (current) => {
     if (!rateManuallyAdapted.value) {
-      iPaymentSeptember2022.value = calculateMonthlyRate(current, iPrice2022.value);
+      iPaymentSeptember2022.value = calculateMonthlyRate(
+        current,
+        iPrice2022.value
+      );
     }
   }
 );
-
 </script>
 <template>
   <n-card
@@ -59,10 +61,12 @@ watch(
           :min="0"
           placeholder="Abschlagszahlung September"
           :step="1"
-          @update:value="() => {
-            rateManuallyAdapted = true
-            emit('paymentSeptember2022Changed', iPaymentSeptember2022)
-          }"
+          @update:value="
+            () => {
+              rateManuallyAdapted = true;
+              emit('paymentSeptember2022Changed', iPaymentSeptember2022);
+            }
+          "
         >
           <template #suffix>€</template></n-input-number
         >
@@ -120,3 +124,9 @@ watch(
     </n-space>
   </n-card>
 </template>
+
+<style scoped>
+.n-input-group {
+  flex-wrap: wrap;
+}
+</style>
