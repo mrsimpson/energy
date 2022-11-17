@@ -63,6 +63,7 @@ const iReduction = ref(props.reduction2023);
               placeholder="Dein Sparziel für 2023"
               :step="100"
               :on-input="emit('reduction2023Changed', iReduction)"
+              autofocus
             >
               <template #suffix>kWh</template></n-input-number
             >
