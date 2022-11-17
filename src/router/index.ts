@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import CalculatorView from "@/views/CalculatorView.vue";
 import IntroView from "@/views/IntroView.vue";
+import ImprintView from "@/views/ImprintView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,11 @@ const router = createRouter({
       path: "/calculator",
       name: "calculator",
       component: CalculatorView,
+    },
+    {
+      path: "/imprint",
+      name: "imprint",
+      component: ImprintView,
     },
     {
       path: "/about",
