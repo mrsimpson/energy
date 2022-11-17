@@ -7,9 +7,11 @@ import {
   NLayout,
   NLayoutContent,
   NLayoutHeader,
+  NLayoutFooter,
   type GlobalTheme, type GlobalThemeOverrides,
 } from "naive-ui";
 import TheNavigation from "./components/TheNavigation.vue";
+import TheFooter from "./components/TheFooter.vue";
 
 // const osThemeRef = useOsTheme()
 //const theme = ref((osThemeRef.value === 'dark' ? darkTheme : null) as GlobalTheme | null)
@@ -36,6 +38,7 @@ const themeOverrides: GlobalThemeOverrides = {
             <RouterView />
           </n-card>
         </n-layout-content>
+        <n-layout-footer><TheFooter /></n-layout-footer>
       </n-layout>
     </n-theme-editor>
   </n-config-provider>
