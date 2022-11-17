@@ -26,11 +26,13 @@ const themeOverrides: GlobalThemeOverrides = {
     primaryColorSuppl: "#338FB1FF"
   }
 }
+
+const themeEditorStyle = localStorage.getItem('theme') === 'true' ? {} : {display: 'none'}
 </script>
 
 <template>
   <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
-    <n-theme-editor>
+    <n-theme-editor :style="themeEditorStyle">
       <n-layout>
         <n-layout-header><TheNavigation /></n-layout-header>
         <n-layout-content>
