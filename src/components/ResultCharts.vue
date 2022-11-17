@@ -19,13 +19,13 @@ type Year = number;
 type Amount = number;
 
 const props = defineProps<{
-  years: Year[];
+  years: string[];
   bills: Amount[];
   subsidization: Amount[];
   savings: Amount[];
 }>();
 
-const { bills, subsidization, savings } = toRefs(props);
+const { bills, subsidization } = toRefs(props);
 
 // make the chart reactive on all props
 const series = [
@@ -33,20 +33,20 @@ const series = [
     name: "Eigenanteil",
     data: bills,
     color: "rgba(255, 99, 132, 0.2)",
-    borderColor: "#dbb",
+    borderColor: "rgba(255, 99, 132",
   },
   {
     name: "Staatliche Unterstützung",
     data: subsidization,
     color: "rgba(255, 205, 86, 0.2)",
-    borderColor: "rgba(255, 205, 86)",
+    borderColor: "rgba(255, 205, 86, 0.4)",
   },
-  {
-    name: "Eigene Einsparung",
-    data: savings,
-    color: "rgba(201, 203, 207, 0.05)",
-    borderColor: "rgb(201, 203, 207)",
-  },
+  // {
+  //   name: "Eigene Einsparung",
+  //   data: savings,
+  //   color: "rgba(201, 203, 207, 0.05)",
+  //   borderColor: "rgb(201, 203, 207)",
+  // },
 ];
 
 const scales = {
@@ -65,7 +65,7 @@ const scales = {
 
 const options = {
   scales,
-  borderSkipped: "middle",
+  borderSkipped: "bottom",
   plugins: {
     tooltip: {
       callbacks: {
@@ -78,7 +78,7 @@ const options = {
 };
 
 const chartData = computed(() => ({
-  labels: [2021, 2022, 2023],
+  labels: [2021, 2022, "2023 ohne Einsparung", 2023 ],
   datasets: series.map((s) => ({
     data: s.data.value,
     label: s.name,

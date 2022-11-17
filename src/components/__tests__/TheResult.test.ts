@@ -6,11 +6,11 @@ describe("TheResult", () => {
     it("should render as expected", () => {
         const wrapper = shallowMount(TheResult, {
             propsData: {
-                years: [2021, 2022, 2023],
-                bills: [1000, 1500, 2000],
-                savings:[0, 0, 400],
-                subsidization: [0, 80, 300],
-                reduction2023: 100
+                years: ['2021', '2022', '2023 ohne Einsparung', '2023'],
+                bills: [1000, 2000, 3000, 2500],
+                subsidization: [0, 200, 500, 500],
+                savings: [0, 0, 0, 500],
+                reduction2023: 500
             }
         })
         expect(wrapper.element).toMatchSnapshot()

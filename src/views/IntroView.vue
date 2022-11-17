@@ -31,7 +31,7 @@ import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
       </p>
 
       <RouterLink to="calculator" :custom="true" v-slot="{ navigate }">
-        <n-button @click="navigate">
+        <n-button @click="navigate" size="large">
           Hier geht's zum Gas-Rechner
           <template #icon>
             <n-icon>
