@@ -3,7 +3,7 @@ import { NMenu, type MenuOption } from "naive-ui";
 import { h, ref, watch } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import renderIcon from '@/lib/renderIcon'
-import Flame from '@/assets/FlameIcon.vue'
+import Flame from '@/components/icons/FlameIcon.vue'
 
 import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
 
