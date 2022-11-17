@@ -33,7 +33,8 @@ const compressedPadding = {paddingTop: '0px', paddingBottom: '0px'}
 
 <template>
   <n-space vertical>
-    <n-card class="savings" :bordered="false"  :content-style="compressedPadding">
+    <n-card v-if="reduction2023 === 0"></n-card>
+    <n-card v-if="reduction2023 > 0" :bordered="false"  :content-style="compressedPadding">
       <p>Du sparst</p>
       <p style="font-size: 3rem; margin-block-start: 0.5rem; margin-block-end: 0.5rem">
         <n-number-animation
