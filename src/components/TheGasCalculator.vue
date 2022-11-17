@@ -48,7 +48,9 @@ const calculation2022 = computed(() => ({
 }));
 
 const calculation2023 = computed(() => {
-  const actualConsumption = consumption.value - reduction2023.value;
+  const reduction: number = reduction2023.value || 0
+  const actualConsumption = consumption.value - reduction;
+
   const consumptionSubsidized = Math.min(
     subsidizedQuota * consumption.value,
     actualConsumption
@@ -60,10 +62,10 @@ const calculation2023 = computed(() => {
       consumptionSubsidized * gasPriceBreak,
     subsidized: consumptionSubsidized * (price2023.value - gasPriceBreak),
     saved:
-      Math.min((1 - subsidizedQuota) * consumption.value, reduction2023.value) *
+      Math.min((1 - subsidizedQuota) * consumption.value, reduction) *
         price2023.value +
       Math.max(
-        reduction2023.value - (1 - subsidizedQuota) * consumption.value,
+        reduction - (1 - subsidizedQuota) * consumption.value,
         0
       ) *
         gasPriceBreak,
@@ -74,8 +76,9 @@ const subsidization = computed(() => [
   0,
   calculation2022.value.subsidized,
   calculation2023.value.subsidized,
+  calculation2023.value.subsidized,
 ]);
-const savings = computed(() => [0, 0, calculation2023.value.saved]);
+const savings = computed(() => [0, 0, 0, calculation2023.value.saved]);
 </script>
 
 <template>
@@ -108,10 +111,11 @@ const savings = computed(() => [0, 0, calculation2023.value.saved]);
       />
     </n-card>
     <TheResult
-      :years="[2021, 2022, 2023]"
+      :years="['2021', '2022', '2023 ohne Einsparung', '2023']"
       :bills="[
         calculation2021.billed,
         calculation2022.billed,
+        calculation2023.billed + calculation2023.saved,
         calculation2023.billed,
       ]"
       :subsidization="subsidization"

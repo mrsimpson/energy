@@ -4,7 +4,7 @@ import { NCard, NSpace, NNumberAnimation, type NumberAnimationInst } from "naive
 import { onMounted, ref, watch } from "vue";
 
 const props = defineProps<{
-  years: number[];
+  years: string[];
   bills: number[];
   savings: number[];
   subsidization: number[];
