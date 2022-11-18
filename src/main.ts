@@ -8,7 +8,7 @@ const app = createApp(App);
 app.
     use(router)
     .use(VueGtagPlugin, {
-        config: { id: "G-DQW5PTK5L1", router }
+        config: { id: "G-DQW5PTK5L1", router, anonymize_ip: true}
     })
 
 app.mount("#app");
