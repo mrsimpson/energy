@@ -16,7 +16,6 @@ import { euros } from "@/lib/Numbers";
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
-type Year = number;
 type Amount = number;
 
 const props = defineProps<{
@@ -50,13 +49,14 @@ const series = [
   // },
 ];
 
-// determine the height based on the screen size. Fixed 200 is too small on mobile, 300 is too big on desktop
+// determine the height based on the screen size.
+// Fixed 200 is too small on mobile, 300 is too big on desktop
 const smallScreenHeight = 500
 const bigScreenHeight = 200
 const mql = matchMedia('(max-width: 500px)')
 const getHeight = () => mql.matches ? smallScreenHeight : bigScreenHeight
 const chartHeight = ref(getHeight())
-mql.addEventListener('change', 
+mql.addEventListener('change',
 () => {
   chartHeight.value = getHeight()
 })
@@ -90,16 +90,25 @@ const options = {
   }
 };
 
-const chartData = computed(() => ({
-  labels: [2021, 2022, "2023 ohne Einsparung", 2023 ],
-  datasets: series.map((s) => ({
-    data: s.data.value,
-    label: s.name,
-    backgroundColor: s.color,
-    borderColor: s.borderColor,
-    borderWidth: 2,
-  })),
-}));
+const chartData = computed(() => {
+  const labels = [2021, 2022] as Array<number | string>
+  if (props.savings[3]) {
+    labels.push("2023 ohne Einsparung")
+    labels.push("2023 mit Einsparung")
+  } else {
+    labels.push(2023)
+  }
+  return ({
+    labels,
+    datasets: series.map((s) => ({
+      data: s.data.value,
+      label: s.name,
+      backgroundColor: s.color,
+      borderColor: s.borderColor,
+      borderWidth: 2,
+    })),
+  })
+});
 </script>
 
 <template>
