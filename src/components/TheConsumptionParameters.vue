@@ -12,6 +12,7 @@ import { ref } from "vue";
 import { validatePositive } from "../lib/Numbers";
 import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
 import Explanation from "@/components/ExplanationText.vue";
+import RecommendationsModal from "@/components/RecommendationsModal.vue";
 
 const props = defineProps<{
   consumption: number;
@@ -22,7 +23,7 @@ const emit = defineEmits(["consumptionChanged", "reduction2023Changed"]);
 
 const iConsumption = ref(props.consumption);
 const iReduction = ref(props.reduction2023);
-
+const showRecommendations = ref(false);
 </script>
 
 <template>
@@ -68,7 +69,7 @@ const iReduction = ref(props.reduction2023);
             >
               <template #suffix>kWh</template></n-input-number
             >
-            <n-button>
+            <n-button @click="showRecommendations = true">
               Wie kann ich sparen?
               <template #icon>
                 <n-icon>
@@ -83,11 +84,16 @@ const iReduction = ref(props.reduction2023);
       </div>
     </n-space>
   </n-card>
+
+  <RecommendationsModal
+    :show="showRecommendations"
+    @close="showRecommendations = false"
+  />
 </template>
 
 <style scoped>
 .n-input-group {
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 }
 .n-input-group-label {
   min-width: 12rem;
