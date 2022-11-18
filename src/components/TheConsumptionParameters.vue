@@ -15,13 +15,13 @@ import Explanation from "@/components/ExplanationText.vue";
 
 const props = defineProps<{
   consumption: number;
-  reduction2023: number;
+  reduction2023?: number;
 }>();
 
 const emit = defineEmits(["consumptionChanged", "reduction2023Changed"]);
 
 const iConsumption = ref(props.consumption);
-const iReduction = ref(props.reduction2023 > 0 ? props.reduction2023 : undefined );
+const iReduction = ref(props.reduction2023);
 
 </script>
 
