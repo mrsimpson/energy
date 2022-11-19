@@ -24,6 +24,9 @@ const themeOverrides: GlobalThemeOverrides = {
     primaryColorHover: "#00BBFFFF",
     primaryColorPressed: "#0B5976FF",
     primaryColorSuppl: "#338FB1FF"
+  },
+  Card: {
+    colorEmbedded: 'rgba(213, 245, 255, 1)'
   }
 }
 
@@ -59,5 +62,10 @@ a {
   color: var(--primary-color);
   cursor: pointer;
   color: var(--primary-color);
+}
+
+p {
+  margin-block-end: 0.5rem;
+  margin-block-start: 0.5rem;
 }
 </style>

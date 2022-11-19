@@ -39,7 +39,7 @@ const sliderValue = ref(props.value);
 
     <p>Ich versuche, die folgende Einsparung zu erreichen:</p>
     <div class="wrapper">
-      <n-slider v-model:value="sliderValue" :step="1" :tooltip="false" />
+      <n-slider v-model:value="sliderValue" :step="1" :tooltip="false" :max="50" />
       <span class="currentValue">{{ sliderValue }}%</span>
       <NButton @click="emit('change', sliderValue)">Übernehmen</NButton>
     </div>
