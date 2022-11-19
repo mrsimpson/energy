@@ -1,9 +1,13 @@
-import { NButton } from 'naive-ui';
 <script setup lang="ts">
-import { NButton, NCard, NModal } from "naive-ui";
+import { NButton, NCard, NInput, NModal, NSlider, NSpace } from "naive-ui";
+import { ref } from "vue";
 
-defineProps<{ show: boolean }>();
-const emit = defineEmits(["close"]);
+const props = defineProps<{ show: boolean; value: number }>();
+const emit = defineEmits(["close", "change", "update:modelValue"]);
+
+const sliderValue = ref(props.value);
+const handleSliderInput = () => emit("update:modelValue", sliderValue.value);
+const formatPercent = (value: number) => `${value}%`;
 </script>
 
 <template>
@@ -13,31 +17,43 @@ const emit = defineEmits(["close"]);
     preset="dialog"
     @close="emit('close')"
   >
-    <n-card preset="dialog" :bordered="false" size="huge" role="dialog" aria-modal="true">
-      <ul>
-        <li>
-          Reduziere die Raumtemperatur um 1°. Das spart laut Umwelt-Bundesamt ca. 6% Gas.
-          Reduzierst du um 2° oder 3° sparst du entsprechend mehr.
-        </li>
-        <li>
-          Wenn du nur halb so viel duschst, sparst du warmes Wasser, das dann natürlich
-          auch nicht aufgeheizt werden muss und damit kein Gas verbraucht.
-        </li>
-        <li>
-          Du hast einen Gasherd? Du könntest ihn beim Nudeln oder Reis kochen nach 2min
-          ausschalten.
-        </li>
-      </ul>
-    </n-card>
+    <ul>
+      <li>
+        Reduziere die Raumtemperatur um 1°. Das spart laut Umwelt-Bundesamt ca. 6% Gas.
+        Reduzierst du um 2° oder 3° sparst du entsprechend mehr.
+      </li>
+      <li>
+        Wenn du nur halb so viel duschst, sparst du warmes Wasser, das dann natürlich auch
+        nicht aufgeheizt werden muss und damit kein Gas verbraucht.
+      </li>
+      <li>
+        Du hast einen Gasherd? Du könntest ihn beim Nudeln oder Reis kochen nach 2min
+        ausschalten.
+      </li>
+    </ul>
 
-    <template #footer>
-      <n-button @click="emit('close')">Ok</n-button>
-    </template>
+    <p>Ich versuche, die folgende Einsparung zu erreichen:</p>
+    <div class="wrapper">
+      <n-slider v-model:value="sliderValue" :step="1" :tooltip="false" />
+      <span class="currentValue">{{ sliderValue }}%</span>
+      <NButton @click="emit('change', sliderValue)">Übernehmen</NButton>
+    </div>
   </n-modal>
 </template>
 
 <style scoped>
 .n-modal {
   max-width: 600px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.currentValue {
+  width: 5rem;
+  padding: 0 0.5rem;
+  text-align: right;
 }
 </style>
