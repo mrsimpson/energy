@@ -1,7 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import VueMatomo from 'vue-matomo'
+
+const VueMatomo = require('vue-matomo')
 
 const app = createApp(App);
 
