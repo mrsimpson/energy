@@ -38,10 +38,7 @@ import Quote from '@/components/TextQuote.vue'
       </p>
 
       <RouterLink to="calculator" :custom="true" v-slot="{ navigate }">
-        <n-button @click="navigate" :style="{
-          padding: '1.5rem',
-          fontSize: '1.2rem'
-        }">
+        <n-button @click="navigate" size="large">
           Hier geht's zum Gas-Rechner
           <template #icon>
             <n-icon>
