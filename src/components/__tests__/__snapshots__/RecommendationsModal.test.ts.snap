@@ -1,0 +1,253 @@
+// Vitest Snapshot v1
+
+exports[`RecommendationsModal > should render as expected 1`] = `
+<div
+  class="n-modal-body-wrapper"
+  role="none"
+>
+  
+  <div
+    class="n-scrollbar"
+    role="none"
+    style="--n-scrollbar-bezier: cubic-bezier(.4, 0, .2, 1); --n-scrollbar-color: rgba(0, 0, 0, 0.25); --n-scrollbar-color-hover: rgba(0, 0, 0, 0.4); --n-scrollbar-border-radius: 5px; --n-scrollbar-width: 5px; --n-scrollbar-height: 5px;"
+  >
+    <div
+      class="n-scrollbar-container"
+      role="none"
+    >
+      
+      <div
+        class="n-scrollbar-content n-modal-scroll-content"
+        role="none"
+      >
+        <transition-stub
+          appear="false"
+          css="true"
+          name="fade-in-transition"
+          persisted="false"
+        >
+          <div
+            aria-hidden="true"
+            class="n-modal-mask"
+          />
+        </transition-stub>
+        
+        <div
+          aria-hidden="true"
+          style="position: absolute; height: 0px; width: 0px;"
+          tabindex="0"
+        />
+        
+        <transition-stub
+          appear="false"
+          css="true"
+          name="fade-in-scale-up-transition"
+          persisted="false"
+        >
+          <div
+            aria-modal="true"
+            class="n-dialog n-dialog--closable n-dialog--icon-left n-modal"
+            role="dialog"
+            style="--n-font-size: 14px; --n-icon-color: #18a058; --n-bezier: cubic-bezier(.4, 0, .2, 1); --n-close-margin: 20px 26px 0 0; --n-icon-margin: 0 4px 0 0; --n-icon-size: 28px; --n-close-size: 22px; --n-close-icon-size: 18px; --n-close-border-radius: 3px; --n-close-color-hover: rgba(0, 0, 0, .09); --n-close-color-pressed: rgba(0, 0, 0, .13); --n-close-icon-color: rgba(102, 102, 102, 1); --n-close-icon-color-hover: rgba(102, 102, 102, 1); --n-close-icon-color-pressed: rgba(102, 102, 102, 1); --n-color: #fff; --n-text-color: rgb(51, 54, 57); --n-border-radius: 3px; --n-padding: 16px 28px 20px 28px; --n-line-height: 1.6; --n-border: 1px solid rgb(239, 239, 245); --n-content-margin: 8px 0 16px 0; --n-title-font-size: 18px; --n-title-font-weight: 500; --n-title-text-color: rgb(31, 34, 37); --n-action-space: 12px;"
+          >
+            <button
+              aria-label="close"
+              class="n-base-close n-dialog__close"
+              tabindex="0"
+              type="button"
+            >
+              <i
+                class="n-base-icon"
+              >
+                <svg
+                  aria-hidden="true"
+                  version="1.1"
+                  viewBox="0 0 12 12"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    fill="none"
+                    fill-rule="evenodd"
+                    stroke="none"
+                    stroke-width="1"
+                  >
+                    <g
+                      fill="currentColor"
+                      fill-rule="nonzero"
+                    >
+                      <path
+                        d="M2.08859116,2.2156945 L2.14644661,2.14644661 C2.32001296,1.97288026 2.58943736,1.95359511 2.7843055,2.08859116 L2.85355339,2.14644661 L6,5.293 L9.14644661,2.14644661 C9.34170876,1.95118446 9.65829124,1.95118446 9.85355339,2.14644661 C10.0488155,2.34170876 10.0488155,2.65829124 9.85355339,2.85355339 L6.707,6 L9.85355339,9.14644661 C10.0271197,9.32001296 10.0464049,9.58943736 9.91140884,9.7843055 L9.85355339,9.85355339 C9.67998704,10.0271197 9.41056264,10.0464049 9.2156945,9.91140884 L9.14644661,9.85355339 L6,6.707 L2.85355339,9.85355339 C2.65829124,10.0488155 2.34170876,10.0488155 2.14644661,9.85355339 C1.95118446,9.65829124 1.95118446,9.34170876 2.14644661,9.14644661 L5.293,6 L2.14644661,2.85355339 C1.97288026,2.67998704 1.95359511,2.41056264 2.08859116,2.2156945 L2.14644661,2.14644661 L2.08859116,2.2156945 Z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </button>
+            <!---->
+            <div
+              class="n-dialog__title"
+            >
+              <i
+                class="n-base-icon n-dialog__icon"
+              >
+                <svg
+                  version="1.1"
+                  viewBox="0 0 28 28"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    fill-rule="evenodd"
+                    stroke="none"
+                    stroke-width="1"
+                  >
+                    <g
+                      fill-rule="nonzero"
+                    >
+                      <path
+                        d="M14,2 C20.6274,2 26,7.37258 26,14 C26,20.6274 20.6274,26 14,26 C7.37258,26 2,20.6274 2,14 C2,7.37258 7.37258,2 14,2 Z M14,11 C13.4477,11 13,11.4477 13,12 L13,12 L13,20 C13,20.5523 13.4477,21 14,21 C14.5523,21 15,20.5523 15,20 L15,20 L15,12 C15,11.4477 14.5523,11 14,11 Z M14,6.75 C13.3096,6.75 12.75,7.30964 12.75,8 C12.75,8.69036 13.3096,9.25 14,9.25 C14.6904,9.25 15.25,8.69036 15.25,8 C15.25,7.30964 14.6904,6.75 14,6.75 Z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+              
+              Einsparmöglichkeiten
+              
+            </div>
+            <div
+              class="n-dialog__content n-dialog__content--last"
+            >
+              <ul
+                data-v-7b6eaebd=""
+              >
+                <li
+                  data-v-7b6eaebd=""
+                >
+                   Reduziere die Raumtemperatur um 1°. Das spart laut Umwelt-Bundesamt ca. 6% Gas. Reduzierst du um 2° oder 3° sparst du entsprechend mehr. 
+                </li>
+                <li
+                  data-v-7b6eaebd=""
+                >
+                   Wenn du nur halb so viel duschst, sparst du warmes Wasser, das dann natürlich auch nicht aufgeheizt werden muss und damit kein Gas verbraucht. 
+                </li>
+                <li
+                  data-v-7b6eaebd=""
+                >
+                   Du hast einen Gasherd? Du könntest ihn beim Nudeln oder Reis kochen nach 2min ausschalten. 
+                </li>
+              </ul>
+              <p
+                data-v-7b6eaebd=""
+              >
+                Ich versuche, die folgende Einsparung zu erreichen:
+              </p>
+              <div
+                class="wrapper"
+                data-v-7b6eaebd=""
+              >
+                <div
+                  class="n-slider"
+                  data-v-7b6eaebd=""
+                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-dot-border: 2px solid rgb(219, 219, 223); --n-dot-border-active: 2px solid #18a058; --n-dot-border-radius: 4px; --n-dot-color: #fff; --n-dot-color-modal: #fff; --n-dot-color-popover: #fff; --n-dot-height: 8px; --n-dot-width: 8px; --n-fill-color: #18a058; --n-fill-color-hover: #18a058; --n-font-size: 14px; --n-handle-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3), inset 0 0 1px 0 rgba(0, 0, 0, 0.05); --n-handle-box-shadow-active: 0 1px 4px 0 rgba(0, 0, 0, 0.3), inset 0 0 1px 0 rgba(0, 0, 0, 0.05); --n-handle-box-shadow-focus: 0 1px 4px 0 rgba(0, 0, 0, 0.3), inset 0 0 1px 0 rgba(0, 0, 0, 0.05); --n-handle-box-shadow-hover: 0 1px 4px 0 rgba(0, 0, 0, 0.3), inset 0 0 1px 0 rgba(0, 0, 0, 0.05); --n-handle-color: #FFF; --n-handle-size: 18px; --n-opacity-disabled: 0.5; --n-rail-color: rgb(219, 219, 223); --n-rail-color-hover: rgb(219, 219, 223); --n-rail-height: 4px; --n-rail-width-vertical: 4px; --n-mark-font-size: 14px;"
+                >
+                  <div
+                    class="n-slider-rail"
+                  >
+                    <div
+                      class="n-slider-rail__fill"
+                      style="left: 0%; width: 0%;"
+                    />
+                    <!---->
+                    <div
+                      class="n-slider-handles"
+                    >
+                      
+                      <div
+                        class="n-slider-handle-wrapper"
+                        style="left: 0%; z-index: 0;"
+                        tabindex="0"
+                      >
+                        <div
+                          class="n-slider-handle"
+                        />
+                      </div>
+                      <!---->
+                      
+                    </div>
+                    <!---->
+                  </div>
+                </div>
+                <span
+                  class="currentValue"
+                  data-v-7b6eaebd=""
+                >
+                  0%
+                </span>
+                <button
+                  class="n-button n-button--default-type n-button--medium-type"
+                  data-v-7b6eaebd=""
+                  style="--n-bezier: cubic-bezier(.4, 0, .2, 1); --n-bezier-ease-out: cubic-bezier(0, 0, .2, 1); --n-ripple-duration: .6s; --n-opacity-disabled: 0.5; --n-wave-opacity: 0.6; font-weight: 400; --n-color: #0000; --n-color-hover: #0000; --n-color-pressed: #0000; --n-color-focus: #0000; --n-color-disabled: #0000; --n-ripple-color: #18a058; --n-text-color: rgb(51, 54, 57); --n-text-color-hover: #36ad6a; --n-text-color-pressed: #0c7a43; --n-text-color-focus: #36ad6a; --n-text-color-disabled: rgb(51, 54, 57); --n-border: 1px solid rgb(224, 224, 230); --n-border-hover: 1px solid #36ad6a; --n-border-pressed: 1px solid #0c7a43; --n-border-focus: 1px solid #36ad6a; --n-border-disabled: 1px solid rgb(224, 224, 230); --n-width: initial; --n-height: 34px; --n-font-size: 14px; --n-padding: 0 14px; --n-icon-size: 18px; --n-icon-margin: 6px; --n-border-radius: 3px;"
+                  tabindex="0"
+                  type="button"
+                >
+                  <!---->
+                  <transition-stub
+                    appear="false"
+                    css="true"
+                    name="fade-in-width-expand-transition"
+                    persisted="false"
+                  >
+                    <!---->
+                  </transition-stub>
+                  <span
+                    class="n-button__content"
+                  >
+                    Übernehmen
+                  </span>
+                  <div
+                    aria-hidden="true"
+                    class="n-base-wave"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="n-button__border"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class="n-button__state-border"
+                  />
+                </button>
+              </div>
+            </div>
+            <!---->
+          </div>
+        </transition-stub>
+        
+        <div
+          aria-hidden="true"
+          style="position: absolute; height: 0px; width: 0px;"
+          tabindex="0"
+        />
+        
+      </div>
+      
+    </div>
+    <div
+      aria-hidden="true"
+      class="n-scrollbar-rail n-scrollbar-rail--vertical"
+      data-scrollbar-rail="true"
+    >
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade-in-transition"
+        persisted="false"
+      >
+        <!---->
+      </transition-stub>
+    </div>
+    <!---->
+  </div>
+  
+</div>
+`;

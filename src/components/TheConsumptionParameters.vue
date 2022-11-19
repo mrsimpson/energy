@@ -8,7 +8,7 @@ import {
   NInputGroupLabel,
   NSpace,
 } from "naive-ui";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { validatePositive } from "../lib/Numbers";
 import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
 import Explanation from "@/components/ExplanationText.vue";
@@ -24,6 +24,16 @@ const emit = defineEmits(["consumptionChanged", "reduction2023Changed"]);
 const iConsumption = ref(props.consumption);
 const iReduction = ref(props.reduction2023);
 const showRecommendations = ref(false);
+
+const savingsPercent = computed(
+  () => ((props.reduction2023 || 0) * 100) / props.consumption
+);
+
+function setSavings(savingsPercent: number) {
+  showRecommendations.value = false
+  iReduction.value = (props.consumption * savingsPercent) / 100
+  emit("reduction2023Changed", iReduction.value);
+}
 </script>
 
 <template>
@@ -79,14 +89,19 @@ const showRecommendations = ref(false);
             </n-button>
           </n-space>
         </n-input-group>
-        <Explanation display="inline" :text='`Das ist dein persönliches
-        Einsparziel. Ideen dazu findest du unter "Wie kann ich sparen?"`' />
+        <Explanation
+          display="inline"
+          :text="`Das ist dein persönliches
+        Einsparziel. Ideen dazu findest du unter &quot;Wie kann ich sparen?&quot;`"
+        />
       </div>
     </n-space>
   </n-card>
 
   <RecommendationsModal
     :show="showRecommendations"
+    :value="savingsPercent"
+    @change="setSavings"
     @close="showRecommendations = false"
   />
 </template>
