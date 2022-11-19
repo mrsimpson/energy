@@ -135,6 +135,16 @@ exports[`RecommendationsModal > should render as expected 1`] = `
                 >
                    Du hast einen Gasherd? Du könntest ihn beim Nudeln oder Reis kochen nach 2min ausschalten. 
                 </li>
+                <li
+                  data-v-7b6eaebd=""
+                >
+                  <a
+                    data-v-7b6eaebd=""
+                    href="https://www.energiewechsel.de/KAENEF/Navigation/DE/Thema/energiespartipps.html"
+                  >
+                     Noch mehr Ideen zum sparen 
+                  </a>
+                </li>
               </ul>
               <p
                 data-v-7b6eaebd=""
