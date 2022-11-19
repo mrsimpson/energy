@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { NButton, NCard, NInput, NModal, NSlider, NSpace } from "naive-ui";
+import { NButton, NModal, NSlider } from "naive-ui";
 import { ref } from "vue";
 
 const props = defineProps<{ show: boolean; value: number }>();
 const emit = defineEmits(["close", "change", "update:modelValue"]);
 
 const sliderValue = ref(props.value);
-const handleSliderInput = () => emit("update:modelValue", sliderValue.value);
-const formatPercent = (value: number) => `${value}%`;
 </script>
 
 <template>
