@@ -5,8 +5,8 @@
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    width="357,2"
-    height="454,1"
+    width="357"
+    height="454"
   >
     <g transform="matrix(1,0,0,1,-203.473,-72.4018)">
       <path
