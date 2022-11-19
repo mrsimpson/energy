@@ -28,6 +28,13 @@ const sliderValue = ref(props.value);
         Du hast einen Gasherd? Du könntest ihn beim Nudeln oder Reis kochen nach 2min
         ausschalten.
       </li>
+      <li>
+        <a
+          href="https://www.energiewechsel.de/KAENEF/Navigation/DE/Thema/energiespartipps.html"
+        >
+          Noch mehr Ideen zum sparen
+        </a>
+      </li>
     </ul>
 
     <p>Ich versuche, die folgende Einsparung zu erreichen:</p>
