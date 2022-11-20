@@ -9,8 +9,8 @@ import { RouterLink } from "vue-router";
       Impressum
     </RouterLink>
 
-    <a href="https://github.com/mrsimpson/energy/" target="_blank" alt="github-icon">
-      <img src="@/assets/GitHubIcon.svg" />
+    <a href="https://github.com/mrsimpson/energy/" target="_blank">
+      <img src="@/assets/GitHubIcon.svg" alt="github-icon"/>
       GitHub
     </a>
   </div>
