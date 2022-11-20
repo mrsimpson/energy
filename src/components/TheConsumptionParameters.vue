@@ -39,12 +39,12 @@ function setSavings(savingsPercent: number) {
 <template>
   <n-card
     class="calc-basis"
-    title="Mein Energiebedarf"
+    title="Dein Gasbedarf"
     :bordered="false"
     :content-style="{ padding: '1rem 0 0 0' }"
     :header-style="{ padding: 0 }"
   >
-    <n-space>
+  <n-space vertical>
       <div>
         <n-input-group>
           <n-input-group-label>Verbrauch im letzten Jahr</n-input-group-label>

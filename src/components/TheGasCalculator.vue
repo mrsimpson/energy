@@ -48,7 +48,7 @@ const calculation2022 = computed(() => ({
 }));
 
 const calculation2023 = computed(() => {
-  const reduction: number = reduction2023.value || 0
+  const reduction: number = reduction2023.value || 0;
   const actualConsumption = consumption.value - reduction;
 
   const consumptionSubsidized = Math.min(
@@ -64,10 +64,7 @@ const calculation2023 = computed(() => {
     saved:
       Math.min((1 - subsidizedQuota) * consumption.value, reduction) *
         price2023.value +
-      Math.max(
-        reduction - (1 - subsidizedQuota) * consumption.value,
-        0
-      ) *
+      Math.max(reduction - (1 - subsidizedQuota) * consumption.value, 0) *
         gasPriceBreak,
   };
 });
@@ -84,6 +81,8 @@ const savings = computed(() => [0, 0, 0, calculation2023.value.saved]);
 <template>
   <n-space vertical>
     <n-card>
+      <h1>Gaskostenrechner</h1>
+      <p>Gib an, was Du an Gas verbrauchst und was Du einsparen möchtest</p>
       <TheConsumptionParameters
         :consumption="consumption"
         :reduction2023="reduction2023"
