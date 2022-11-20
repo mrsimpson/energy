@@ -59,6 +59,10 @@ const themeEditorStyle = localStorage.getItem('theme') === 'true' ? {} : {displa
   margin: auto;
 }
 
+.n-layout-content {
+  padding-bottom: 1rem;
+}
+
 .n-layout-footer.n-layout-footer--static-positioned {
   position: fixed;
   bottom: 0;
