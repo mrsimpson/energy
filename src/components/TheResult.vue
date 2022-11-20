@@ -33,7 +33,6 @@ const compressedPadding = {paddingTop: '0px', paddingBottom: '0px'}
 
 <template>
   <n-space vertical>
-    <n-card v-if="reduction2023 === 0"></n-card>
     <n-card v-if="reduction2023" :bordered="false"  :content-style="compressedPadding">
       <p>Du sparst</p>
       <p style="font-size: 3rem; margin-block-start: 0.5rem; margin-block-end: 0.5rem">
@@ -53,7 +52,7 @@ const compressedPadding = {paddingTop: '0px', paddingBottom: '0px'}
       </p>
     </n-card>
 
-    <n-card :bordered="false" :content-style="compressedPadding">
+    <n-card :bordered="false">
       <p>
         Wie sich deine Kosten entwickelt haben bzw. entwickeln können, siehst du
         im folgenden Diagramm.
