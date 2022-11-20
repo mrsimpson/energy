@@ -11,7 +11,8 @@ export default defineConfig({
     hostname: "https://gaspreis.no-panic.org",
     dynamicRoutes: [
       '/calculator',
-      '/imprint'
+      '/imprint',
+      '/data-protection',
     ] //TODO map from router - .vue loading needs to be fixed
   })],
   resolve: {
