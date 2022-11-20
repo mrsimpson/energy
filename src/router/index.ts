@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import CalculatorView from "@/views/CalculatorView.vue";
 import IntroView from "@/views/IntroView.vue";
 import ImprintView from "@/views/ImprintView.vue"
+import DataProtectionView from '@/views/DataProtectionView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +21,11 @@ const router = createRouter({
       path: "/imprint",
       name: "imprint",
       component: ImprintView,
+    },
+    {
+      path: "/data-protection",
+      name: "data-protection",
+      component: DataProtectionView,
     },
     {
       path: "/about",
