@@ -1,54 +1,47 @@
 <script setup lang="ts">
-import { NMenu, type MenuOption } from "naive-ui";
-import { h, ref, watch } from "vue";
-import { RouterLink, useRoute } from "vue-router";
-import renderIcon from '@/lib/renderIcon'
-
-import ParagraphIcon from '@/components/icons/ParagraphIcon.vue'
-import GithubIcon from '@/components/icons/GithubIcon.vue'
-
-const route = useRoute()
-const activeKey = ref<string | undefined>("")
-watch(() => route.name, (name) => {activeKey.value = name?.toString()})
-
-const menuOptions: MenuOption[] = [
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: 'imprint',
-          }
-        },
-        { default: () => 'Impressum' }
-      ),
-    key: 'imprint',
-    icon: renderIcon(ParagraphIcon)
-  },
-  {
-    label: () =>
-      h(
-        'a',
-        {
-          href: "https://github.com/mrsimpson/energy/",
-          target: "_blank"
-        },
-        { default: () => 'Github' }
-      ),
-    key: 'imprint',
-    icon: renderIcon(GithubIcon)
-  },
-]
+import { RouterLink } from "vue-router";
 </script>
 
-
 <template>
-  <n-menu
-    v-model:value="activeKey"
-    mode="horizontal"
-    :options="menuOptions"
-    :icon-size="16"
-    style="font-size: small; margin: auto; align-items: center"
-  />
+  <div class="menu-bar">
+    <RouterLink :to="{ name: 'imprint' }">
+      <img src="@/assets/ParagraphIcon.svg" />
+      Impressum
+    </RouterLink>
+
+    <a href="https://github.com/mrsimpson/energy/" target="_blank">
+      <img src="@/assets/GitHubIcon.svg" />
+      GitHub
+    </a>
+  </div>
 </template>
+
+<style scoped>
+.menu-bar {
+  display: flex;
+  align-items: center;
+}
+
+.menu-bar > * {
+  padding: 0 1rem;
+  line-height: 3;
+  position: relative;
+}
+
+.menu-bar > *:hover {
+  filter: brightness(0) saturate(100%) invert(68%) sepia(45%) saturate(6457%)
+    hue-rotate(163deg) brightness(105%) contrast(103%);
+  transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  height: 16px;
+  position: relative;
+  top: 3px;
+  margin-right: 5px;
+}
+</style>

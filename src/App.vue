@@ -37,13 +37,17 @@ const themeEditorStyle = localStorage.getItem('theme') === 'true' ? {} : {displa
   <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
     <n-theme-editor :style="themeEditorStyle">
       <n-layout>
-        <n-layout-header><TheNavigation /></n-layout-header>
+        <n-layout-header>
+          <TheNavigation />
+        </n-layout-header>
         <n-layout-content>
           <n-card centered>
             <RouterView />
           </n-card>
         </n-layout-content>
-        <n-layout-footer><TheFooter /></n-layout-footer>
+        <n-layout-footer>
+          <TheFooter />
+        </n-layout-footer>
       </n-layout>
     </n-theme-editor>
   </n-config-provider>
@@ -54,6 +58,13 @@ const themeEditorStyle = localStorage.getItem('theme') === 'true' ? {} : {displa
   max-width: 1024px;
   margin: auto;
 }
+
+.n-layout-footer.n-layout-footer--static-positioned {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 </style>
 
 <!-- Global styles -->
@@ -61,7 +72,6 @@ const themeEditorStyle = localStorage.getItem('theme') === 'true' ? {} : {displa
 a {
   color: var(--primary-color);
   cursor: pointer;
-  color: var(--primary-color);
 }
 
 p {
