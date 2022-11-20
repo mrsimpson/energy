@@ -62,8 +62,8 @@ const themeEditorStyle = localStorage.getItem('theme') === 'true' ? {} : {displa
 .n-layout-footer.n-layout-footer--static-positioned {
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: auto;
+  right: auto
 }
 </style>
 
