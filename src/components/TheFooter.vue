@@ -5,11 +5,11 @@ import { RouterLink } from "vue-router";
 <template>
   <div class="menu-bar">
     <RouterLink :to="{ name: 'imprint' }">
-      <img src="@/assets/ParagraphIcon.svg" />
+      <img src="@/assets/ParagraphIcon.svg" alt="paragraph-icon"/>
       Impressum
     </RouterLink>
 
-    <a href="https://github.com/mrsimpson/energy/" target="_blank">
+    <a href="https://github.com/mrsimpson/energy/" target="_blank" alt="github-icon">
       <img src="@/assets/GitHubIcon.svg" />
       GitHub
     </a>
