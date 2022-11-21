@@ -30,6 +30,7 @@ import { HandLeftOutline as DataProtectionIcon } from "@vicons/ionicons5";
 .menu-bar {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .menu-bar > * {
