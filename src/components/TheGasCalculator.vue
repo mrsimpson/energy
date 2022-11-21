@@ -51,21 +51,15 @@ const calculation2023 = computed(() => {
   const reduction: number = reduction2023.value || 0;
   const actualConsumption = consumption.value - reduction;
 
-  const consumptionSubsidized = Math.min(
-    subsidizedQuota * consumption.value,
-    actualConsumption
-  );
+  const consumptionSubsidized = subsidizedQuota * consumption.value;
+
   const consumptionAtMarketprice = actualConsumption - consumptionSubsidized;
   return {
     billed:
       consumptionAtMarketprice * price2023.value +
       consumptionSubsidized * gasPriceBreak,
     subsidized: consumptionSubsidized * (price2023.value - gasPriceBreak),
-    saved:
-      Math.min((1 - subsidizedQuota) * consumption.value, reduction) *
-        price2023.value +
-      Math.max(reduction - (1 - subsidizedQuota) * consumption.value, 0) *
-        gasPriceBreak,
+    saved: reduction * price2023.value,
   };
 });
 
