@@ -1,28 +1,36 @@
-import { mount } from "@vue/test-utils";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import RecommendationsModal from "@/components/RecommendationsModal.vue";
+import component from "@/components/RecommendationsModal.vue";
 import { ref } from "vue";
+import type { Router } from 'vue-router';
+import TestHelper from '@/lib/TestHelper';
+import { mount } from "@vue/test-utils";
 import { createTestingPinia } from "@pinia/testing";
 
+const testHelper = TestHelper()
+let router: Router
+
+function getMountOptions(value = ref(0)) {
+  const store = createTestingPinia({ createSpy: vi.fn })
+  const recommendations = ["first recommendations", "second recommendation"]
+  return {
+    props: { show: true, value: value.value, recommendations },
+    global: { plugins: [store, router] }
+  }
+}
+
 describe("RecommendationsModal", () => {
-  beforeEach(() => {
-    const el = document.createElement("div");
-    el.id = "n-modal-container";
-    document.body.appendChild(el);
+  beforeEach(async () => {
+    testHelper.setupModal()
+    router = await testHelper.setupRouter([
+      { name: "root", path: "/", component },
+      { name: "settings", path: "/settings", component },
+    ])
   });
 
-  afterEach(() => {
-    document.body.outerHTML = "";
-  });
+  afterEach(testHelper.teardown);
 
   it("should render as expected", () => {
-    const value = ref(0);
-    mount(RecommendationsModal, {
-      props: { show: true, value: value.value },
-      global: { plugins: [createTestingPinia({ createSpy: vi.fn })] },
-    });
-    expect(
-      document.querySelector(".n-modal-container .n-modal-body-wrapper")
-    ).toMatchSnapshot();
+    const modal = testHelper.getModalElement(mount(component, getMountOptions()))
+    expect(modal).toMatchSnapshot();
   });
 });

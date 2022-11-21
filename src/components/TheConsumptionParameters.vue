@@ -2,6 +2,7 @@
 import { validatePositive } from "../lib/Numbers";
 import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
 import Explanation from "@/components/ExplanationText.vue";
+import { recommendations } from "@/Recommendations";
 import RecommendationsModal from "@/components/RecommendationsModal.vue";
 import type { FormRules, FormInst } from "naive-ui";
 import { isSmallScreen } from "@/lib/responsiveness";
@@ -11,7 +12,7 @@ import { storeToRefs } from "pinia";
 
 const store = useSettingsStore();
 
-const { consumption, reduction2023 } = storeToRefs(store)
+const { consumption, reduction2023 } = storeToRefs(store);
 
 const rules: FormRules = {
   consumption: {
@@ -97,10 +98,7 @@ const handleReductionChanged = handlerFor("reduction", store.setReduction2023);
     </n-space>
   </n-card>
 
-  <RecommendationsModal
-    :show="showRecommendations"
-    @close="showRecommendations = false"
-  />
+  <RecommendationsModal :show="showRecommendations" :recommendations="recommendations" />
 </template>
 
 <style scoped>

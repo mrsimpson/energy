@@ -121,32 +121,26 @@ exports[`RecommendationsModal > should render as expected 1`] = `
               <ul
                 data-v-7b6eaebd=""
               >
+                
                 <li
                   data-v-7b6eaebd=""
                 >
-                   Reduziere die Raumtemperatur um 1°. Das spart laut Umwelt-Bundesamt ca. 6% Gas. Reduzierst du um 2° oder 3° sparst du entsprechend mehr. 
+                  first recommendations
                 </li>
                 <li
                   data-v-7b6eaebd=""
                 >
-                   Wenn du nur halb so viel duschst, sparst du warmes Wasser, das dann natürlich auch nicht aufgeheizt werden muss und damit kein Gas verbraucht. 
+                  second recommendation
                 </li>
-                <li
-                  data-v-7b6eaebd=""
-                >
-                   Du hast einen Gasherd? Du könntest ihn beim Nudeln oder Reis kochen nach 2min ausschalten. 
-                </li>
-                <li
-                  data-v-7b6eaebd=""
-                >
-                  <a
-                    data-v-7b6eaebd=""
-                    href="https://www.energiewechsel.de/KAENEF/Navigation/DE/Thema/energiespartipps.html"
-                  >
-                     Noch mehr Ideen zum sparen 
-                  </a>
-                </li>
+                
               </ul>
+              <a
+                data-v-7b6eaebd=""
+                href="https://www.energiewechsel.de/KAENEF/Navigation/DE/Thema/energiespartipps.html"
+                target="_blank"
+              >
+                 Noch mehr Ideen zum sparen 
+              </a>
               <p
                 data-v-7b6eaebd=""
               >
@@ -229,6 +223,19 @@ exports[`RecommendationsModal > should render as expected 1`] = `
                   />
                 </button>
               </div>
+              <p
+                data-v-7b6eaebd=""
+              >
+                 Die Vorschläge passen nicht zu deinen Lebensumständen? Wir gehen von bestimmten Annahmen aus, die du 
+                <a
+                  class=""
+                  data-v-7b6eaebd=""
+                  href="/settings"
+                >
+                  hier anpassen
+                </a>
+                 kannst. 
+              </p>
             </div>
             <!---->
           </div>

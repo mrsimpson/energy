@@ -1,0 +1,14 @@
+// Vitest Snapshot v1
+
+exports[`SettingsView > renders as expected 1`] = `
+<n-card-stub
+  bordered="false"
+  class="settings"
+  closable="false"
+  data-v-ccfec7b0=""
+  embedded="false"
+  hoverable="false"
+  segmented="false"
+  size="medium"
+/>
+`;

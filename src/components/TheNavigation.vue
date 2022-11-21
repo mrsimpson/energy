@@ -4,7 +4,7 @@ import { RouterLink, useRoute } from "vue-router";
 import renderIcon from '@/lib/renderIcon'
 import Flame from '@/components/icons/FlameIcon.vue'
 
-import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
+import { CalculatorOutline as CalculatorIcon, SettingsOutline } from "@vicons/ionicons5";
 
 const route = useRoute()
 const activeKey = ref<string | undefined>("")
@@ -39,7 +39,12 @@ const menuOptions: MenuOption[] = [
     key: 'calculator',
     icon: renderIcon(CalculatorIcon)
   },
-  
+  {
+    label: () => h(RouterLink, { to: { name: "settings" } }, { default: () => 'Personalisieren' }),
+    key: "settings",
+    icon: renderIcon(SettingsOutline)
+  },
+
 //   {
 //     key: 'divider-1',
 //     type: 'divider',
@@ -133,7 +138,6 @@ const menuOptions: MenuOption[] = [
 //   }
 ]
 </script>
-
 
 <template>
   <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
