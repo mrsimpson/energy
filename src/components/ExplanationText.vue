@@ -7,6 +7,7 @@ type displayType = "inline" | "icon";
 defineProps<{
   text: String;
   display: displayType;
+  size?: number;
 }>();
 </script>
 
@@ -15,7 +16,10 @@ defineProps<{
     <template #trigger>
       <n-button text>
         <template #icon>
-          <n-icon size="1.5rem" :style="{ padding: '4px' }">
+          <n-icon size="size || 1rem" :style="{ 
+            padding: '4px',
+            alignBaseline: true
+          }">
             <InformationIcon />
           </n-icon>
         </template>
@@ -29,5 +33,9 @@ defineProps<{
 <style scoped>
   .inlined {
     font-style: italic;
+  }
+
+  .n-icon-slot {
+    position-y: 0px;
   }
 </style>
