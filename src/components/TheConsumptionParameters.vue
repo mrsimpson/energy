@@ -30,8 +30,8 @@ const savingsPercent = computed(
 );
 
 function setSavings(savingsPercent: number) {
-  showRecommendations.value = false
-  iReduction.value = (props.consumption * savingsPercent) / 100
+  showRecommendations.value = false;
+  iReduction.value = (props.consumption * savingsPercent) / 100;
   emit("reduction2023Changed", iReduction.value);
 }
 </script>
@@ -44,7 +44,7 @@ function setSavings(savingsPercent: number) {
     :content-style="{ padding: '1rem 0 0 0' }"
     :header-style="{ padding: 0 }"
   >
-  <n-space vertical>
+    <n-space vertical>
       <div>
         <n-input-group>
           <n-input-group-label>Verbrauch im letzten Jahr</n-input-group-label>
@@ -61,7 +61,7 @@ function setSavings(savingsPercent: number) {
         </n-input-group>
         <Explanation
           display="inline"
-          text="Die Zahl kannst du in der letzten Abrechnung von deinem Gasversorger ablesen"
+          text="Die Zahl kannst du in der letzten Abrechnung von deinem Gasversorger ablesen. Ein m³ Gas entspricht ca. 10kWh."
         />
       </div>
       <div>
@@ -72,13 +72,14 @@ function setSavings(savingsPercent: number) {
               v-model:value="iReduction"
               :validator="validatePositive"
               :min="0"
+              :max="consumption"
               placeholder="Dein Sparziel für 2023"
               :step="100"
               :on-input="emit('reduction2023Changed', iReduction)"
               autofocus
             >
-              <template #suffix>kWh</template></n-input-number
-            >
+              <template #suffix>kWh</template>
+            </n-input-number>
             <n-button @click="showRecommendations = true">
               Wie kann ich sparen?
               <template #icon>
