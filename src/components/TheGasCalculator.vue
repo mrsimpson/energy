@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { NSpace, NCard, NEl } from "naive-ui";
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import calculateMonthlyRate from "../lib/calculateMonthlyRate";
 import TheConsumptionParameters from "./TheConsumptionParameters.vue";
 import ThePriceParameters from "./ThePriceParameters.vue";
@@ -76,12 +76,14 @@ const subsidization = computed(() => [
   calculation2023.value.subsidized,
 ]);
 const savings = computed(() => [0, 0, 0, calculation2023.value.saved]);
+
+onMounted(() => scrollTo({top: 0}))
 </script>
 
 <template>
   <n-space vertical>
     <n-card>
-      <h1>Gaskostenrechner</h1>
+      <h1>Gaskosten</h1>
       <p>Gib an, was Du an Gas verbrauchst und was Du einsparen möchtest</p>
       <TheConsumptionParameters
         :consumption="consumption"
