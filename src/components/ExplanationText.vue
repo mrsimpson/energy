@@ -13,10 +13,12 @@ defineProps<{
 <template>
   <n-tooltip trigger="hover" v-if="display === 'icon'">
     <template #trigger>
-      <n-button text>
+      <n-button text :style="{
+        marginLeft: '8px',
+        marginRight: '8px',
+      }" >
         <template #icon>
           <n-icon size="size || 1rem" :style="{ 
-            padding: '4px',
             alignBaseline: true
           }">
             <InformationIcon />

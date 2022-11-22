@@ -13,6 +13,8 @@ declare module '@vue/runtime-core' {
     NCard: typeof import('naive-ui')['NCard']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NEl: typeof import('naive-ui')['NEl']
+    NForm: typeof import('naive-ui')['NForm']
+    NFormItem: typeof import('naive-ui')['NFormItem']
     NIcon: typeof import('naive-ui')['NIcon']
     NInputGroup: typeof import('naive-ui')['NInputGroup']
     NInputGroupLabel: typeof import('naive-ui')['NInputGroupLabel']
