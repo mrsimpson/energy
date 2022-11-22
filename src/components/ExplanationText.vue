@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { InformationCircleOutline as InformationIcon } from "@vicons/ionicons5";
+import { isSmallScreen } from "../lib/resonsiveness";
 
 type displayType = "inline" | "icon";
 
@@ -11,7 +12,7 @@ defineProps<{
 </script>
 
 <template>
-  <n-tooltip trigger="hover" v-if="display === 'icon'">
+  <n-tooltip trigger="hover" v-if="display === 'icon'" :width=" isSmallScreen? 300 : 600">
     <template #trigger>
       <n-button text :style="{
         marginLeft: '8px',
