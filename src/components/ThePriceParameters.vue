@@ -29,19 +29,15 @@ const model = ref({
 });
 
 const rulePrice: FormItemRule = {
-  type: "number",
   required: true,
-  min: 1,
-  message: ">0!"
 };
 
 const rules: FormRules = {
-  price2021: [rulePrice],
-  price2022: [rulePrice],
-  price2023: [rulePrice],
+  price2021: rulePrice,
+  price2022: rulePrice,
+  price2023: rulePrice,
   paymentSeptember2022: {
     type: "number",
-    min: 0,
     required: true
   }
 };
@@ -89,6 +85,8 @@ watch(
             v-model:value="model.paymentSeptember2022"
             placeholder="Abschlagszahlung September"
             :step="1"
+            :min="1"
+            :validator="validatePositive"
             @update:value="
               () => {
                 rateManuallyAdapted = true;
@@ -110,6 +108,8 @@ watch(
           <n-input-number
             v-model:value="model.price2021"
             placeholder="Gaspreis 2021"
+            :min="0.01"
+            :validator="validatePositive"
             :step="0.01"
             :format="euroToCent"
             :parse="centToEuro"
@@ -122,6 +122,8 @@ watch(
           <n-input-number
             v-model:value="model.price2022"
             placeholder="Gaspreis 2022"
+            :min="0.01"
+            :validator="validatePositive"
             :step="0.01"
             :format="euroToCent"
             :parse="centToEuro"
@@ -134,6 +136,8 @@ watch(
           <n-input-number
             v-model:value="model.price2023"
             placeholder="Gaspreis 2023"
+            :min="0.01"
+            :validator="validatePositive"
             :step="0.01"
             :format="euroToCent"
             :parse="centToEuro"

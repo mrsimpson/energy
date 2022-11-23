@@ -24,14 +24,9 @@ const rules: FormRules = {
   consumption: {
     type: "number",
     required: true,
-    validator: validatePositive,
-    min: 1,
   },
   reduction: {
     type: "number",
-    validator: validatePositive,
-    min: 0,
-    max: model.value.consumption,
   },
 };
 const formRef = ref<FormInst | null>(null);
@@ -70,7 +65,9 @@ function setSavings(savingsPercent: number) {
           <n-input-number
             v-model:value="model.consumption"
             placeholder="Energiebedarf"
+            :min="1"
             :step="1000"
+            :validator="validatePositive"
             :on-input="emit('consumptionChanged', model.consumption)"
           >
             <template #suffix>kWh</template></n-input-number
@@ -85,6 +82,9 @@ function setSavings(savingsPercent: number) {
           <n-input-number
             v-model:value="model.reduction"
             placeholder="Dein Sparziel für 2023"
+            :min="0"
+            :max="model.consumption"
+            :validator="validatePositive"
             :step="100"
             :on-input="emit('reduction2023Changed', model.reduction)"
             autofocus
