@@ -1,14 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-  NCard,
-  NConfigProvider,
-  NThemeEditor,
-  NLayout,
-  NLayoutContent,
-  NLayoutHeader,
-  NLayoutFooter,
-  type GlobalTheme, type GlobalThemeOverrides,
+import type {
+  GlobalTheme, 
+  GlobalThemeOverrides,
 } from "naive-ui";
 import TheNavigation from "./components/TheNavigation.vue";
 import TheFooter from "./components/TheFooter.vue";

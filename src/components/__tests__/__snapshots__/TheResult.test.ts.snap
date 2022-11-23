@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`TheResult > should render as expected 1`] = `
-<n-space-stub
+<space-stub
   data-v-b08c5da8=""
   inline="false"
   justify="start"

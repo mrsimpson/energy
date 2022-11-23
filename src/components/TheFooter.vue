@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-import {NIcon} from 'naive-ui'
 import { HandLeftOutline as DataProtectionIcon } from "@vicons/ionicons5";
 
 </script>
