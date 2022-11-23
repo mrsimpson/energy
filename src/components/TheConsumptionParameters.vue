@@ -3,7 +3,7 @@ import { validatePositive } from "../lib/Numbers";
 import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
 import Explanation from "@/components/ExplanationText.vue";
 import RecommendationsModal from "@/components/RecommendationsModal.vue";
-import type { LabelPlacement } from "naive-ui/es/form/src/interface";
+import type { FormRules, FormInst } from "naive-ui";
 import { isSmallScreen } from "../lib/responsiveness";
 
 const props = defineProps<{
@@ -13,15 +13,27 @@ const props = defineProps<{
 
 const emit = defineEmits(["consumptionChanged", "reduction2023Changed"]);
 
-const iConsumption = ref(props.consumption);
-const iReduction = ref(props.reduction2023);
 const showRecommendations = ref(false);
 
-const model = {
-  consumption: ref(props.consumption),
-  reduction: ref(props.reduction2023),
+const model = ref({
+  consumption: props.consumption,
+  reduction: props.reduction2023,
+});
+
+const rules: FormRules = {
+  consumption: {
+    type: "number",
+    required: true,
+    validator: validatePositive,
+    min: 1,
+  },
+  reduction: {
+    type: "number",
+    validator: validatePositive,
+    min: 0,
+    max: model.value.consumption,
+  },
 };
-const rules: FormRules = {};
 const formRef = ref<FormInst | null>(null);
 
 const savingsPercent = computed(
@@ -30,8 +42,8 @@ const savingsPercent = computed(
 
 function setSavings(savingsPercent: number) {
   showRecommendations.value = false;
-  iReduction.value = (props.consumption * savingsPercent) / 100;
-  emit("reduction2023Changed", iReduction.value);
+  model.value.reduction = (props.consumption * savingsPercent) / 100;
+  emit("reduction2023Changed", model.value.reduction);
 }
 </script>
 
@@ -52,15 +64,14 @@ function setSavings(savingsPercent: number) {
         label-width="auto"
         name="Consumption parameters"
         id="consumption-parameters"
+        :show-require-mark="false"
       >
-        <n-form-item label="Verbrauch im letzten Jahr">
+        <n-form-item label="Verbrauch im letzten Jahr" path="consumption">
           <n-input-number
-            v-model:value="iConsumption"
-            :validator="validatePositive"
-            :min="1"
+            v-model:value="model.consumption"
             placeholder="Energiebedarf"
             :step="1000"
-            :on-input="emit('consumptionChanged', iConsumption)"
+            :on-input="emit('consumptionChanged', model.consumption)"
           >
             <template #suffix>kWh</template></n-input-number
           >
@@ -70,15 +81,12 @@ function setSavings(savingsPercent: number) {
                   von deinem Gasversorger ablesen. Ein m³ Gas entspricht ca. 10kWh."
           />
         </n-form-item>
-        <n-form-item label="Das will ich einsparen">
+        <n-form-item label="Das will ich einsparen" path="reduction">
           <n-input-number
-            v-model:value="iReduction"
-            :validator="validatePositive"
-            :min="0"
-            :max="consumption"
+            v-model:value="model.reduction"
             placeholder="Dein Sparziel für 2023"
             :step="100"
-            :on-input="emit('reduction2023Changed', iReduction)"
+            :on-input="emit('reduction2023Changed', model.reduction)"
             autofocus
           >
             <template #suffix>kWh</template>
