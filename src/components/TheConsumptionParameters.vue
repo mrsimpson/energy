@@ -4,7 +4,7 @@ import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
 import Explanation from "@/components/ExplanationText.vue";
 import RecommendationsModal from "@/components/RecommendationsModal.vue";
 import type { LabelPlacement } from "naive-ui/es/form/src/interface";
-import { isSmallScreen } from "../lib/resonsiveness";
+import { isSmallScreen } from "../lib/responsiveness";
 
 const props = defineProps<{
   consumption: number;

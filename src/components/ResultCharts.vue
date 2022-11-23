@@ -11,7 +11,7 @@ import {
   type TooltipItem,
 } from "chart.js";
 import { euros } from "@/lib/Numbers";
-import { isSmallScreen } from "../lib/resonsiveness";
+import { isSmallScreen } from "../lib/responsiveness";
 
 ChartJS.register(
   Title,

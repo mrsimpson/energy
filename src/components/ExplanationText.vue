@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { InformationCircleOutline as InformationIcon } from "@vicons/ionicons5";
-import { isSmallScreen } from "../lib/resonsiveness";
+import { isSmallScreen } from "../lib/responsiveness";
 
 type displayType = "inline" | "icon";
 
