@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, ref, toRefs } from "vue";
 import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -9,12 +8,18 @@ import {
   BarElement,
   CategoryScale,
   LinearScale,
-type TooltipItem,
-
+  type TooltipItem,
 } from "chart.js";
 import { euros } from "@/lib/Numbers";
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+);
 
 type Amount = number;
 
@@ -51,15 +56,14 @@ const series = [
 
 // determine the height based on the screen size.
 // Fixed 200 is too small on mobile, 300 is too big on desktop
-const smallScreenHeight = 500
-const bigScreenHeight = 200
-const mql = matchMedia('(max-width: 500px)')
-const getHeight = () => mql.matches ? smallScreenHeight : bigScreenHeight
-const chartHeight = ref(getHeight())
-mql.addEventListener('change',
-() => {
-  chartHeight.value = getHeight()
-})
+const smallScreenHeight = 500;
+const bigScreenHeight = 200;
+const mql = matchMedia("(max-width: 500px)");
+const getHeight = () => (mql.matches ? smallScreenHeight : bigScreenHeight);
+const chartHeight = ref(getHeight());
+mql.addEventListener("change", () => {
+  chartHeight.value = getHeight();
+});
 
 const scales = {
   x: {
@@ -69,9 +73,9 @@ const scales = {
     stacked: true,
     ticks: {
       callback(value: string | number) {
-        return euros(value as number, 0)
-      }
-    }
+        return euros(value as number, 0);
+      },
+    },
   },
 };
 
@@ -87,18 +91,18 @@ const options = {
         },
       },
     },
-  }
+  },
 };
 
 const chartData = computed(() => {
-  const labels = [2021, 2022] as Array<number | string>
+  const labels = [2021, 2022] as Array<number | string>;
   if (props.savings[3]) {
-    labels.push("2023 ohne Einsparung")
-    labels.push("2023 mit Einsparung")
+    labels.push("2023 ohne Einsparung");
+    labels.push("2023 mit Einsparung");
   } else {
-    labels.push(2023)
+    labels.push(2023);
   }
-  return ({
+  return {
     labels,
     datasets: series.map((s) => ({
       data: s.data.value,
@@ -107,7 +111,7 @@ const chartData = computed(() => {
       borderColor: s.borderColor,
       borderWidth: 2,
     })),
-  })
+  };
 });
 </script>
 

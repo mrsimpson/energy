@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`TheGasCalculator > renders properly 1`] = `
-<n-space-stub
+<space-stub
   data-v-5987c6d7=""
   inline="false"
   justify="start"

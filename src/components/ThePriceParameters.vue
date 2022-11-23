@@ -1,12 +1,4 @@
 <script setup lang="ts">
-import {
-  NInputNumber,
-  NCard,
-  NInputGroup,
-  NInputGroupLabel,
-  NSpace,
-} from "naive-ui";
-import { ref, watch } from "vue";
 import calculateMonthlyRate from "../lib/calculateMonthlyRate";
 import { centToEuro, euroToCent, validatePositive } from "../lib/Numbers";
 

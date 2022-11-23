@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { NCard, NButton, NIcon, NSpace } from "naive-ui";
 import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
 import Quote from "@/components/TextQuote.vue";
 </script>

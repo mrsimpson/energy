@@ -1,3 +1,4 @@
+<!-- eslint-disable max-len -->
 <template>
   <h1>Datenschutzerklärung</h1>
   <h2 id="m1870">Einleitung</h2>
@@ -207,8 +208,10 @@
     <a
       href="https://ec.europa.eu/info/law/law-topic/data-protection/international-dimension-data-protection_de"
       target="_blank"
-      >https://ec.europa.eu/info/law/law-topic/data-protection/international-dimension-data-protection_de</a
-    >).
+    >
+      https://ec.europa.eu/info/law/law-topic/data-protection/international-dimension-data-protection_de
+    </a>
+    ).
   </p>
   <h2 id="m12">Löschung von Daten</h2>
   <p>

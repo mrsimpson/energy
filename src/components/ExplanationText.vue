@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { NIcon, NTooltip, NButton } from "naive-ui";
 import { InformationCircleOutline as InformationIcon } from "@vicons/ionicons5";
 
 type displayType = "inline" | "icon";

@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { NButton, NModal, NSlider } from "naive-ui";
-import { ref } from "vue";
-
 const props = defineProps<{ show: boolean; value: number }>();
 const emit = defineEmits(["close", "change", "update:modelValue"]);
 

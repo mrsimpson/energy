@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import ResultCharts from "./ResultCharts.vue";
-import { NCard, NSpace, NNumberAnimation, type NumberAnimationInst } from "naive-ui";
-import { onMounted, ref, watch } from "vue";
+import type { NumberAnimationInst } from "naive-ui";
 
 const props = defineProps<{
   years: string[];
@@ -21,21 +20,31 @@ const animateResult = () => resultAnimationInstRef.value?.play();
 watch(
   () => props.savings,
   (current: number[], previous: number[]) => {
-    resultFrom.value = previous[previous.length -1];
-    resultTo.value = current[previous.length -1];
+    resultFrom.value = previous[previous.length - 1];
+    resultTo.value = current[previous.length - 1];
   }
 );
 
 onMounted(animateResult);
 
-const compressedPadding = {paddingTop: '0px', paddingBottom: '0px'}
+const compressedPadding = { paddingTop: "0px", paddingBottom: "0px" };
 </script>
 
 <template>
   <n-space vertical>
-    <n-card v-if="reduction2023" :bordered="false"  :content-style="compressedPadding">
+    <n-card
+      v-if="reduction2023"
+      :bordered="false"
+      :content-style="compressedPadding"
+    >
       <p>Du sparst</p>
-      <p style="font-size: 3rem; margin-block-start: 0.5rem; margin-block-end: 0.5rem">
+      <p
+        style="
+          font-size: 3rem;
+          margin-block-start: 0.5rem;
+          margin-block-end: 0.5rem;
+        "
+      >
         <n-number-animation
           :from="resultFrom"
           :to="resultTo"

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { NSpace, NCard, NEl } from "naive-ui";
-import { computed, onMounted, ref, watch } from "vue";
 import calculateMonthlyRate from "../lib/calculateMonthlyRate";
 import TheConsumptionParameters from "./TheConsumptionParameters.vue";
 import ThePriceParameters from "./ThePriceParameters.vue";

@@ -1,14 +1,4 @@
 <script setup lang="ts">
-import {
-  NButton,
-  NIcon,
-  NInputNumber,
-  NCard,
-  NInputGroup,
-  NInputGroupLabel,
-  NSpace,
-} from "naive-ui";
-import { ref, computed } from "vue";
 import { validatePositive } from "../lib/Numbers";
 import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
 import Explanation from "@/components/ExplanationText.vue";
@@ -61,7 +51,8 @@ function setSavings(savingsPercent: number) {
         </n-input-group>
         <Explanation
           display="inline"
-          text="Die Zahl kannst du in der letzten Abrechnung von deinem Gasversorger ablesen. Ein m³ Gas entspricht ca. 10kWh."
+          text="Die Zahl kannst du in der letzten Abrechnung von deinem Gasversorger ablesen. 
+                Ein m³ Gas entspricht ca. 10kWh."
         />
       </div>
       <div>
