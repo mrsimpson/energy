@@ -79,6 +79,7 @@ watch(
         label-width="auto"
         name="Price parameters"
         id="price-parameters"
+        :show-require-mark="false"
       >
         <n-form-item label="Abschlag 09/2022" path="paymentSeptember2022">
           <n-input-number
