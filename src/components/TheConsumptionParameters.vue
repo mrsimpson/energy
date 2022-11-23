@@ -50,6 +50,8 @@ function setSavings(savingsPercent: number) {
         :rules="rules"
         :label-placement="isSmallScreen ? 'top' : 'left'"
         label-width="auto"
+        name="Consumption parameters"
+        id="consumption-parameters"
       >
         <n-form-item label="Verbrauch im letzten Jahr">
           <n-input-number
