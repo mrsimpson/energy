@@ -4,7 +4,9 @@ import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
 import Explanation from "@/components/ExplanationText.vue";
 import RecommendationsModal from "@/components/RecommendationsModal.vue";
 import type { FormRules, FormInst } from "naive-ui";
-import { isSmallScreen } from "../lib/responsiveness";
+import { isSmallScreen } from "@/lib/responsiveness";
+import { trackInput } from "@/lib/Tracking";
+import { debounce } from "debounce";
 
 const props = defineProps<{
   consumption: number;
@@ -68,7 +70,15 @@ function setSavings(savingsPercent: number) {
             :min="1"
             :step="1000"
             :validator="validatePositive"
-            :on-input="emit('consumptionChanged', model.consumption)"
+            :on-input="
+              debounce(
+                () => {
+                  trackInput('consumption') &&
+                  emit('consumptionChanged', model.consumption)
+                },
+                2000
+              )
+            "
           >
             <template #suffix>kWh</template></n-input-number
           >
@@ -86,7 +96,10 @@ function setSavings(savingsPercent: number) {
             :max="model.consumption"
             :validator="validatePositive"
             :step="100"
-            :on-input="emit('reduction2023Changed', model.reduction)"
+            :on-input="
+              trackInput('reduction') &&
+              emit('reduction2023Changed', model.reduction)
+            "
             autofocus
           >
             <template #suffix>kWh</template>
