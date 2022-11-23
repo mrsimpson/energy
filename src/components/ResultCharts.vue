@@ -11,6 +11,7 @@ import {
   type TooltipItem,
 } from "chart.js";
 import { euros } from "@/lib/Numbers";
+import { isSmallScreen } from "../lib/responsiveness";
 
 ChartJS.register(
   Title,
@@ -56,14 +57,10 @@ const series = [
 
 // determine the height based on the screen size.
 // Fixed 200 is too small on mobile, 300 is too big on desktop
-const smallScreenHeight = 500;
-const bigScreenHeight = 200;
-const mql = matchMedia("(max-width: 500px)");
-const getHeight = () => (mql.matches ? smallScreenHeight : bigScreenHeight);
-const chartHeight = ref(getHeight());
-mql.addEventListener("change", () => {
-  chartHeight.value = getHeight();
-});
+const smallScreenHeight = 500
+const bigScreenHeight = 200
+let chartHeight = isSmallScreen.value ? smallScreenHeight : bigScreenHeight
+
 
 const scales = {
   x: {

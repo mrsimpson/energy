@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { InformationCircleOutline as InformationIcon } from "@vicons/ionicons5";
+import { isSmallScreen } from "../lib/responsiveness";
 
 type displayType = "inline" | "icon";
 
@@ -11,12 +12,14 @@ defineProps<{
 </script>
 
 <template>
-  <n-tooltip trigger="hover" v-if="display === 'icon'">
+  <n-tooltip trigger="hover" v-if="display === 'icon'" :width=" isSmallScreen? 300 : 600">
     <template #trigger>
-      <n-button text>
+      <n-button text :style="{
+        marginLeft: '8px',
+        marginRight: '8px',
+      }" >
         <template #icon>
           <n-icon size="size || 1rem" :style="{ 
-            padding: '4px',
             alignBaseline: true
           }">
             <InformationIcon />
