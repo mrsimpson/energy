@@ -1,5 +1,9 @@
-<!-- eslint-disable max-len -->
+<script setup lang="ts">
+import MatomoOptOut from "@/components/MatomoOptOut.vue";
+</script>
+
 <template>
+  <!-- eslint-disable max-len -->
   <h1>Datenschutzerklärung</h1>
   <h2 id="m1870">Einleitung</h2>
   <p>
@@ -437,30 +441,9 @@
       oder der Zielgruppen und ihres Leseverhaltens auf Basis ihrer Abruforte
       (die mit Hilfe der IP-Adresse bestimmbar sind) oder der Zugriffszeiten
       genutzt. Diese Analyse beinhaltet ebenfalls die Feststellung, ob die
-      Newsletter geöffnet werden, wann sie geöffnet werden und<span
-        class="dsg-license-content-blurred de dsg-ttip-activate"
-      >
-        - Dieser Textbereich muss mit einer Premium Lizenz freischaltet werden.
-        - premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext premiumtext premiumtext
-        premiumtext premiumtext premiumtext premiumtext </span
-      >; <strong>Rechtsgrundlagen:</strong> Einwilligung (Art. 6 Abs. 1 S. 1
-      lit. a) DSGVO).
+      Newsletter geöffnet werden, wann sie geöffnet werden und
+      <strong>Rechtsgrundlagen:</strong> Einwilligung (Art. 6 Abs. 1 S. 1 lit.
+      a) DSGVO).
     </li>
   </ul>
   <h2 id="m263">Webanalyse, Monitoring und Optimierung</h2>
@@ -542,9 +525,14 @@
       Browsereinstellungen so erfasst, dass Rückschlüsse auf die Identität
       einzelner Nutzer nicht möglich sind. Die im Rahmen der Nutzung von Matomo
       erhobenen Daten der Nutzer werden nur von uns verarbeitet und nicht mit
-      Dritten geteilt; <strong>Rechtsgrundlagen:</strong> Berechtigte Interessen
-      (Art. 6 Abs. 1 S. 1 lit. f) DSGVO); <strong>Website:</strong>
+      Dritten geteilt; 
+      <br /><strong>Rechtsgrundlagen:</strong> Berechtigte Interessen
+      (Art. 6 Abs. 1 S. 1 lit. f) DSGVO); 
+      <br /><strong>Website: &nbsp;</strong>
       <a href="https://matomo.org/" target="_blank">https://matomo.org/</a>.
+    </li>
+    <li>
+      <MatomoOptOut />
     </li>
   </ul>
   <p class="seal">
