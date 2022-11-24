@@ -8,30 +8,26 @@ import { isSmallScreen } from "@/lib/responsiveness";
 import { trackInput } from "@/lib/Tracking";
 import { debounce } from "debounce";
 
-const delay = 150;
+const delay = 300;
 
 const props = defineProps<{
   consumption: number;
-  reduction2023?: number;
+  reduction2023: number | undefined;
 }>();
 
 const emit = defineEmits(["consumptionChanged", "reduction2023Changed"]);
 
-const model = {
-  consumption: ref(props.consumption),
-  reduction: ref(props.reduction2023),
-};
+const model = {... toRefs(props)};
 
 // as we're managing state in the parent component passing it as props and
 // decouple it when creating the model above, we manually need to react on
 // changes of the parent state (no automatic two way binding)
 watch(
-  () => props.consumption,
-  (v) => (model.consumption.value = v)
-);
-watch(
-  () => props.reduction2023,
-  (v) => (model.reduction.value = v)
+  () => (props),
+  (newProps) => {
+    model.consumption.value = newProps.consumption
+    model.reduction2023.value = newProps.reduction2023
+  }
 );
 
 const rules: FormRules = {
@@ -69,8 +65,8 @@ const handleReductionChanged = debounce(
 
 function setSavings(savingsPercent: number) {
   showRecommendations.value = false;
-  model.reduction.value = (props.consumption * savingsPercent) / 100;
-  emit("reduction2023Changed", model.reduction.value);
+  model.reduction2023.value = (props.consumption * savingsPercent) / 100;
+  emit("reduction2023Changed", model.reduction2023.value);
 }
 </script>
 
@@ -112,7 +108,7 @@ function setSavings(savingsPercent: number) {
         </n-form-item>
         <n-form-item label="Das will ich einsparen" path="reduction">
           <n-input-number
-            v-model:value="model.reduction.value"
+            v-model:value="model.reduction2023.value"
             placeholder="Dein Sparziel für 2023"
             :min="0"
             :max="model.consumption.value"
