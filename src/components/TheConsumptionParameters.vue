@@ -8,6 +8,8 @@ import { isSmallScreen } from "@/lib/responsiveness";
 import { trackInput } from "@/lib/Tracking";
 import { debounce } from "debounce";
 
+const delay = 150;
+
 const props = defineProps<{
   consumption: number;
   reduction2023?: number;
@@ -15,12 +17,22 @@ const props = defineProps<{
 
 const emit = defineEmits(["consumptionChanged", "reduction2023Changed"]);
 
-const showRecommendations = ref(false);
+const model = {
+  consumption: ref(props.consumption),
+  reduction: ref(props.reduction2023),
+};
 
-const model = ref({
-  consumption: props.consumption,
-  reduction: props.reduction2023,
-});
+// as we're managing state in the parent component passing it as props and
+// decouple it when creating the model above, we manually need to react on
+// changes of the parent state (no automatic two way binding)
+watch(
+  () => props.consumption,
+  (v) => (model.consumption.value = v)
+);
+watch(
+  () => props.reduction2023,
+  (v) => (model.reduction.value = v)
+);
 
 const rules: FormRules = {
   consumption: {
@@ -33,14 +45,32 @@ const rules: FormRules = {
 };
 const formRef = ref<FormInst | null>(null);
 
+const showRecommendations = ref(false);
+
 const savingsPercent = computed(
   () => ((props.reduction2023 || 0) * 100) / props.consumption
 );
 
+const handleConsumptionChanged = debounce(
+  (value: number | null) => {
+    trackInput("consumption") && emit("consumptionChanged", value);
+  },
+  delay,
+  false
+);
+
+const handleReductionChanged = debounce(
+  (value: number | null) => {
+    trackInput("reduction") && emit("reduction2023Changed", value);
+  },
+  delay,
+  false
+);
+
 function setSavings(savingsPercent: number) {
   showRecommendations.value = false;
-  model.value.reduction = (props.consumption * savingsPercent) / 100;
-  emit("reduction2023Changed", model.value.reduction);
+  model.reduction.value = (props.consumption * savingsPercent) / 100;
+  emit("reduction2023Changed", model.reduction.value);
 }
 </script>
 
@@ -65,20 +95,12 @@ function setSavings(savingsPercent: number) {
       >
         <n-form-item label="Verbrauch im letzten Jahr" path="consumption">
           <n-input-number
-            v-model:value="model.consumption"
+            v-model:value="model.consumption.value"
             placeholder="Energiebedarf"
             :min="1"
             :step="1000"
             :validator="validatePositive"
-            :on-input="
-              debounce(
-                () => {
-                  trackInput('consumption') &&
-                  emit('consumptionChanged', model.consumption)
-                },
-                2000
-              )
-            "
+            :on-update:value="handleConsumptionChanged"
           >
             <template #suffix>kWh</template></n-input-number
           >
@@ -90,16 +112,13 @@ function setSavings(savingsPercent: number) {
         </n-form-item>
         <n-form-item label="Das will ich einsparen" path="reduction">
           <n-input-number
-            v-model:value="model.reduction"
+            v-model:value="model.reduction.value"
             placeholder="Dein Sparziel für 2023"
             :min="0"
-            :max="model.consumption"
+            :max="model.consumption.value"
             :validator="validatePositive"
             :step="100"
-            :on-input="
-              trackInput('reduction') &&
-              emit('reduction2023Changed', model.reduction)
-            "
+            :on-update:value="handleReductionChanged"
             autofocus
           >
             <template #suffix>kWh</template>
