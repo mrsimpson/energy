@@ -5,10 +5,8 @@ import Explanation from "@/components/ExplanationText.vue";
 import RecommendationsModal from "@/components/RecommendationsModal.vue";
 import type { FormRules, FormInst } from "naive-ui";
 import { isSmallScreen } from "@/lib/responsiveness";
-import { trackInput } from "@/lib/Tracking";
+import { createInputHandler, trackInput } from "@/lib/Tracking";
 import { debounce } from "debounce";
-
-const delay = 300;
 
 const props = defineProps<{
   consumption: number;
@@ -17,16 +15,16 @@ const props = defineProps<{
 
 const emit = defineEmits(["consumptionChanged", "reduction2023Changed"]);
 
-const model = {... toRefs(props)};
+const model = { ...toRefs(props) };
 
 // as we're managing state in the parent component passing it as props and
 // decouple it when creating the model above, we manually need to react on
 // changes of the parent state (no automatic two way binding)
 watch(
-  () => (props),
+  () => props,
   (newProps) => {
-    model.consumption.value = newProps.consumption
-    model.reduction2023.value = newProps.reduction2023
+    model.consumption.value = newProps.consumption;
+    model.reduction2023.value = newProps.reduction2023;
   }
 );
 
@@ -47,20 +45,14 @@ const savingsPercent = computed(
   () => ((props.reduction2023 || 0) * 100) / props.consumption
 );
 
-const handleConsumptionChanged = debounce(
-  (value: number | null) => {
-    trackInput("consumption") && emit("consumptionChanged", value);
-  },
-  delay,
-  false
+const handleConsumptionChanged = createInputHandler(
+  (value: number) => emit("consumptionChanged", value),
+  "consumption"
 );
 
-const handleReductionChanged = debounce(
-  (value: number | null) => {
-    trackInput("reduction") && emit("reduction2023Changed", value);
-  },
-  delay,
-  false
+const handleReductionChanged = createInputHandler(
+  (value: number) => emit("reduction2023Changed", value),
+  "reduction"
 );
 
 function setSavings(savingsPercent: number) {
