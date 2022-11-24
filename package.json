@@ -14,6 +14,7 @@
   "dependencies": {
     "@vicons/ionicons5": "^0.12.0",
     "chart.js": "3.9.1",
+    "debounce": "1.2.1",
     "vue": "^3.2.41",
     "vue-chartjs": "4.1.2",
     "vue-matomo": "4.2.0",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/chart.js": "^2.9.37",
+    "@types/debounce": "1.2.1",
     "@types/jsdom": "^20.0.0",
     "@types/node": "^16.11.68",
     "@vitejs/plugin-vue": "^3.1.2",

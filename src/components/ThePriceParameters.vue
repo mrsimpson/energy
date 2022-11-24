@@ -3,6 +3,7 @@ import type { FormInst, FormItemRule, FormRules } from "naive-ui";
 import calculateMonthlyRate from "../lib/calculateMonthlyRate";
 import { centToEuro, euroToCent, validatePositive } from "../lib/Numbers";
 import { isSmallScreen } from "../lib/responsiveness";
+import { createInputHandler } from "../lib/Tracking";
 
 const props = defineProps<{
   consumption: number;
@@ -21,12 +22,24 @@ const emit = defineEmits([
 const calculateRate2022 = (total: number): number =>
   (total * props.price2022) / 12;
 
-const model = ref({
-  price2021: props.price2021,
-  price2022: props.price2022,
-  price2023: props.price2023,
+const model = {
+  ...toRefs(props),
   paymentSeptember2022: calculateRate2022(props.consumption),
-});
+};
+
+let rateManuallyAdapted = ref(false);
+watch(
+  () => props,
+  (newProps) => {
+    model;
+    if (!rateManuallyAdapted.value) {
+      model.paymentSeptember2022 = calculateMonthlyRate(
+        newProps.consumption,
+        model.price2022.value
+      );
+    }
+  }
+);
 
 const rulePrice: FormItemRule = {
   required: true,
@@ -38,23 +51,36 @@ const rules: FormRules = {
   price2023: rulePrice,
   paymentSeptember2022: {
     type: "number",
-    required: true
-  }
+    required: true,
+  },
 };
 
 const formRef = ref<FormInst | null>(null);
 
-let rateManuallyAdapted = ref(false);
-watch(
-  () => props.consumption,
-  (current) => {
-    if (!rateManuallyAdapted.value) {
-      model.value.paymentSeptember2022 = calculateMonthlyRate(
-        current,
-        model.value.price2022
-      );
-    }
-  }
+const handlePrice2021Changed = createInputHandler(
+  (value: number) => emit("price2021Changed", value),
+  "price2021",
+  true
+);
+
+const handlePrice2022Changed = createInputHandler(
+  (value: number) => emit("price2022Changed", value),
+  "price2022",
+  true
+);
+
+const handlePrice2023Changed = createInputHandler(
+  (value: number) => emit("price2023Changed", value),
+  "price2023",
+  true
+);
+
+const handlePaymentSeptember2022Changed = createInputHandler(
+  () => {
+    rateManuallyAdapted.value = true;
+    emit("paymentSeptember2022Changed", model.paymentSeptember2022);
+  },
+  "september2022Rate"
 );
 </script>
 
@@ -88,15 +114,7 @@ watch(
             :step="1"
             :min="1"
             :validator="validatePositive"
-            @update:value="
-              () => {
-                rateManuallyAdapted = true;
-                emit(
-                  'paymentSeptember2022Changed',
-                  model.paymentSeptember2022
-                );
-              }
-            "
+            @change="handlePaymentSeptember2022Changed"
           >
             <template #suffix>€</template></n-input-number
           >
@@ -107,42 +125,42 @@ watch(
         </p>
         <n-form-item label="Gaspreis 2021" path="price2021">
           <n-input-number
-            v-model:value="model.price2021"
+            v-model:value="model.price2021.value"
             placeholder="Gaspreis 2021"
             :min="0.01"
             :validator="validatePositive"
             :step="0.01"
             :format="euroToCent"
             :parse="centToEuro"
-            :on-input-number="emit('price2021Changed', model.price2021)"
+            @change="handlePrice2021Changed"
           >
             <template #suffix>Cent / kWh</template></n-input-number
           >
         </n-form-item>
         <n-form-item label="Gaspreis 2022" path="price2022">
           <n-input-number
-            v-model:value="model.price2022"
+            v-model:value="model.price2022.value"
             placeholder="Gaspreis 2022"
             :min="0.01"
             :validator="validatePositive"
             :step="0.01"
             :format="euroToCent"
             :parse="centToEuro"
-            :on-input-number="emit('price2022Changed', model.price2022)"
+            @change="handlePrice2022Changed"
           >
             <template #suffix>Cent / kWh</template></n-input-number
           >
         </n-form-item>
         <n-form-item label="Gaspreis 2023" path="price2023">
           <n-input-number
-            v-model:value="model.price2023"
+            v-model:value="model.price2023.value"
             placeholder="Gaspreis 2023"
             :min="0.01"
             :validator="validatePositive"
             :step="0.01"
             :format="euroToCent"
             :parse="centToEuro"
-            :on-input-number="emit('price2023Changed', model.price2023)"
+            @change="handlePrice2023Changed"
           >
             <template #suffix>Cent / kWh</template></n-input-number
           >

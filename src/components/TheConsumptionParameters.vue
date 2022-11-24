@@ -4,21 +4,29 @@ import { CalculatorOutline as CalculatorIcon } from "@vicons/ionicons5";
 import Explanation from "@/components/ExplanationText.vue";
 import RecommendationsModal from "@/components/RecommendationsModal.vue";
 import type { FormRules, FormInst } from "naive-ui";
-import { isSmallScreen } from "../lib/responsiveness";
+import { isSmallScreen } from "@/lib/responsiveness";
+import { createInputHandler, trackInput } from "@/lib/Tracking";
+import { debounce } from "debounce";
 
 const props = defineProps<{
   consumption: number;
-  reduction2023?: number;
+  reduction2023: number | undefined;
 }>();
 
 const emit = defineEmits(["consumptionChanged", "reduction2023Changed"]);
 
-const showRecommendations = ref(false);
+const model = { ...toRefs(props) };
 
-const model = ref({
-  consumption: props.consumption,
-  reduction: props.reduction2023,
-});
+// as we're managing state in the parent component passing it as props and
+// decouple it when creating the model above, we manually need to react on
+// changes of the parent state (no automatic two way binding)
+watch(
+  () => props,
+  (newProps) => {
+    model.consumption.value = newProps.consumption;
+    model.reduction2023.value = newProps.reduction2023;
+  }
+);
 
 const rules: FormRules = {
   consumption: {
@@ -31,14 +39,26 @@ const rules: FormRules = {
 };
 const formRef = ref<FormInst | null>(null);
 
+const showRecommendations = ref(false);
+
 const savingsPercent = computed(
   () => ((props.reduction2023 || 0) * 100) / props.consumption
 );
 
+const handleConsumptionChanged = createInputHandler(
+  (value: number) => emit("consumptionChanged", value),
+  "consumption"
+);
+
+const handleReductionChanged = createInputHandler(
+  (value: number) => emit("reduction2023Changed", value),
+  "reduction"
+);
+
 function setSavings(savingsPercent: number) {
   showRecommendations.value = false;
-  model.value.reduction = (props.consumption * savingsPercent) / 100;
-  emit("reduction2023Changed", model.value.reduction);
+  model.reduction2023.value = (props.consumption * savingsPercent) / 100;
+  emit("reduction2023Changed", model.reduction2023.value);
 }
 </script>
 
@@ -63,12 +83,12 @@ function setSavings(savingsPercent: number) {
       >
         <n-form-item label="Verbrauch im letzten Jahr" path="consumption">
           <n-input-number
-            v-model:value="model.consumption"
+            v-model:value="model.consumption.value"
             placeholder="Energiebedarf"
             :min="1"
             :step="1000"
             :validator="validatePositive"
-            :on-input="emit('consumptionChanged', model.consumption)"
+            @change="handleConsumptionChanged"
           >
             <template #suffix>kWh</template></n-input-number
           >
@@ -80,13 +100,13 @@ function setSavings(savingsPercent: number) {
         </n-form-item>
         <n-form-item label="Das will ich einsparen" path="reduction">
           <n-input-number
-            v-model:value="model.reduction"
+            v-model:value="model.reduction2023.value"
             placeholder="Dein Sparziel für 2023"
             :min="0"
-            :max="model.consumption"
+            :max="model.consumption.value"
             :validator="validatePositive"
             :step="100"
-            :on-input="emit('reduction2023Changed', model.reduction)"
+            @change="handleReductionChanged"
             autofocus
           >
             <template #suffix>kWh</template>
