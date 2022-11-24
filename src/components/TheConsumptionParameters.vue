@@ -5,8 +5,7 @@ import Explanation from "@/components/ExplanationText.vue";
 import RecommendationsModal from "@/components/RecommendationsModal.vue";
 import type { FormRules, FormInst } from "naive-ui";
 import { isSmallScreen } from "@/lib/responsiveness";
-import { createInputHandler, trackInput } from "@/lib/Tracking";
-import { debounce } from "debounce";
+import { createInputHandler } from "@/lib/Tracking";
 
 const props = defineProps<{
   consumption: number;

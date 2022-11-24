@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ExplanationText: typeof import('./src/components/ExplanationText.vue')['default']
     FlameIcon: typeof import('./src/components/icons/FlameIcon.vue')['default']
+    MatomoOptOut: typeof import('./src/components/MatomoOptOut.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
@@ -26,6 +27,7 @@ declare module '@vue/runtime-core' {
     NNumberAnimation: typeof import('naive-ui')['NNumberAnimation']
     NSlider: typeof import('naive-ui')['NSlider']
     NSpace: typeof import('naive-ui')['NSpace']
+    NSwitch: typeof import('naive-ui')['NSwitch']
     NThemeEditor: typeof import('naive-ui')['NThemeEditor']
     NTooltip: typeof import('naive-ui')['NTooltip']
     RecommendationsModal: typeof import('./src/components/RecommendationsModal.vue')['default']

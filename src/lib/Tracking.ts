@@ -1,17 +1,5 @@
+import { trackInput } from './Matomo';
 import { debounce } from 'debounce'
-const trackerQueue: string[][] = (window as any)?._paq || []
-const DELAY = 300;
-
-function trackEvent(category: string, action: string, name?: string, value?: string | number) {
-    console.info(new Date(), 'event', category, action, name, value)
-    trackerQueue.push(["trackEvent", category, action, name || "", value?.toString() || ""])
-}
-
-export const trackInput = (inputId: string, value?: string | number)
-    : boolean => {
-    trackEvent("form", "input", inputId, value?.toString())
-    return true // in order to allow using it in && expressions
-}
 
 /**
  * Generates a function tracking input which is executed after a delay
@@ -25,7 +13,7 @@ export function createInputHandler(
     fn: Function,
     inputId: string,
     trackValue = false,
-    delay = DELAY) {
+    delay = 300) {
     return debounce(
         (args: any) => {
             trackInput(inputId, trackValue ? args.toString() : undefined);
