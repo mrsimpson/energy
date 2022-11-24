@@ -88,7 +88,7 @@ function setSavings(savingsPercent: number) {
             :min="1"
             :step="1000"
             :validator="validatePositive"
-            @update:value="handleConsumptionChanged"
+            @change="handleConsumptionChanged"
           >
             <template #suffix>kWh</template></n-input-number
           >
@@ -106,7 +106,7 @@ function setSavings(savingsPercent: number) {
             :max="model.consumption.value"
             :validator="validatePositive"
             :step="100"
-            @update:value="handleReductionChanged"
+            @change="handleReductionChanged"
             autofocus
           >
             <template #suffix>kWh</template>

@@ -114,7 +114,7 @@ const handlePaymentSeptember2022Changed = createInputHandler(
             :step="1"
             :min="1"
             :validator="validatePositive"
-            @update:value="handlePaymentSeptember2022Changed"
+            @change="handlePaymentSeptember2022Changed"
           >
             <template #suffix>€</template></n-input-number
           >
@@ -132,7 +132,7 @@ const handlePaymentSeptember2022Changed = createInputHandler(
             :step="0.01"
             :format="euroToCent"
             :parse="centToEuro"
-            @update:value="handlePrice2021Changed"
+            @change="handlePrice2021Changed"
           >
             <template #suffix>Cent / kWh</template></n-input-number
           >
@@ -146,7 +146,7 @@ const handlePaymentSeptember2022Changed = createInputHandler(
             :step="0.01"
             :format="euroToCent"
             :parse="centToEuro"
-            @update:value="handlePrice2022Changed"
+            @change="handlePrice2022Changed"
           >
             <template #suffix>Cent / kWh</template></n-input-number
           >
@@ -160,7 +160,7 @@ const handlePaymentSeptember2022Changed = createInputHandler(
             :step="0.01"
             :format="euroToCent"
             :parse="centToEuro"
-            @update:value="handlePrice2023Changed"
+            @change="handlePrice2023Changed"
           >
             <template #suffix>Cent / kWh</template></n-input-number
           >
