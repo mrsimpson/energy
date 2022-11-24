@@ -41,7 +41,7 @@ const formRef = ref<FormInst | null>(null);
 const showRecommendations = ref(false);
 
 const savingsPercent = computed(
-  () => ((props.reduction2023 || 0) * 100) / props.consumption
+  ():number => (((model.reduction2023.value || 0) * 100) / model.consumption.value)
 );
 
 const handleConsumptionChanged = createInputHandler(
@@ -54,10 +54,10 @@ const handleReductionChanged = createInputHandler(
   "reduction"
 );
 
-function setSavings(savingsPercent: number) {
+function setSavings(percent: number) {
   showRecommendations.value = false;
-  model.reduction2023.value = (props.consumption * savingsPercent) / 100;
-  emit("reduction2023Changed", model.reduction2023.value);
+  const reduction = (model.consumption.value * percent) / 100;
+  emit("reduction2023Changed", reduction);
 }
 </script>
 
@@ -130,7 +130,7 @@ function setSavings(savingsPercent: number) {
 
   <RecommendationsModal
     :show="showRecommendations"
-    :value="savingsPercent"
+    :value="Math.round(savingsPercent)"
     @change="setSavings"
     @close="showRecommendations = false"
   />
