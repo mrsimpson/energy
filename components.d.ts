@@ -17,12 +17,14 @@ declare module '@vue/runtime-core' {
     NForm: typeof import('naive-ui')['NForm']
     NFormItem: typeof import('naive-ui')['NFormItem']
     NIcon: typeof import('naive-ui')['NIcon']
+    NInput: typeof import('naive-ui')['NInput']
     NInputNumber: typeof import('naive-ui')['NInputNumber']
     NLayout: typeof import('naive-ui')['NLayout']
     NLayoutContent: typeof import('naive-ui')['NLayoutContent']
     NLayoutFooter: typeof import('naive-ui')['NLayoutFooter']
     NLayoutHeader: typeof import('naive-ui')['NLayoutHeader']
     NMenu: typeof import('naive-ui')['NMenu']
+    NMessageProvider: typeof import('naive-ui')['NMessageProvider']
     NModal: typeof import('naive-ui')['NModal']
     NNumberAnimation: typeof import('naive-ui')['NNumberAnimation']
     NSlider: typeof import('naive-ui')['NSlider']
@@ -41,5 +43,6 @@ declare module '@vue/runtime-core' {
     TheNavigation: typeof import('./src/components/TheNavigation.vue')['default']
     ThePriceParameters: typeof import('./src/components/ThePriceParameters.vue')['default']
     TheResult: typeof import('./src/components/TheResult.vue')['default']
+    TheStayInTouchForm: typeof import('./src/components/TheStayInTouchForm.vue')['default']
   }
 }
