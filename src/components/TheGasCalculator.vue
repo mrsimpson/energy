@@ -56,7 +56,7 @@ const calculation2023 = computed(() => {
     billed:
       consumptionAtMarketprice * price2023.value +
       consumptionSubsidized * gasPriceBreak,
-    subsidized: consumptionSubsidized * (price2023.value - gasPriceBreak),
+    subsidized: Math.max(consumptionSubsidized * (price2023.value - gasPriceBreak), 0),
     saved: reduction * price2023.value,
   };
 });
