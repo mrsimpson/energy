@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type {
-  GlobalTheme, 
-  GlobalThemeOverrides,
-} from "naive-ui";
-import TheNavigation from "./components/TheNavigation.vue";
-import TheFooter from "./components/TheFooter.vue";
+import type { GlobalTheme, GlobalThemeOverrides } from "naive-ui";
+import TheNavigation from "@/components/TheNavigation.vue";
+import TheFooter from "@/components/TheFooter.vue";
+import TheStayInTouchForm from "@/components/TheStayInTouchForm.vue";
 
 // const osThemeRef = useOsTheme()
 //const theme = ref((osThemeRef.value === 'dark' ? darkTheme : null) as GlobalTheme | null)
@@ -17,14 +15,15 @@ const themeOverrides: GlobalThemeOverrides = {
     primaryColor: "#00AAE8FF",
     primaryColorHover: "#00BBFFFF",
     primaryColorPressed: "#0B5976FF",
-    primaryColorSuppl: "#338FB1FF"
+    primaryColorSuppl: "#338FB1FF",
   },
   Card: {
-    colorEmbedded: 'rgba(213, 245, 255, 1)'
-  }
-}
+    colorEmbedded: "rgba(213, 245, 255, 1)",
+  },
+};
 
-const themeEditorStyle = localStorage.getItem('theme') === 'true' ? {} : {display: 'none'}
+const themeEditorStyle =
+  localStorage.getItem("theme") === "true" ? {} : { display: "none" };
 </script>
 
 <template>
@@ -35,9 +34,16 @@ const themeEditorStyle = localStorage.getItem('theme') === 'true' ? {} : {displa
           <TheNavigation />
         </n-layout-header>
         <n-layout-content>
-          <n-card centered>
-            <RouterView />
-          </n-card>
+          <n-message-provider>
+            <n-space vertical>
+              <n-card centered>
+                <RouterView />
+              </n-card>
+              <n-card :embedded="true">
+                <TheStayInTouchForm />
+              </n-card>
+            </n-space>
+          </n-message-provider>
         </n-layout-content>
         <n-layout-footer>
           <TheFooter />
