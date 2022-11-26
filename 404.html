@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/flame.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaskostenrechner</title>
+    <meta name="description" content="Ein Rechner, der unter Berücksichtigung der 
+                          aktuell geltenden gesetzlichen Regelungen  die Preisentwicklung
+                          für 2022 und 2023 ausweist (Stichwort Gaspreisbremse). Dazu wird errechnet, welche Sparmaßnahmen
+                          welche monetären Einsparungen zur Folge haben">
+<title>Gaskostenrechner: Wie entlastet die Gaspreisbremse und was hilft es, zu sparen</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <script>
+      const params = Object.fromEntries(location.search.replace(/^\?/, ``).split("&").map(p => p.split("=")))
+      if (params.c) {
+        params.mtm_campaign = params.c
+        if (["fedi", "twitter", "fb"].includes(params.c)) {
+          params.mtm_source = "social"
+        }
+        delete params.c
+      }
+      location.search = Object.entries(params).map(([k, v]) => k + "=" + v).join("&")
+    </script>
   </body>
 </html>
