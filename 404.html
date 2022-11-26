@@ -12,9 +12,13 @@
                           welche monetären Einsparungen zur Folge haben"
     />
     <title>Gaskostenrechner: Wie entlastet die Gaspreisbremse und was hilft es, zu sparen</title>
+    <script type="module" crossorigin src="./assets/main.7a06cbc6.js"></script>
+    <link rel="stylesheet" href="./assets/main.ad9bc987.css">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
   </head>
   <body>
+    <div id="app"></div>
+    
     <script>
       const params = Object.fromEntries(
         location.search
@@ -33,7 +37,7 @@
         .map(([k, v]) => k + "=" + v)
         .join("&");
       if (location.search !== newSearch) {
-        location.search = newSearch;
+        // location.search = newSearch;
       }
     </script>
   </body>
