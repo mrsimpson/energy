@@ -16,26 +16,5 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
-    <script>
-      const params = Object.fromEntries(
-        location.search
-          .replace(/^\?/, ``)
-          .split("&")
-          .map((p) => p.split("="))
-      );
-      if (params.c) {
-        params.mtm_campaign = params.c;
-        if (["fedi", "twitter", "fb"].includes(params.c)) {
-          params.mtm_source = "social";
-        }
-        delete params.c;
-      }
-      const newSearch = Object.entries(params)
-        .map(([k, v]) => k + "=" + v)
-        .join("&");
-      if (location.search !== newSearch) {
-        // location.search = newSearch;
-      }
-    </script>
   </body>
 </html>
