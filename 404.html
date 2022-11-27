@@ -12,33 +12,12 @@
                           welche monetären Einsparungen zur Folge haben"
     />
     <title>Gaskostenrechner: Wie entlastet die Gaspreisbremse und was hilft es, zu sparen</title>
-    <script type="module" crossorigin src="./assets/main.7a06cbc6.js"></script>
+    <script type="module" crossorigin src="./assets/main.804a4255.js"></script>
     <link rel="stylesheet" href="./assets/main.ad9bc987.css">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
   </head>
   <body>
     <div id="app"></div>
     
-    <script>
-      const params = Object.fromEntries(
-        location.search
-          .replace(/^\?/, ``)
-          .split("&")
-          .map((p) => p.split("="))
-      );
-      if (params.c) {
-        params.mtm_campaign = params.c;
-        if (["fedi", "twitter", "fb"].includes(params.c)) {
-          params.mtm_source = "social";
-        }
-        delete params.c;
-      }
-      const newSearch = Object.entries(params)
-        .map(([k, v]) => k + "=" + v)
-        .join("&");
-      if (location.search !== newSearch) {
-        // location.search = newSearch;
-      }
-    </script>
   </body>
 </html>
