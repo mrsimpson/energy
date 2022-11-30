@@ -4,7 +4,9 @@ import IntroView from "../IntroView.vue";
 
 describe("IntroView", () => {
   it("renders as expected", () => {
-    const wrapper = shallowMount(IntroView);
+    const wrapper = shallowMount(IntroView, {
+      global: { stubs: ["RouterLink"] },
+    });
     expect(wrapper.element).toMatchSnapshot();
   });
 });

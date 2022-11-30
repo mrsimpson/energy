@@ -1,8 +1,19 @@
 <script setup lang="ts">
-const props = defineProps<{ show: boolean; value: number }>();
-const emit = defineEmits(["close", "change", "update:modelValue"]);
+import { useSettingsStore } from "@/SettingsStore";
 
-const sliderValue = ref(props.value);
+defineProps<{ show: boolean }>();
+const emit = defineEmits(["close"]);
+
+const store = useSettingsStore();
+
+const sliderValue = ref(
+  Math.round(((store.reduction2023 || 0) * 100) / store.consumption)
+);
+
+function setSavings() {
+  store.setReduction2023((store.consumption * sliderValue.value) / 100);
+  emit("close");
+}
 </script>
 
 <template>
@@ -38,7 +49,7 @@ const sliderValue = ref(props.value);
     <div class="wrapper">
       <n-slider v-model:value="sliderValue" :step="1" :tooltip="false" :max="50" />
       <span class="currentValue">{{ sliderValue }}%</span>
-      <NButton @click="emit('change', sliderValue)">Übernehmen</NButton>
+      <NButton @click="setSavings">Übernehmen</NButton>
     </div>
   </n-modal>
 </template>

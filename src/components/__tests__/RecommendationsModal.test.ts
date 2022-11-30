@@ -1,7 +1,8 @@
 import { mount } from "@vue/test-utils";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import RecommendationsModal from "@/components/RecommendationsModal.vue";
 import { ref } from "vue";
+import { createTestingPinia } from "@pinia/testing";
 
 describe("RecommendationsModal", () => {
   beforeEach(() => {
@@ -18,6 +19,7 @@ describe("RecommendationsModal", () => {
     const value = ref(0);
     mount(RecommendationsModal, {
       props: { show: true, value: value.value },
+      global: { plugins: [createTestingPinia({ createSpy: vi.fn })] },
     });
     expect(
       document.querySelector(".n-modal-container .n-modal-body-wrapper")
