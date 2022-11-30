@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { settings, saveSettings } from "../Settings";
+import { useSettingsStore } from '../SettingsStore';
 import { Save } from "@vicons/ionicons5";
 import {
   NButton,
@@ -17,6 +17,7 @@ import { useRouter } from "vue-router";
 import { validatePositive } from "../lib/Numbers";
 
 const router = useRouter();
+const store = useSettingsStore()
 
 const houseCategoryOptions = [
   { label: "Baujahr vor 1980", value: 300 },
@@ -50,7 +51,6 @@ const bathsPerWeekOptions = [
 ];
 
 function save() {
-  saveSettings();
   router.push({ name: "calculator" });
 }
 </script>
@@ -76,7 +76,7 @@ function save() {
         <n-collapse default-expanded-names="1" accordion>
           <n-collapse-item title="Anzahl der Personen im Haushalt" name="1">
             <n-input-number
-              v-model:value="settings.numPersons"
+              v-model:value="store.numPersons"
               placeholder="Anzahl Personen im Haushalt"
               :validator="validatePositive"
               :min="1"
@@ -86,12 +86,12 @@ function save() {
           </n-collapse-item>
           <n-collapse-item title="Heizen" name="2">
             <n-form-item label="Ich heize mit Gas">
-              <n-switch v-model:value="settings.heatWithGas" />
+              <n-switch v-model:value="store.heatWithGas" />
             </n-form-item>
 
             <n-form-item label="Wohnfläche (ungefähr)">
               <n-input-number
-                v-model:value="settings.livingSpace"
+                v-model:value="store.livingSpace"
                 placeholder="Wohnfläche (ungefähr)"
                 :validator="validatePositive"
                 :min="10"
@@ -105,7 +105,7 @@ function save() {
 
             <n-form-item label="Hauskategorie">
               <n-select
-                v-model:value="settings.houseCategory"
+                v-model:value="store.houseCategory"
                 :options="houseCategoryOptions"
                 :style="{ width: '250px' }"
               />
@@ -114,12 +114,12 @@ function save() {
 
           <n-collapse-item title="Kochen" name="3">
             <n-form-item label="Ich verwende einen Gasherd">
-              <n-switch v-model:value="settings.cookWithGas" />
+              <n-switch v-model:value="store.cookWithGas" />
             </n-form-item>
 
-            <n-form-item label="Ich koche" v-if="settings.cookWithGas">
+            <n-form-item label="Ich koche" v-if="store.cookWithGas">
               <n-select
-                v-model:value="settings.cookingsPerWeek"
+                v-model:value="store.cookingsPerWeek"
                 :options="cookingsPerWeekOptions"
               />
             </n-form-item>
@@ -127,19 +127,19 @@ function save() {
 
           <n-collapse-item title="Baden / Duschen" name="4">
             <n-form-item label="Mein Wasser wird mit Gas erwärmt">
-              <n-switch v-model:value="settings.waterWarmingWithGas" />
+              <n-switch v-model:value="store.waterWarmingWithGas" />
             </n-form-item>
 
             <n-form-item label="Ich dusche">
               <n-select
-                v-model:value="settings.showersPerWeek"
+                v-model:value="store.showersPerWeek"
                 :options="showersPerWeekOptions"
                 :style="{ width: '250px' }"
               />
 
               <n-input-number
-                v-if="settings.showersPerWeek !== 0"
-                v-model:value="settings.showersDuration"
+                v-if="store.showersPerWeek !== 0"
+                v-model:value="store.showersDuration"
                 placeholder="Minuten lang"
                 :validator="validatePositive"
                 :min="1"
@@ -153,7 +153,7 @@ function save() {
 
             <n-form-item label="Ich bade">
               <n-select
-                v-model:value="settings.bathsPerWeek"
+                v-model:value="store.bathsPerWeek"
                 :options="bathsPerWeekOptions"
                 :style="{ width: '250px' }"
               />

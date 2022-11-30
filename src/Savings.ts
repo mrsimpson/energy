@@ -1,5 +1,7 @@
-import { settings } from "./Settings";
+import { useSettingsStore } from "./SettingsStore";
 import { computed } from "vue";
+
+const store = useSettingsStore();
 
 const flowRate = 12; // Sparduschköpfe: eher 6L/min
 const supplyTemp = 60; // Vorlauftemperatur
@@ -11,25 +13,25 @@ const kwhPerShowerMinute = flowRate * heatingRate * kWhPerLiter;
 
 const energyConsumptionForWaterHeating = computed(() => {
   const waterWarmingPercent =
-    100 - 44.0457 * Math.pow(settings.value.houseCategory, 0.125282);
-  return (settings.value.gasConsumption * waterWarmingPercent) / 100;
+    100 - 44.0457 * Math.pow(store.houseCategory, 0.125282);
+  return (store.consumption * waterWarmingPercent) / 100;
 });
 
 const energySavingsWithOnly1showerPerWeek = computed(() => {
   return (
-    (settings.value.showersPerWeek - 1) *
-    settings.value.showersDuration *
+    (store.showersPerWeek - 1) *
+    store.showersDuration *
     kwhPerShowerMinute *
-    settings.value.numPersons
+    store.numPersons
   );
 });
 
 const energySavingsWithOnly5minShowers = computed(() => {
   return (
-    settings.value.showersPerWeek *
-    (settings.value.showersDuration - 5) *
+    store.showersPerWeek *
+    (store.showersDuration - 5) *
     kwhPerShowerMinute *
-    settings.value.numPersons
+    store.numPersons
   );
 });
 

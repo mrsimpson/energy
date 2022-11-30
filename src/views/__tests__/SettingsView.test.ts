@@ -1,16 +1,14 @@
+import { describe, expect, it } from "vitest";
 import { shallowMount } from "@vue/test-utils";
-import { describe, expect, it, vi } from "vitest";
-import SettingsView from "../SettingsView.vue";
-
-vi.mock('vue-router', () => ({
-  useRouter: vi.fn(() => ({
-    push: () => {}
-  }))
-}))
+import TestHelper from "@/lib/TestHelper";
+import component from "../SettingsView.vue";
 
 describe("SettingsView", () => {
   it("renders as expected", () => {
-    const wrapper = shallowMount(SettingsView);
+    const testHelper = TestHelper();
+    testHelper.setupRouter([{ name: "root", path: "/", component }]);
+    testHelper.setupStore();
+    const wrapper = shallowMount(component, testHelper.mountOptions());
     expect(wrapper.element).toMatchSnapshot();
   });
 });

@@ -1,13 +1,14 @@
-import { describe, it, expect, vi } from "vitest";
-
+import { describe, expect, it, vi } from "vitest";
 import { shallowMount } from "@vue/test-utils";
-import TheGasCalculator from "../TheGasCalculator.vue";
-
-Object.defineProperty(window, "scrollTo", { value: vi.fn(), writable: true });
+import TestHelper from "@/lib/TestHelper";
+import component from "../TheGasCalculator.vue";
 
 describe("TheGasCalculator", () => {
   it("renders properly", () => {
-    const wrapper = shallowMount(TheGasCalculator);
+    Object.defineProperty(window, "scrollTo", { value: vi.fn, writable: true });
+    const testHelper = TestHelper();
+    testHelper.setupStore();
+    const wrapper = shallowMount(component, testHelper.mountOptions());
     expect(wrapper.element).toMatchSnapshot();
   });
 });

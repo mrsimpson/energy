@@ -1,20 +1,29 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import { NModal } from "naive-ui";
 import type { Component } from 'vue';
+import { createTestingPinia } from "@pinia/testing";
+import { vi } from 'vitest';
 
 type Modal = { componentVM: { containerRef: HTMLElement } }
 
 export default function TestHelper() {
   let modalContainerCreated = false
+  const plugins = [] as any[]
 
   return {
-    async setupRouter(routes: Array<RouteRecordRaw>) {
+    setupStore() {
+      const store = createTestingPinia({ createSpy: vi.fn });
+      plugins.push(store)
+    },
+
+    async setupRouter(routes: Array<RouteRecordRaw> = []) {
       const router = createRouter({
         history: createWebHistory(),
         routes,
       })
       router.push('/')
       await router.isReady()
+      plugins.push(router)
       return router
     },
         
@@ -37,6 +46,12 @@ export default function TestHelper() {
       }
       const modal = wrapper.getComponent(NModal) as Modal
       return modal.componentVM.containerRef.firstChild;
+    },
+
+    mountOptions() {
+      return {
+        global: { plugins },
+      }
     }
   }
 }

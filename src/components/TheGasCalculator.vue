@@ -2,15 +2,17 @@
 import calculateMonthlyRate from "../lib/calculateMonthlyRate";
 import TheConsumptionParameters from "./TheConsumptionParameters.vue";
 import ThePriceParameters from "./ThePriceParameters.vue";
-
 import TheResult from "./TheResult.vue";
+import { useSettingsStore } from '@/SettingsStore';
+import { storeToRefs } from "pinia"
+
+const store = useSettingsStore();
+const { consumption, reduction2023 } = storeToRefs(store);
 
 // Parameters
-const consumption = ref(15000);
 const price2021 = ref(0.1);
 const price2022 = ref(0.18);
 const price2023 = ref(0.3);
-const reduction2023 = ref(0);
 const paymentSeptember2022 = ref(
   calculateMonthlyRate(consumption.value, price2022.value)
 );

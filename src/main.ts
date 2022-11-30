@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import VueMatomo from "vue-matomo";
 import { createPinia } from "pinia";
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 const params = location.search
   ? Object.fromEntries(
@@ -26,7 +27,9 @@ if (params.c) {
 
 const app = createApp(App);
 
-app.use(createPinia());
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+app.use(pinia);
 app.use(router).use(VueMatomo, {
   host: "https://matomo.dilab.co",
   siteId: 2,

@@ -38,6 +38,7 @@
     "naive-ui": "2.33.5",
     "npm-run-all": "^4.1.5",
     "pinia": "^2.0.27",
+    "pinia-plugin-persistedstate": "^3.0.1",
     "prettier": "^2.7.1",
     "typescript": "~4.7.4",
     "unplugin-auto-import": "0.11.5",
