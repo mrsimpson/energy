@@ -1,5 +1,5 @@
-import { trackInput } from './Matomo';
-import { debounce } from 'debounce'
+import { trackInput } from "./Matomo";
+import { debounce } from "debounce";
 
 /**
  * Generates a function tracking input which is executed after a delay
@@ -10,16 +10,20 @@ import { debounce } from 'debounce'
  * @returns a debounced, tracking function
  */
 export function createInputHandler(
-    fn: Function,
-    inputId: string,
-    trackValue = false,
-    delay = 300) {
-    return debounce(
-        (args: any) => {
-            trackInput(inputId, trackValue ? args.toString() : undefined);
-            fn.call({}, args)
-        },
-        delay,
-        false
-    )
+  fn: Function,
+  inputId: string,
+  trackValue = false,
+  delay = 300
+) {
+  return debounce(
+    (...args: any[]) => {
+      trackInput(inputId, trackValue ? args.toString() : undefined);
+      fn.call({}, ...args);
+    },
+    delay,
+    false
+  );
 }
+
+export const handlerFor = (inputId: string, fn: Function) =>
+  createInputHandler(fn, inputId);

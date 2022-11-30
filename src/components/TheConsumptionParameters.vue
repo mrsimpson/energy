@@ -5,27 +5,13 @@ import Explanation from "@/components/ExplanationText.vue";
 import RecommendationsModal from "@/components/RecommendationsModal.vue";
 import type { FormRules, FormInst } from "naive-ui";
 import { isSmallScreen } from "@/lib/responsiveness";
-import { createInputHandler } from "@/lib/Tracking";
+import { handlerFor } from "@/lib/Tracking";
+import { useSettingsStore } from "@/SettingsStore";
+import { storeToRefs } from "pinia";
 
-const props = defineProps<{
-  consumption: number;
-  reduction2023: number | undefined;
-}>();
+const store = useSettingsStore();
 
-const emit = defineEmits(["consumptionChanged", "reduction2023Changed"]);
-
-const model = { ...toRefs(props) };
-
-// as we're managing state in the parent component passing it as props and
-// decouple it when creating the model above, we manually need to react on
-// changes of the parent state (no automatic two way binding)
-watch(
-  () => props,
-  (newProps) => {
-    model.consumption.value = newProps.consumption;
-    model.reduction2023.value = newProps.reduction2023;
-  }
-);
+const { consumption, reduction2023 } = storeToRefs(store)
 
 const rules: FormRules = {
   consumption: {
@@ -40,25 +26,8 @@ const formRef = ref<FormInst | null>(null);
 
 const showRecommendations = ref(false);
 
-const savingsPercent = computed(
-  ():number => (((model.reduction2023.value || 0) * 100) / model.consumption.value)
-);
-
-const handleConsumptionChanged = createInputHandler(
-  (value: number) => emit("consumptionChanged", value),
-  "consumption"
-);
-
-const handleReductionChanged = createInputHandler(
-  (value: number) => emit("reduction2023Changed", value),
-  "reduction"
-);
-
-function setSavings(percent: number) {
-  showRecommendations.value = false;
-  const reduction = (model.consumption.value * percent) / 100;
-  emit("reduction2023Changed", reduction);
-}
+const handleConsumptionChanged = handlerFor("consumption", store.setConsumption);
+const handleReductionChanged = handlerFor("reduction", store.setReduction2023);
 </script>
 
 <template>
@@ -72,7 +41,7 @@ function setSavings(percent: number) {
     <n-space vertical>
       <n-form
         ref="formRef"
-        :model="model"
+        :model="store"
         :rules="rules"
         :label-placement="isSmallScreen ? 'top' : 'left'"
         label-width="auto"
@@ -82,7 +51,7 @@ function setSavings(percent: number) {
       >
         <n-form-item label="Verbrauch im letzten Jahr" path="consumption">
           <n-input-number
-            v-model:value="model.consumption.value"
+            :value="consumption"
             placeholder="Energiebedarf"
             :min="1"
             :step="1000"
@@ -99,10 +68,10 @@ function setSavings(percent: number) {
         </n-form-item>
         <n-form-item label="Das will ich einsparen" path="reduction">
           <n-input-number
-            v-model:value="model.reduction2023.value"
+            :value="reduction2023"
             placeholder="Dein Sparziel für 2023"
             :min="0"
-            :max="model.consumption.value"
+            :max="consumption"
             :validator="validatePositive"
             :step="100"
             @change="handleReductionChanged"
@@ -130,8 +99,6 @@ function setSavings(percent: number) {
 
   <RecommendationsModal
     :show="showRecommendations"
-    :value="Math.round(savingsPercent)"
-    @change="setSavings"
     @close="showRecommendations = false"
   />
 </template>

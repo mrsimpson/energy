@@ -77,12 +77,7 @@ onMounted(() => scrollTo({top: 0}))
     <n-card>
       <h1>Gaskosten</h1>
       <p>Gib an, was Du an Gas verbrauchst und was Du einsparen möchtest</p>
-      <TheConsumptionParameters
-        :consumption="consumption"
-        :reduction2023="reduction2023"
-        @consumption-changed="consumption = $event"
-        @reduction2023-changed="reduction2023 = $event"
-      />
+      <TheConsumptionParameters />
       <p style="padding-top: 1rem">
         Basierend auf deinem Verbrauch, der Einsparung und
         <n-el class="show-price" @click="togglePriceParameters" tag="a"

@@ -21,6 +21,7 @@
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
+    "@pinia/testing": "^0.0.14",
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/chart.js": "^2.9.37",
     "@types/debounce": "1.2.1",
@@ -36,6 +37,7 @@
     "jsdom": "^20.0.1",
     "naive-ui": "2.33.5",
     "npm-run-all": "^4.1.5",
+    "pinia": "^2.0.27",
     "prettier": "^2.7.1",
     "typescript": "~4.7.4",
     "unplugin-auto-import": "0.11.5",

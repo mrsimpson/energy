@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import VueMatomo from "vue-matomo";
+import { createPinia } from "pinia";
 
 const params = location.search
   ? Object.fromEntries(
@@ -25,6 +26,7 @@ if (params.c) {
 
 const app = createApp(App);
 
+app.use(createPinia());
 app.use(router).use(VueMatomo, {
   host: "https://matomo.dilab.co",
   siteId: 2,
