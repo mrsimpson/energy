@@ -6,8 +6,8 @@ import component from "../SettingsView.vue";
 describe("SettingsView", () => {
   it("renders as expected", () => {
     const testHelper = TestHelper();
-    testHelper.setupRouter([{ name: "root", path: "/", component }]);
     testHelper.setupStore();
+    testHelper.setupRouter([{ name: "root", path: "/", component }]);
     const wrapper = shallowMount(component, testHelper.mountOptions());
     expect(wrapper.element).toMatchSnapshot();
   });

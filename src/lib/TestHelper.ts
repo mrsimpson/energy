@@ -6,6 +6,8 @@ import { vi } from 'vitest';
 
 type Modal = { componentVM: { containerRef: HTMLElement } }
 
+vi.mock("./WindowTools")
+
 export default function TestHelper() {
   let modalContainerCreated = false
   const plugins = [] as any[]
