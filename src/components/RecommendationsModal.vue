@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { useSettingsStore } from "@/SettingsStore";
+import { NButton, NModal, NSlider } from "naive-ui";
+import { ref } from "vue";
 
-defineProps<{ show: boolean }>();
+defineProps<{
+  show: boolean;
+  recommendations: string[];
+}>();
+
 const emit = defineEmits(["close"]);
 
 const store = useSettingsStore();
@@ -24,26 +30,17 @@ function setSavings() {
     @close="emit('close')"
   >
     <ul>
-      <li>
-        Reduziere die Raumtemperatur um 1°. Das spart laut Umwelt-Bundesamt ca. 6% Gas.
-        Reduzierst du um 2° oder 3° sparst du entsprechend mehr.
-      </li>
-      <li>
-        Wenn du nur halb so viel duschst, sparst du warmes Wasser, das dann natürlich auch
-        nicht aufgeheizt werden muss und damit kein Gas verbraucht.
-      </li>
-      <li>
-        Du hast einen Gasherd? Du könntest ihn beim Nudeln oder Reis kochen nach 2min
-        ausschalten.
-      </li>
-      <li>
-        <a
-          href="https://www.energiewechsel.de/KAENEF/Navigation/DE/Thema/energiespartipps.html"
-        >
-          Noch mehr Ideen zum sparen
-        </a>
+      <li v-for="(recommendation, index) in recommendations" :key="index">
+        {{ recommendation }}
       </li>
     </ul>
+
+    <a
+      href="https://www.energiewechsel.de/KAENEF/Navigation/DE/Thema/energiespartipps.html"
+      target="_blank"
+    >
+      Noch mehr Ideen zum sparen
+    </a>
 
     <p>Ich versuche, die folgende Einsparung zu erreichen:</p>
     <div class="wrapper">
@@ -51,6 +48,12 @@ function setSavings() {
       <span class="currentValue">{{ sliderValue }}%</span>
       <NButton @click="setSavings">Übernehmen</NButton>
     </div>
+
+    <p>
+      Die Vorschläge passen nicht zu deinen Lebensumständen? Wir gehen von bestimmten
+      Annahmen aus, die du
+      <RouterLink :to="{ name: 'settings' }">hier anpassen</RouterLink> kannst.
+    </p>
   </n-modal>
 </template>
 

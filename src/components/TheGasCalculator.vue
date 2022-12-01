@@ -2,15 +2,18 @@
 import calculateMonthlyRate from "../lib/calculateMonthlyRate";
 import TheConsumptionParameters from "./TheConsumptionParameters.vue";
 import ThePriceParameters from "./ThePriceParameters.vue";
-
 import TheResult from "./TheResult.vue";
+import { useSettingsStore } from "@/SettingsStore";
+import { storeToRefs } from "pinia";
+import WindowTools from '@/lib/WindowTools';
+
+const store = useSettingsStore();
+const { consumption, reduction2023 } = storeToRefs(store);
 
 // Parameters
-const consumption = ref(15000);
 const price2021 = ref(0.1);
 const price2022 = ref(0.18);
 const price2023 = ref(0.3);
-const reduction2023 = ref(0);
 const paymentSeptember2022 = ref(
   calculateMonthlyRate(consumption.value, price2022.value)
 );
@@ -27,10 +30,7 @@ watch(
   () => consumption.value,
   (current) => {
     if (!showPriceParameter.value) {
-      paymentSeptember2022.value = calculateMonthlyRate(
-        current,
-        price2022.value
-      );
+      paymentSeptember2022.value = calculateMonthlyRate(current, price2022.value);
     }
   }
 );
@@ -54,8 +54,7 @@ const calculation2023 = computed(() => {
   const consumptionAtMarketprice = actualConsumption - consumptionSubsidized;
   return {
     billed:
-      consumptionAtMarketprice * price2023.value +
-      consumptionSubsidized * gasPriceBreak,
+      consumptionAtMarketprice * price2023.value + consumptionSubsidized * gasPriceBreak,
     subsidized: Math.max(consumptionSubsidized * (price2023.value - gasPriceBreak), 0),
     saved: reduction * price2023.value,
   };
@@ -69,7 +68,7 @@ const subsidization = computed(() => [
 ]);
 const savings = computed(() => [0, 0, 0, calculation2023.value.saved]);
 
-onMounted(() => scrollTo({top: 0}))
+onMounted(WindowTools.scrollToTop);
 </script>
 
 <template>
