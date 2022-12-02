@@ -1,9 +1,10 @@
 import { defineStore } from "pinia";
+import { useLocalStorage } from '@vueuse/core'
 
 export const useSettingsStore = defineStore("settings", {
   state: () => ({
-    consumption: 15000,
-    reduction2023: undefined as number | undefined,
+    consumption: useLocalStorage('pinia/settings/consumption', 15000),
+    reduction2023: useLocalStorage('pinia/settings/reduction2023', 0 as number | undefined),
   }),
 
   actions: {
