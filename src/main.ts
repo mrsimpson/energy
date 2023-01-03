@@ -28,7 +28,7 @@ const app = createApp(App);
 
 app.use(createPinia());
 app.use(router).use(VueMatomo, {
-  host: "https://matomo.dilab.co",
+  host: "https://matomo.justso.de",
   siteId: 2,
   router,
   disableCookies: true,
